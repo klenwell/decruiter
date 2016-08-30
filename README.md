@@ -2,7 +2,7 @@
 
 An Python Flask App Engine application for quickly deconstructing and categorizing recruiter emails.
 
-- App Engine Site: TBA
+- App Engine Site: https://decruiter.appspot.com/
 - Trello Board: https://trello.com/b/6exW1pbZ/decruiter
 
 
