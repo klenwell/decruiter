@@ -33,7 +33,7 @@ Update secret values in news `secrets.py`.
 
 ## Development Server
 
-To launch the local development server:
+To launch the local development server, run the following command from the project root:
 
     dev_appserver.py --port=3000 --admin_port=3001 --api_port=3002 ./app-engine
 
