@@ -3,6 +3,10 @@
 # https://developers.google.com/appengine/docs/python/config/appconfig
 # for details.
 
+# default: production
+version: eugxom74
+
+application: decruiter-flask
 runtime: python27
 api_version: 1
 threadsafe: yes
