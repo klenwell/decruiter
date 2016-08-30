@@ -4,9 +4,9 @@
 # for details.
 
 # default: production
-version: eugxom74
+version: production
 
-application: decruiter-flask
+application: decruiter
 runtime: python27
 api_version: 1
 threadsafe: yes
