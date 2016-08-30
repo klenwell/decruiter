@@ -1,86 +1,52 @@
-## Python Flask Skeleton for Google App Engine
+# Decruiter
 
-A skeleton for building Python applications on Google App Engine with the
-[Flask micro framework](http://flask.pocoo.org).
+An Python Flask App Engine application for quickly deconstructing and categorizing recruiter emails.
 
-See our other [Google Cloud Platform github
-repos](https://github.com/GoogleCloudPlatform) for sample applications and
-scaffolding for other python frameworks and use cases.
+- App Engine Site: TBA
+- Trello Board: https://trello.com/b/6exW1pbZ/decruiter
 
-## Run Locally
-1. Install the [App Engine Python SDK](https://developers.google.com/appengine/downloads).
-See the README file for directions. You'll need python 2.7 and [pip 1.4 or later](http://www.pip-installer.org/en/latest/installing.html) installed too.
 
-2. Clone this repo with
+## Flask App Engine Application
 
-   ```
-   git clone https://github.com/GoogleCloudPlatform/appengine-python-flask-skeleton.git
-   ```
-3. Install dependencies in the project's lib directory.
-   Note: App Engine can only import libraries from inside your project directory.
+The Flask App Engine application is based on the [GoogleCloudPlatform Flask App Engine
+skeleton](https://github.com/GoogleCloudPlatform/appengine-python-flask-skeleton).
 
-   ```
-   cd appengine-python-flask-skeleton
-   pip install -r requirements.txt -t lib
-   ```
-4. Run this project locally from the command line:
+To install:
 
-   ```
-   dev_appserver.py .
-   ```
+1. Install the [Google App Engine Python SDK](https://cloud.google.com/appengine/downloads).
 
-Visit the application [http://localhost:8080](http://localhost:8080)
+2. Clone this repository:
 
-See [the development server documentation](https://developers.google.com/appengine/docs/python/tools/devserver)
-for options when running dev_appserver.
+    git clone https://github.com/klenwell/decruiter.git
 
-## Deploy
-To deploy the application:
+3. Install the required libraries using Pip:
 
-1. Use the [Admin Console](https://appengine.google.com) to create a
-   project/app id. (App id and project id are identical)
-1. [Deploy the
-   application](https://developers.google.com/appengine/docs/python/tools/uploadinganapp) with
+    cd decruiter/app-engine
+    pip install -r requirements.txt -t lib
 
-   ```
-   appcfg.py update -A <your-project-id> -V v1 .
-   ```
-   
-   If this isn't your first deployment, you will need to set the new version as the default version with
-   
-   ```
-   appcfg.py set_default_version -V v1 -A <your-project-id>
-   ```
+4. Create secrets file by copying `-dist` version into place:
 
-1. Congratulations!  Your application is now live at your-app-id.appspot.com
+    cp -v decruiter/app-engine/config/secrets.py{-dist,}
 
-## Next Steps
-This skeleton includes `TODO` markers to help you find basic areas you will want
-to customize.
+Update secret values in news `secrets.py`.
 
-### Relational Databases and Datastore
-To add persistence to your models, use
-[NDB](https://developers.google.com/appengine/docs/python/ndb/) for
-scale.  Consider
-[CloudSQL](https://developers.google.com/appengine/docs/python/cloud-sql)
-if you need a relational database.
 
-### Installing Libraries
-See the [Third party
-libraries](https://developers.google.com/appengine/docs/python/tools/libraries27)
-page for libraries that are already included in the SDK.  To include SDK
-libraries, add them in your app.yaml file. Other than libraries included in
-the SDK, only pure python libraries may be added to an App Engine project.
+## Development Server
 
-### Feedback
-Star this repo if you found it useful. Use the github issue tracker to give
-feedback on this repo.
+To launch the local development server:
 
-## Contributing changes
-See [CONTRIB.md](CONTRIB.md)
+    dev_appserver.py --port=3000 --admin_port=3001 --api_port=3002 ./app-engine
 
-## Licensing
-See [LICENSE](LICENSE)
+Application will run on [http://localhost:3000](http://localhost:3000).
 
-## Author
-Logan Henriquez and Johan Euphrosine
+
+## Tests
+
+No tests yet.
+
+
+## Deployment
+
+To deploy the App Engine application:
+
+    appcfg.py -A PROJECT_NAME -e YOUR_USER_NAME update ./app-engine
