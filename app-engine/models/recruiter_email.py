@@ -1,12 +1,6 @@
 """
 # Recruiter Email
 
-On home page, guests can suggests potential pundits for admins or moderators.
-
-## Related Models
-
-- belongs_to Guest (Suggester)
-- belongs_to Pundit
 """
 from google.appengine.ext import ndb
 
