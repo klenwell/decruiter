@@ -42,7 +42,25 @@ Application will run on [http://localhost:3000](http://localhost:3000).
 
 ## Tests
 
-No tests yet.
+First, install testing libraries:
+
+    cd app-engine
+    pip install -r requirements-test.txt
+
+To run tests:
+
+    cd app-engine
+    nosetests -c nose.cfg
+
+With coverage:
+
+    nosetests -c nose.cfg --with-coverage --cover-erase \
+      --cover-package=config,models
+
+To run a single test:
+
+    cd app-engine
+    nosetests -c nose.cfg tests/models/test_recruiter_email.py
 
 
 ## Deployment
