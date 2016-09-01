@@ -7,7 +7,7 @@ To run individually:
 """
 from models.recruiter_email import RecruiterEmail
 
-from tests.helper import AppEngineModelTest
+from tests.helper import AppEngineModelTest, TestEmail
 
 
 #
@@ -15,13 +15,21 @@ from tests.helper import AppEngineModelTest
 #
 class RecruiterEmailModelTest(AppEngineModelTest):
 
-    def test_expects_to_create_model_instance(self):
+    def test_expects_from_handler_to_save_record(self):
         # Arrange
-        raw_email_text = 'Imagine this were a real recruiter email.'
+        mail_message = TestEmail.fixture('online_recruiter_email_fwd')
 
         # Act
-        recruitment = RecruiterEmail(raw=raw_email_text)
+        recruitment = RecruiterEmail.from_inbound_handler(mail_message)
+
+        # Assert
+        self.assertEqual(recruitment.forwarding_address, 'Tom Atwell <klenwell@gmail.com>')
+        self.assertEqual(recruitment.forwarder, 'Tom Atwell <tatwell@gmail.com>')
+        self.assertEqual(len(recruitment.original), 18741)
+
+    def test_expects_to_create_model_instance(self):
+        # Act
+        recruitment = RecruiterEmail()
 
         # Assert
         self.assertIsInstance(recruitment, RecruiterEmail)
-        self.assertEqual(recruitment.raw, raw_email_text)

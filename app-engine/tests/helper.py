@@ -5,8 +5,10 @@ from unittest import TestCase
 from unittest import skip   # As convenience for test modules.
 from os.path import abspath, dirname, join
 import hashlib
+import email
 
 from google.appengine.ext import ndb, testbed
+from google.appengine.api.mail import InboundEmailMessage
 
 
 #
@@ -89,6 +91,19 @@ project_root = lambda: abspath(join(dirname(__file__), '..'))
 #
 # Helper Classes and Fixtures
 #
+class TestEmail(object):
+    @staticmethod
+    def fixture(fixture_id):
+        fname = '%s.txt' % (fixture_id)
+        path = join(project_root(), 'tests/fixtures/files', fname)
+
+        with open(path, 'r') as f:
+            raw_email_text = f.read().strip()
+
+        mime_message = email.message_from_string(raw_email_text)
+        return InboundEmailMessage(mime_message)
+
+
 class MockIdentityService(object):
 
     @staticmethod
