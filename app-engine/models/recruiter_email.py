@@ -2,6 +2,9 @@
 # Recruiter Email
 
 """
+import email
+import hashlib
+
 from google.appengine.ext import ndb
 
 
@@ -16,6 +19,7 @@ class RecruiterEmail(ndb.Model):
     forwarder               = ndb.StringProperty(required=True)
     forwarding_address      = ndb.StringProperty(required=True)
     original                = ndb.TextProperty(required=True)
+    checksum                = ndb.ComputedProperty(lambda self: self._compute_checksum())
 
     # Timestamps
     created_at              = ndb.DateTimeProperty(auto_now_add=True)
@@ -24,8 +28,54 @@ class RecruiterEmail(ndb.Model):
     # Class Methods
     @staticmethod
     def from_inbound_handler(message):
+        existing_recruitment = RecruiterEmail.get_by_incoming_message(message)
+
+        if existing_recruitment:
+            existing_recruitment.already_existed = True
+            return existing_recruitment
+
         recruitment = RecruiterEmail(forwarder=message.sender,
                                      forwarding_address=message.to,
                                      original=message.original.as_string())
+        recruitment.already_existed = False
         recruitment.put()
         return recruitment
+
+    @staticmethod
+    def extract_plaintext_body(raw_email_str):
+        # See http://stackoverflow.com/a/32840516/1093087
+        message = email.message_from_string(raw_email_str)
+
+        if message.is_multipart():
+            for part in message.walk():
+                content_type = part.get_content_type()
+                disposition = str(part.get('Content-Disposition'))
+
+                # Skip any text/plain (txt) attachments
+                if content_type == 'text/plain' and 'attachment' not in disposition:
+                    return part.get_payload(decode=True)
+
+        # Not multipart - i.e. plain text, no attachments, keeping fingers crossed
+        else:
+            return message.get_payload(decode=True)
+
+    # Query Methods
+    @staticmethod
+    def get_by_incoming_message(message):
+        original = message.original.as_string()
+        body = RecruiterEmail.extract_plaintext_body(original)
+
+        if not body:
+            return None
+
+        checksum = hashlib.md5(body).hexdigest()
+        return RecruiterEmail.get_by_checksum(checksum)
+
+    @staticmethod
+    def get_by_checksum(checksum):
+        return RecruiterEmail.query(RecruiterEmail.checksum == checksum).get()
+
+    # Private Methods
+    def _compute_checksum(self):
+        body = RecruiterEmail.extract_plaintext_body(self.original)
+        return hashlib.md5(body).hexdigest()

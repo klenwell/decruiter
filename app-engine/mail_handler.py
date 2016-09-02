@@ -19,7 +19,10 @@ class RecruiterEmailHandler(InboundMailHandler):
                                                                  mail_message.subject))
 
         recruitment = RecruiterEmail.from_handler(mail_message)
-        logging.info('Saved recruitment: %s' % (recruitment))
 
+        if recruiter.already_existed:
+            logging.info('Recruitment already existed: %s' % (recruitment))
+        else:
+            logging.info('Recruitment saved: %s' % (recruitment))
 
 app = webapp2.WSGIApplication([RecruiterEmailHandler.mapping()], debug=True)

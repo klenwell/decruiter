@@ -14,10 +14,19 @@ from tests.helper import AppEngineModelTest, TestEmail
 # Test Case
 #
 class RecruiterEmailModelTest(AppEngineModelTest):
+    def test_expects_to_create_model_instance(self):
+        # Act
+        recruitment = RecruiterEmail()
 
-    def test_expects_from_handler_to_save_record(self):
+        # Assert
+        self.assertIsInstance(recruitment, RecruiterEmail)
+
+    def test_expects_record_to_be_saved_by_from_inbound_handler(self):
         # Arrange
         mail_message = TestEmail.fixture('online_recruiter_email_fwd')
+
+        # Assume
+        expected_checksum = 'b7776935b1fe86fb7046104bc50339a1'
 
         # Act
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
@@ -25,11 +34,24 @@ class RecruiterEmailModelTest(AppEngineModelTest):
         # Assert
         self.assertEqual(recruitment.forwarding_address, 'Tom Atwell <klenwell@gmail.com>')
         self.assertEqual(recruitment.forwarder, 'Tom Atwell <tatwell@gmail.com>')
+        self.assertEqual(recruitment.checksum, expected_checksum)
         self.assertEqual(len(recruitment.original), 18741)
 
-    def test_expects_to_create_model_instance(self):
+    def test_expects_duplicate_incoming_messages_to_be_saved_only_once(self):
+        # Arrange
+        mail_message = TestEmail.fixture('online_recruiter_email_fwd')
+        recruitment = RecruiterEmail.from_inbound_handler(mail_message)
+        expected_checksum = 'b7776935b1fe86fb7046104bc50339a1'
+
+        # Assume
+        self.assertEqual(RecruiterEmail.query().count(), 1)
+        self.assertEqual(recruitment.checksum, expected_checksum)
+        self.assertFalse(recruitment.already_existed)
+
         # Act
-        recruitment = RecruiterEmail()
+        duplicate = RecruiterEmail.from_inbound_handler(mail_message)
 
         # Assert
-        self.assertIsInstance(recruitment, RecruiterEmail)
+        self.assertEqual(RecruiterEmail.query().count(), 1)
+        self.assertEqual(recruitment.checksum, duplicate.checksum)
+        self.assertTrue(duplicate.already_existed)
