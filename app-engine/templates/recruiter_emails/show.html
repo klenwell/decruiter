@@ -1,0 +1,45 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Recruiter Email{% endblock %}
+
+{% block append_head %}
+{% endblock %}
+
+
+{% block content %}
+<div class="recruiter show">
+  <div class="row">
+
+    <div class="col-sm-6 data">
+      <div class="recruitment-data">
+      </div>
+
+      <div class="forwarding-data">
+        <h4>Forwarding Data</h4>
+
+        <dt>Forwarder</dt>
+        <dd>{{ recruitment.forwarder }}</dd>
+
+        <dt>Forwarding Address</dt>
+        <dd>{{ recruitment.forwarding_address }}</dd>
+
+        <dt>Subject</dt>
+        <dd>{{ recruitment.forwarded_subject }}</dd>
+
+        <dt>Received</dt>
+        <dd>{{ at(recruitment.created_at) }}</dd>
+      </div>
+
+      <hr />
+
+      <a href="/admin/recruitments/">return to index</a>
+    </div>
+
+    <div class="col-sm-6 original">
+      <h4>Original</h4>
+      <pre>{{ recruitment.original }}</pre>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
