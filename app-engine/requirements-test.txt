@@ -7,4 +7,6 @@ nosegae
 coverage
 nose-exclude
 beautifulsoup4
+
+# To test email handler.
 WebTest

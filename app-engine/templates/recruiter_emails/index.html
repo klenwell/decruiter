@@ -37,7 +37,7 @@
           <td>{{ recruitment.forwarding_address }}</td>
           <td>{{ recruitment.forwarded_subject }}</td>
           <td>{{ recruitment.original_length }}</td>
-          <td>{{ recruitment.created_at }}</td>
+          <td>{{ at(recruitment.created_at) }}</td>
           <td>
             <a class="btn btn-primary"
                href="/admin/recruitment/{{ recruitment.public_id }}/">

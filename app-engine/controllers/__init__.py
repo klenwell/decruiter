@@ -75,9 +75,19 @@ def common_variables():
 #
 # Template Helper Methods
 #
+def at(a_datetime):
+    f = '%Y-%m-%d %H:%M:%S'
+
+    if not a_datetime:
+        return 'N/A'
+    else:
+        return a_datetime.strftime(f).lower()
+
 @app.context_processor
 def template_helpers():
-    helpers = dict()
+    helpers = dict(
+        at = at
+    )
 
     # Make helpers available to jinja
     app.jinja_env.globals.update(**helpers)
