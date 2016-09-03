@@ -7,3 +7,4 @@ nosegae
 coverage
 nose-exclude
 beautifulsoup4
+WebTest

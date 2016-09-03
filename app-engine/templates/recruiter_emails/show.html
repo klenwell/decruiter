@@ -9,9 +9,26 @@
 {% block content %}
 <div class="recruiter show">
   <div class="row">
+
     <div class="col-sm-6 data">
-      <dt>Received</dt>
-      <dd>{{ recruitment.created_at }}</dd>
+      <div class="recruitment-data">
+      </div>
+
+      <div class="forwarding-data">
+        <h4>Forwarding Data</h4>
+
+        <dt>Forwarder</dt>
+        <dd>{{ recruitment.forwarder }}</dd>
+
+        <dt>Forwarding Address</dt>
+        <dd>{{ recruitment.forwarding_address }}</dd>
+
+        <dt>Subject</dt>
+        <dd>{{ recruitment.forwarded_subject }}</dd>
+
+        <dt>Received</dt>
+        <dd>{{ recruitment.created_at }}</dd>
+      </div>
 
       <hr />
 
@@ -22,6 +39,7 @@
       <h4>Original</h4>
       <pre>{{ recruitment.original }}</pre>
     </div>
+
   </div>
 </div>
 {% endblock %}
