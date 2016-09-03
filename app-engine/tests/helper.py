@@ -6,6 +6,7 @@ from unittest import skip   # As convenience for test modules.
 from os.path import abspath, dirname, join
 import hashlib
 import email
+from bs4 import BeautifulSoup
 
 from google.appengine.ext import ndb, testbed
 from google.appengine.api.mail import InboundEmailMessage
@@ -52,6 +53,14 @@ class AppEngineModelTest(AppEngineTestCase):
     def tearDown(self):
         self.testbed.deactivate()
 
+class AppEngineControllerTest(AppEngineModelTest):
+    """Similar to Model test except it inits user stub by default.
+    """
+    def setUp(self, **options):
+        options['init_user_stub'] = options.get('init_user_stub', True)
+        options['init_taskqueue_stub'] = options.get('init_taskqueue_stub', True)
+        super(AppEngineControllerTest, self).setUp(**options)
+
 
 def make_bed(**options):
     # Initializing the datastore stub with root_path enables tests to generate
@@ -86,6 +95,11 @@ def make_bed(**options):
 # Helper Methods
 #
 project_root = lambda: abspath(join(dirname(__file__), '..'))
+
+def parse_html(markup):
+    # Returns
+    html = BeautifulSoup(markup, 'html.parser')
+    return html
 
 
 #

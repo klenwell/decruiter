@@ -6,3 +6,4 @@ nose
 nosegae
 coverage
 nose-exclude
+beautifulsoup4

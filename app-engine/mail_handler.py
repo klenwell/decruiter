@@ -18,9 +18,9 @@ class RecruiterEmailHandler(InboundMailHandler):
                                                                  mail_message.sender,
                                                                  mail_message.subject))
 
-        recruitment = RecruiterEmail.from_handler(mail_message)
+        recruitment = RecruiterEmail.from_inbound_handler(mail_message)
 
-        if recruiter.already_existed:
+        if recruitment.already_existed:
             logging.info('Recruitment already existed: %s' % (recruitment))
         else:
             logging.info('Recruitment saved: %s' % (recruitment))

@@ -18,6 +18,7 @@ class RecruiterEmail(ndb.Model):
     # Fields
     forwarder               = ndb.StringProperty(required=True)
     forwarding_address      = ndb.StringProperty(required=True)
+    forwarded_subject       = ndb.StringProperty()
     original                = ndb.TextProperty(required=True)
     checksum                = ndb.ComputedProperty(lambda self: self._compute_checksum())
 
@@ -36,6 +37,7 @@ class RecruiterEmail(ndb.Model):
 
         recruitment = RecruiterEmail(forwarder=message.sender,
                                      forwarding_address=message.to,
+                                     forwarded_subject=message.subject,
                                      original=message.original.as_string())
         recruitment.already_existed = False
         recruitment.put()
@@ -60,6 +62,11 @@ class RecruiterEmail(ndb.Model):
             return message.get_payload(decode=True)
 
     # Query Methods
+    @staticmethod
+    def s_recently_received(**options):
+        limit = options.get('limit', 25)
+        return RecruiterEmail.query().order(-RecruiterEmail.created_at).fetch(limit)
+
     @staticmethod
     def get_by_incoming_message(message):
         original = message.original.as_string()

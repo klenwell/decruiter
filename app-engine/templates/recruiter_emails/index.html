@@ -1,0 +1,50 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Recruiter Emails{% endblock %}
+
+{% block append_head %}
+  <!-- <link rel="stylesheet" href="/assets/stylesheets/forecasts.css"> -->
+{% endblock %}
+
+
+{% block content %}
+<div class="recruiter-emails index">
+
+  <h2>Recruiter Emails</h2>
+
+  {# Table #}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Forwarder</th>
+        <th>Forwarding Address</th>
+        <th>Forwarded Subject</th>
+        <th>Length</th>
+        <th>Created</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% if not recruitments: %}
+      <tr>
+        <td class="text-center" colspan="6">No emails found.</td>
+      </tr>
+      {% else: %}
+        {% for recruitment in recruitments: %}
+        <tr id='{{ recruitment.public_id }}'>
+          <td>{{ recruitment.forwarder }}</td>
+          <td>{{ recruitment.forwarding_address }}</td>
+          <td>{{ recruitment.forwarded_subject }}</td>
+          <td>TBA</td>
+          <td>{{ recruitment.created_at }}</td>
+          <td>TBA</td>
+        </tr>
+        {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+  {# End Table #}
+
+</div>
+{% endblock %}

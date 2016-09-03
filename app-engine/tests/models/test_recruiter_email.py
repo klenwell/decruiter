@@ -26,14 +26,19 @@ class RecruiterEmailModelTest(AppEngineModelTest):
         mail_message = TestEmail.fixture('online_recruiter_email_fwd')
 
         # Assume
+        expected_forwarder = 'Tom Atwell <tatwell@gmail.com>'
+        expected_address = 'Tom Atwell <klenwell@gmail.com>'
+        expected_subject = "Fwd: Need:: Python Developer (IA-Iowa/Des Moinses, " \
+                           "6-12 Months )\n Skype then F2F hire"
         expected_checksum = 'b7776935b1fe86fb7046104bc50339a1'
 
         # Act
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
 
         # Assert
-        self.assertEqual(recruitment.forwarding_address, 'Tom Atwell <klenwell@gmail.com>')
-        self.assertEqual(recruitment.forwarder, 'Tom Atwell <tatwell@gmail.com>')
+        self.assertEqual(recruitment.forwarding_address, expected_address)
+        self.assertEqual(recruitment.forwarder, expected_forwarder)
+        self.assertEqual(recruitment.forwarded_subject, expected_subject)
         self.assertEqual(recruitment.checksum, expected_checksum)
         self.assertEqual(len(recruitment.original), 18741)
 
