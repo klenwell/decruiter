@@ -36,9 +36,14 @@
           <td>{{ recruitment.forwarder }}</td>
           <td>{{ recruitment.forwarding_address }}</td>
           <td>{{ recruitment.forwarded_subject }}</td>
-          <td>TBA</td>
+          <td>{{ recruitment.original_length }}</td>
           <td>{{ recruitment.created_at }}</td>
-          <td>TBA</td>
+          <td>
+            <a class="btn btn-primary"
+               href="/admin/recruitment/{{ recruitment.public_id }}/">
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            </a>
+          </td>
         </tr>
         {% endfor %}
       {% endif %}

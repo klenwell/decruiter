@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Recruiter Email{% endblock %}
+
+{% block append_head %}
+{% endblock %}
+
+
+{% block content %}
+<div class="recruiter show">
+  <div class="row">
+    <div class="col-sm-6 data">
+      <dt>Received</dt>
+      <dd>{{ recruitment.created_at }}</dd>
+
+      <hr />
+
+      <a href="/admin/recruitments/">return to index</a>
+    </div>
+
+    <div class="col-sm-6 original">
+      <h4>Original</h4>
+      <pre>{{ recruitment.original }}</pre>
+    </div>
+  </div>
+</div>
+{% endblock %}

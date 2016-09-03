@@ -26,6 +26,18 @@ class RecruiterEmail(ndb.Model):
     created_at              = ndb.DateTimeProperty(auto_now_add=True)
     updated_at              = ndb.DateTimeProperty(auto_now=True)
 
+    # Virtual Fields
+    @property
+    def public_id(self):
+        if not self.key:
+            return None
+        else:
+            return self.key.id()
+
+    @property
+    def original_length(self):
+        return len(self.original)
+
     # Class Methods
     @staticmethod
     def from_inbound_handler(message):
@@ -62,6 +74,13 @@ class RecruiterEmail(ndb.Model):
             return message.get_payload(decode=True)
 
     # Query Methods
+    @staticmethod
+    def read(public_id):
+        if not public_id:
+            return None
+
+        return ndb.Key('RecruiterEmail', int(public_id)).get()
+
     @staticmethod
     def s_recently_received(**options):
         limit = options.get('limit', 25)

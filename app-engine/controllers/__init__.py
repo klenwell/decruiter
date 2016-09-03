@@ -68,7 +68,9 @@ app.json_encoder = CustomJSONEncoder
 #
 @app.context_processor
 def common_variables():
-    return dict()
+    return dict(
+        current_year = date.today().year
+    )
 
 #
 # Template Helper Methods
