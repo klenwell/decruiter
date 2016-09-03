@@ -4,7 +4,7 @@
 # for details.
 
 # default: production
-version: xahfwmnx
+version: dev
 
 application: decruiter
 runtime: python27
