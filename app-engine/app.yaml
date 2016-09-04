@@ -4,7 +4,7 @@
 # for details.
 
 # default: production
-version: dev
+version: 4ftjb7op
 
 application: decruiter
 runtime: python27
