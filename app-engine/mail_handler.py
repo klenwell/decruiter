@@ -23,6 +23,8 @@ class RecruiterEmailHandler(InboundMailHandler):
         if recruitment.already_existed:
             logging.info('Recruitment already existed: %s' % (recruitment))
         else:
+            #recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
             logging.info('Recruitment saved: %s' % (recruitment))
+
 
 app = webapp2.WSGIApplication([RecruiterEmailHandler.mapping()], debug=True)

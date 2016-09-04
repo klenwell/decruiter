@@ -5,6 +5,8 @@ To run individually:
 
     nosetests -c nose.cfg tests/models/test_recruiter_email.py
 """
+from datetime import datetime
+
 from models.recruiter_email import RecruiterEmail
 
 from tests.helper import AppEngineModelTest, TestEmail
@@ -23,14 +25,21 @@ class RecruiterEmailModelTest(AppEngineModelTest):
 
     def test_expects_record_to_be_saved_by_from_inbound_handler(self):
         # Arrange
-        mail_message = TestEmail.fixture('online_recruiter_email_fwd')
+        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
 
         # Assume
         expected_forwarder = 'Tom Atwell <tatwell@gmail.com>'
-        expected_address = 'Tom Atwell <klenwell@gmail.com>'
-        expected_subject = "Fwd: Need:: Python Developer (IA-Iowa/Des Moinses, " \
-                           "6-12 Months )\n Skype then F2F hire"
-        expected_checksum = 'b7776935b1fe86fb7046104bc50339a1'
+        expected_address = 'recruitment@decruiter.appspotmail.com'
+        expected_subject_fwd = 'Fwd: CTF Engineering Lead - Menlo Park, CA'
+        expected_checksum = '706203edf87d7f035efc7e50c23282e2'
+        expected_original_length = 17542
+        expected_recruiter_name = 'Mahesh Khurpe'
+        expected_recruiter_email = 'mahes.khurpe@xoriant.com'
+        expected_sent_to = 'uRA sumA <tatwell@gmail.com>'
+        expected_sent_at = datetime(2016, 8, 31, 9, 41)
+        expected_subject = 'CTF Engineering Lead - Menlo Park, CA'
+        expected_plain_body_length = 2945
+        expected_html_body_length = 10133
 
         # Act
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
@@ -38,9 +47,16 @@ class RecruiterEmailModelTest(AppEngineModelTest):
         # Assert
         self.assertEqual(recruitment.forwarding_address, expected_address)
         self.assertEqual(recruitment.forwarder, expected_forwarder)
-        self.assertEqual(recruitment.forwarded_subject, expected_subject)
+        self.assertEqual(recruitment.forwarded_subject, expected_subject_fwd)
         self.assertEqual(recruitment.checksum, expected_checksum)
-        self.assertEqual(len(recruitment.original), 18741)
+        self.assertEqual(recruitment.original_length, expected_original_length)
+        self.assertEqual(recruitment.recruiter_name, expected_recruiter_name)
+        self.assertEqual(recruitment.recruiter_email, expected_recruiter_email)
+        self.assertEqual(recruitment.sent_to, expected_sent_to)
+        self.assertEqual(recruitment.sent_at, expected_sent_at)
+        self.assertEqual(recruitment.subject, expected_subject)
+        self.assertEqual(len(recruitment.plain_body), expected_plain_body_length)
+        self.assertEqual(len(recruitment.html_body), expected_html_body_length)
 
     def test_expects_duplicate_incoming_messages_to_be_saved_only_once(self):
         # Arrange
