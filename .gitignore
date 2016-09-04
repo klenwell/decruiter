@@ -13,7 +13,9 @@
 /tmp
 
 # Project excludes
+.coverage
 .dev
 app-engine/.python-version
 app-engine/lib
 app-engine/config/secrets.py
+app-engine/tests/dev/
