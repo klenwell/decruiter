@@ -1,6 +1,9 @@
 """
 # Recruiter Email
 
+## Related Models
+
+- belongs_to Recruiter
 """
 import email
 from email.utils import parseaddr
@@ -53,7 +56,9 @@ class RecruiterEmail(ndb.Model):
     def original_length(self):
         return len(self.original)
 
+    #
     # Class Methods
+    #
     @staticmethod
     def from_inbound_handler(message):
         existing_recruitment = RecruiterEmail.get_by_incoming_message(message)
@@ -139,7 +144,9 @@ class RecruiterEmail(ndb.Model):
             'plain_body': plain_body.strip()
         }
 
+    #
     # Query Methods
+    #
     @staticmethod
     def read(public_id):
         if not public_id:
@@ -167,7 +174,9 @@ class RecruiterEmail(ndb.Model):
     def get_by_checksum(checksum):
         return RecruiterEmail.query(RecruiterEmail.checksum == checksum).get()
 
+    #
     # Public Methods
+    #
     def extract_recruitment_properties(self):
         mime_message = email.message_from_string(self.original)
         inbound_message = InboundEmailMessage(mime_message)
@@ -188,7 +197,9 @@ class RecruiterEmail(ndb.Model):
 
         return self
 
+    #
     # Private Methods
+    #
     def _compute_checksum(self):
         body = RecruiterEmail.extract_plaintext_body(self.original)
         return hashlib.md5(body).hexdigest()
