@@ -20,13 +20,13 @@ class RecruiterEmailsHandlerTest(AppEngineTestCase):
     def test_expect_handler_save_forwarded_recruiter_email(self):
         # Arrange
         client = TestApp(app)
-        mail_message = TestEmail.fixture('online_recruiter_email_fwd')
+        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
 
         # Assume
         self.assertEqual(RecruiterEmail.query().count(), 0)
         endpoint = '/_ah/mail/test%40decruiter.appspotmail.com'
         body = mail_message.original.as_string()
-        expected_checksum = 'b7776935b1fe86fb7046104bc50339a1'
+        expected_checksum = '706203edf87d7f035efc7e50c23282e2'
 
         # Act
         response = client.post(endpoint, body)

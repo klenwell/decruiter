@@ -18,7 +18,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
     def test_expects_index_to_display_recruitments(self):
         # Arrange
         client = recruiter_emails_controller.test_client()
-        mail_message = TestEmail.fixture('online_recruiter_email_fwd')
+        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
 
         # Assume

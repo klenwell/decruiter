@@ -60,9 +60,9 @@ class RecruiterEmailModelTest(AppEngineModelTest):
 
     def test_expects_duplicate_incoming_messages_to_be_saved_only_once(self):
         # Arrange
-        mail_message = TestEmail.fixture('online_recruiter_email_fwd')
+        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
-        expected_checksum = 'b7776935b1fe86fb7046104bc50339a1'
+        expected_checksum = '706203edf87d7f035efc7e50c23282e2'
 
         # Assume
         self.assertEqual(RecruiterEmail.query().count(), 1)
