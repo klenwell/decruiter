@@ -8,8 +8,41 @@
 
 {% block content %}
 <div class="recruiter show">
-  <h2 class="name">{{ recruiter.name }}</h2>
-  <h4 class="email">{{ recruiter.email }}</h2>
+  <div class="recruiter-data">
+    <h2 class="name">{{ recruiter.name }}</h2>
+    <h4 class="email">{{ recruiter.email }}</h4>
+    <h6 class="created-at">Added {{ at(recruiter.created_at) }}</h6>
+  </div>
+
+  <div class="recruitments">
+    <h3>Recruitments</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Sent</th>
+          <th>Subject</th>
+          <th>Length</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% if recruiter.email_count < 1 %}
+          <td class="text-center" colspan="3">No recruitments found.</td>
+        {% else %}
+          {% for recruitment in recruiter.recruitments %}
+            <tr class="clickable"
+                id="{{ recruitment.public_id }}"
+                data-href="/admin/recruitment/{{ recruitment.public_id }}">
+              <td>{{ at(recruitment.sent_at) }}</td>
+              <td>{{ recruitment.subject }}</td>
+              <td>{{ recruitment.original_length }}</td>
+            </tr>
+          {% endfor %}
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+
 
   <hr />
 

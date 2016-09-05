@@ -167,6 +167,13 @@ class RecruiterEmail(ndb.Model):
         return RecruiterEmail.query().order(-RecruiterEmail.created_at).fetch(limit)
 
     @staticmethod
+    def s_by_recruiter(recruiter, **options):
+        limit = options.get('limit', 10)
+        return RecruiterEmail.query(RecruiterEmail.recruiter_key == recruiter.key) \
+                             .order(-RecruiterEmail.sent_at) \
+                             .fetch(limit)
+
+    @staticmethod
     def get_by_incoming_message(message):
         original = message.original.as_string()
         body = RecruiterEmail.extract_plaintext_body(original)

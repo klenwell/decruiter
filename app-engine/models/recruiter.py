@@ -7,6 +7,8 @@
 """
 from google.appengine.ext import ndb
 
+from models.recruiter_email import RecruiterEmail
+
 
 #
 # Model
@@ -30,6 +32,10 @@ class Recruiter(ndb.Model):
             return None
         else:
             return self.key.id()
+
+    @property
+    def recruitments(self):
+        return RecruiterEmail.s_by_recruiter(self, limit=10)
 
     #
     # Query Methods
