@@ -12,6 +12,27 @@
 
     <div class="col-sm-6 data">
       <div class="recruitment-data">
+        <h4>Recruitment Data</h4>
+
+        <dt>Recruiter</dt>
+        <dd>
+          {% if recruitment.recruiter %}
+            <a href="/admin/recruiter/{{ recruitment.recruiter.public_id }}">
+              {{ recruitment.recruiter_name }}
+            </a>
+          {% else %}
+            {{ recruitment.recruiter_name }}
+          {% endif %}
+        </dd>
+
+        <dt>Recruiter Email</dt>
+        <dd>{{ recruitment.recruiter_email }}</dd>
+
+        <dt>Subject</dt>
+        <dd>{{ recruitment.subject }}</dd>
+
+        <dt>Sent</dt>
+        <dd>{{ at(recruitment.sent_at) }}</dd>
       </div>
 
       <div class="forwarding-data">
@@ -33,6 +54,14 @@
       <hr />
 
       <a href="/admin/recruitments/">return to index</a>
+
+      {% if not recruitment.recruiter %}
+      <button class="btn btn-info postable"
+              data-action="/admin/recruitment/reparse/"
+              data-input_recruitment_id="{{ recruitment.public_id }}">
+        reparse
+      </button>
+      {% endif %}
     </div>
 
     <div class="col-sm-6 original">

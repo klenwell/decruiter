@@ -210,6 +210,7 @@ class RecruiterEmail(ndb.Model):
 
         self.recruiter_key = recruiter.key
         recruiter.increment_email_count()
+        self.put()
         return self
 
     #

@@ -21,6 +21,24 @@ inbound_services:
 
 # Handlers define how to route requests to your application.
 handlers:
+    
+  #
+  # Static directories
+  #
+- url: /assets
+  static_dir: assets
+  
+- url: /favicon\.ico
+  static_files: assets/images/favicon.ico
+  upload: assets/images/favicon\.ico
+  
+- url: /robots\.txt
+  static_files: assets/webtools/robots.txt
+  upload: assets/media/robots.txt
+  
+- url: /sitemap\.txt
+  static_files: assets/webtools/sitemap.txt
+  upload: assets/media/sitemap.txt
 
   #
   # Mail Handlers

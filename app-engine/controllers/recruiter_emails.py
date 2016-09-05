@@ -3,9 +3,10 @@
 """
 import logging
 
-from controllers import (app, render_template, render_404)
+from controllers import (app, render_template, render_404, request, redirect)
 
 from models.recruiter_email import RecruiterEmail
+from models.recruiter import Recruiter
 
 
 @app.route('/admin/recruitments/', methods=['GET'])
@@ -21,3 +22,18 @@ def recruitment_show(public_id):
         return render_404('Recruiter email not found.')
 
     return render_template('recruiter_emails/show.html', recruitment=recruitment)
+
+@app.route('/admin/recruitment/reparse/', methods=['POST'])
+def recruitment_reparse():
+    print request.form
+    recruitment_id = request.form.get('recruitment_id')
+    recruitment = RecruiterEmail.read(recruitment_id)
+
+    if not recruitment:
+        return render_404('Recruiter email not found.')
+
+    recruitment.extract_recruitment_properties()
+    recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
+    recruitment.associate_recruiter(recruiter)
+
+    return redirect('/admin/recruitment/%s/' % (recruitment.public_id))

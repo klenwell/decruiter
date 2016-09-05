@@ -7,6 +7,7 @@ from os.path import abspath, dirname, join
 import hashlib
 import email
 from bs4 import BeautifulSoup
+from urlparse import urlparse
 
 from google.appengine.ext import ndb, testbed
 from google.appengine.api.mail import InboundEmailMessage
@@ -100,6 +101,18 @@ def parse_html(markup):
     # Returns
     html = BeautifulSoup(markup, 'html.parser')
     return html
+
+def redirect_path(response):
+    if not response.location:
+        return None
+    else:
+        return urlparse(response.location).path
+
+def extract_id_from_url(url):
+    if url is None:
+        return None
+    else:
+        return int(re.search('\d+', url).group())
 
 
 #

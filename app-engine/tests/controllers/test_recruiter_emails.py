@@ -8,7 +8,8 @@ To run individually:
 from controllers.recruiter_emails import app as recruiter_emails_controller
 from models.recruiter_email import RecruiterEmail
 
-from tests.helper import (AppEngineControllerTest, TestEmail, parse_html)
+from tests.helper import (AppEngineControllerTest, TestEmail,
+                          parse_html, redirect_path)
 
 
 class RecruiterEmailsControllerTest(AppEngineControllerTest):
@@ -64,3 +65,29 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         self.assertEqual(response.status_code, 200, html)
         self.assertEqual(len(table_rows), 1)
         self.assertEqual(table_rows[0].td.text.strip(), 'No emails found.')
+
+    def test_expects_recruitment_to_be_reparsed(self):
+        # Arrange
+        client = recruiter_emails_controller.test_client()
+        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
+        recruitment = RecruiterEmail.from_inbound_handler(mail_message)
+
+        # Assume
+        self.assertIsNone(recruitment.recruiter)
+        endpoint = '/admin/recruitment/reparse/'
+        form_data = dict(
+            csrf_token='mock',
+            recruitment_id=recruitment.public_id,
+        )
+        expected_redirect = '/admin/recruitment/%s/' % (recruitment.public_id)
+        expected_recruiter_email = 'mahes.khurpe@xoriant.com'
+
+        # Act
+        response = client.post(endpoint, data=form_data, follow_redirects=False)
+        recruitment = RecruiterEmail.read(recruitment.public_id)
+
+        # Assert
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(redirect_path(response), expected_redirect)
+        self.assertIsNotNone(recruitment.recruiter)
+        self.assertEqual(recruitment.recruiter.email, expected_recruiter_email)
