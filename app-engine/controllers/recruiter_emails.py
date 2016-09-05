@@ -25,7 +25,6 @@ def recruitment_show(public_id):
 
 @app.route('/admin/recruitment/reparse/', methods=['POST'])
 def recruitment_reparse():
-    print request.form
     recruitment_id = request.form.get('recruitment_id')
     recruitment = RecruiterEmail.read(recruitment_id)
 
