@@ -1,0 +1,53 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Recruiters{% endblock %}
+
+{% block append_head %}
+  <!-- <link rel="stylesheet" href="/assets/stylesheets/forecasts.css"> -->
+{% endblock %}
+
+
+{% block content %}
+<div class="recruiters index">
+
+  <h2>Recruiters</h2>
+
+  {# Table #}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Recruiter</th>
+        <th>Email Address</th>
+        <th>Recruitments</th>
+        <th>Created</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% if not recruiters: %}
+      <tr>
+        <td class="text-center" colspan="6">No recruiters found.</td>
+      </tr>
+      {% else: %}
+        {% for recruiter in recruiters: %}
+        <tr id='{{ recruiter.public_id }}'>
+          <td>{{ recruiter.name }}</td>
+          <td>{{ recruiter.email }}</td>
+          <td>{{ recruiter.email_count }}</td>
+          <td>{{ at(recruiter.created_at) }}</td>
+          <td>
+            <a class="btn btn-primary"
+               href="/admin/recruiter/{{ recruiter.public_id }}/">
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+  {# End Table #}
+
+</div>
+{% endblock %}

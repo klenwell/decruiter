@@ -44,3 +44,8 @@ class Recruiter(ndb.Model):
     @staticmethod
     def get_by_email(email):
         return Recruiter.query(Recruiter.email == email).get()
+
+    @staticmethod
+    def s_recently_created(**options):
+        limit = options.get('limit', 25)
+        return Recruiter.query().order(-Recruiter.created_at).fetch(limit)

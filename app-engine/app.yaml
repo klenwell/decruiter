@@ -30,7 +30,7 @@ handlers:
   login: admin
   
   #
-  # Recruiter Emails Controller Endpoints
+  # Recruiter Email Controller Endpoints
   #
 - url: /admin/recruitments(/.*)?
   script: controllers.recruiter_emails.app
@@ -38,6 +38,17 @@ handlers:
   
 - url: /admin/recruitment(/.*)?
   script: controllers.recruiter_emails.app
+  login: admin
+  
+  #
+  # Recruiter Controller Endpoints
+  #
+- url: /admin/recruiters(/.*)?
+  script: controllers.recruiters.app
+  login: admin
+  
+- url: /admin/recruiter(/.*)?
+  script: controllers.recruiters.app
   login: admin
 
   #

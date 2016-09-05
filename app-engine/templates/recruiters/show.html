@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Recruiter{% endblock %}
+
+{% block append_head %}
+{% endblock %}
+
+
+{% block content %}
+<div class="recruiter show">
+  <h2 class="name">{{ recruiter.name }}</h2>
+  <h4 class="email">{{ recruiter.email }}</h2>
+
+  <hr />
+
+  <a href="/admin/recruitments/">return to index</a>
+</div>
+{% endblock %}
