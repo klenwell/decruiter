@@ -10,6 +10,7 @@ import webapp2
 from google.appengine.ext.webapp.mail_handlers import InboundMailHandler
 
 from models.recruiter_email import RecruiterEmail
+from models.recruiter import Recruiter
 
 
 class RecruiterEmailHandler(InboundMailHandler):
@@ -23,7 +24,8 @@ class RecruiterEmailHandler(InboundMailHandler):
         if recruitment.already_existed:
             logging.info('Recruitment already existed: %s' % (recruitment))
         else:
-            #recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
+            recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
+            recruitment.associate_recruiter(recruiter)
             logging.info('Recruitment saved: %s' % (recruitment))
 
 

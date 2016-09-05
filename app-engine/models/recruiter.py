@@ -17,7 +17,7 @@ class Recruiter(ndb.Model):
     #
     email                   = ndb.StringProperty(required=True)
     name                    = ndb.StringProperty()
-    email_count             = ndb.IntegerProperty()
+    email_count             = ndb.IntegerProperty(default=0)
 
     # Timestamps
     created_at              = ndb.DateTimeProperty(auto_now_add=True)
@@ -43,9 +43,32 @@ class Recruiter(ndb.Model):
 
     @staticmethod
     def get_by_email(email):
-        return Recruiter.query(Recruiter.email == email).get()
+        if not email:
+            return None
+        else:
+            return Recruiter.query(Recruiter.email == email).get()
+
+    @staticmethod
+    def get_or_insert_by_recruitment(recruitment):
+        recruiter = Recruiter.get_by_email(recruitment.recruiter_email)
+
+        if recruiter:
+            return recruiter
+        else:
+            recruiter = Recruiter(name=recruitment.recruiter_name,
+                                  email=recruitment.recruiter_email)
+            recruiter.put()
+            return recruiter
 
     @staticmethod
     def s_recently_created(**options):
         limit = options.get('limit', 25)
         return Recruiter.query().order(-Recruiter.created_at).fetch(limit)
+
+    #
+    # Public Methods
+    #
+    def increment_email_count(self):
+        self.email_count += 1
+        self.put()
+        return self

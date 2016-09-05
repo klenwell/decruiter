@@ -56,6 +56,13 @@ class RecruiterEmail(ndb.Model):
     def original_length(self):
         return len(self.original)
 
+    @property
+    def recruiter(self):
+        if not self.recruiter_key:
+            return None
+        else:
+            return self.recruiter_key.get()
+
     #
     # Class Methods
     #
@@ -195,6 +202,14 @@ class RecruiterEmail(ndb.Model):
         self.sent_to = data.get('sent_to')
         self.sent_at = data.get('sent_at')
 
+        return self
+
+    def associate_recruiter(self, recruiter):
+        if not recruiter:
+            return self
+
+        self.recruiter_key = recruiter.key
+        recruiter.increment_email_count()
         return self
 
     #
