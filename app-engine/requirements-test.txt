@@ -8,5 +8,8 @@ coverage
 nose-exclude
 beautifulsoup4
 
+# Mocking / Patching: https://docs.python.org/3.3/library/unittest.mock.html
+mock
+
 # To test email handler.
 WebTest

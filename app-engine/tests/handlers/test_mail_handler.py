@@ -6,34 +6,40 @@ To run individually:
     nosetests -c nose.cfg tests/handlers/test_mail_handler.py
 """
 from webtest import TestApp
+from mock import patch
 
-from mail_handler import app
+from mail_handler import app, HandlerAuthorizationError
 from models.recruiter_email import RecruiterEmail
 from models.recruiter import Recruiter
 
 from tests.helper import (AppEngineTestCase, TestEmail, parse_html)
+
+# Authorized Forwarder
+authorized_forwarder = 'forwarder@gmail.com'
+unauthorized_forwarder = 'unauthorized@gmail.com'
 
 
 class RecruiterEmailsHandlerTest(AppEngineTestCase):
     #
     # Tests
     #
+    @patch("mail_handler.AUTHORIZED_FORWARDERS", [authorized_forwarder])
     def test_expects_handler_to_save_forwarded_recruiter_email(self):
         # Arrange
         client = TestApp(app)
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
+        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd', authorized_forwarder)
 
         # Assume
         self.assertEqual(RecruiterEmail.query().count(), 0)
         self.assertEqual(Recruiter.query().count(), 0)
         endpoint = '/_ah/mail/test%40decruiter.appspotmail.com'
         body = mail_message.original.as_string()
-        expected_checksum = '706203edf87d7f035efc7e50c23282e2'
+        expected_checksum = 'dd9b62661055f7e848dbe9683fdc4dae'
         expected_recruiter_name = 'Mahesh Khurpe'
         expected_recruiter_email = 'mahes.khurpe@xoriant.com'
 
         # Act
-        response = client.post(endpoint, body)
+        response = client.post(endpoint, body, expect_errors=True)
         recruitments = RecruiterEmail.query().fetch()
         recruitment = recruitments[0] if recruitments else None
 
@@ -46,3 +52,25 @@ class RecruiterEmailsHandlerTest(AppEngineTestCase):
         self.assertEqual(recruitment.checksum, expected_checksum)
         self.assertEqual(recruitment.recruiter.email, expected_recruiter_email)
         self.assertEqual(recruitment.recruiter.name, expected_recruiter_name)
+
+    @patch("mail_handler.AUTHORIZED_FORWARDERS", [unauthorized_forwarder])
+    def test_expects_authorization_error(self):
+        # Notice: patched forwarder in AUTHORIZED_FORWARDERS and forwarder injected into
+        # mail message do not match.
+        # Arrange
+        client = TestApp(app)
+        mail_message = TestEmail.fixture('20160831_unauthorized_fwd', authorized_forwarder)
+
+        # Assume
+        self.assertEqual(RecruiterEmail.query().count(), 0)
+        self.assertEqual(Recruiter.query().count(), 0)
+        endpoint = '/_ah/mail/test%40decruiter.appspotmail.com'
+        body = mail_message.original.as_string()
+
+        # Act / Assert
+        response = client.post(endpoint, body, expect_errors=True)
+
+        # Assert
+        self.assertEqual(response.status_code, 500, response)
+        self.assertEqual(RecruiterEmail.query().count(), 0)
+        self.assertEqual(Recruiter.query().count(), 0)

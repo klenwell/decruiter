@@ -19,7 +19,8 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
     def test_expects_index_to_display_recruitments(self):
         # Arrange
         client = recruiter_emails_controller.test_client()
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
+        forwarder = 'forwarder@gmail.com'
+        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd', forwarder)
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
 
         # Assume
@@ -28,6 +29,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         endpoint = '/admin/recruitments/'
         content_selector = 'div.recruiter-emails.index'
         table_selector = 'table.table'
+        expected_cell_value = 'The Recruitee <%s>' % (forwarder)
 
         # Act
         response = client.get(endpoint, follow_redirects=False)
@@ -42,7 +44,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         self.assertIsNotNone(table)
         self.assertEqual(content.h2.text.strip(), 'Recruiter Emails')
         self.assertEqual(len(table_rows), 1)
-        self.assertEqual(table_rows[0].td.text.strip(), 'Tom Atwell <tatwell@gmail.com>')
+        self.assertEqual(table_rows[0].td.text.strip(), expected_cell_value)
 
     def test_expects_index_to_display_no_recruitments(self):
         # Arrange

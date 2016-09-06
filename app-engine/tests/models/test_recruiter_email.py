@@ -25,21 +25,22 @@ class RecruiterEmailModelTest(AppEngineModelTest):
 
     def test_expects_record_to_be_saved_by_from_inbound_handler(self):
         # Arrange
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
+        forwarder = 'forwarder@gmail.com'
+        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd', forwarder)
 
         # Assume
-        expected_forwarder = 'Tom Atwell <tatwell@gmail.com>'
+        expected_forwarder = 'The Recruitee <%s>' % (forwarder)
         expected_address = 'recruitment@decruiter.appspotmail.com'
         expected_subject_fwd = 'Fwd: CTF Engineering Lead - Menlo Park, CA'
-        expected_checksum = '706203edf87d7f035efc7e50c23282e2'
-        expected_original_length = 17542
+        expected_checksum = 'dd9b62661055f7e848dbe9683fdc4dae'
+        expected_original_length = 17566
         expected_recruiter_name = 'Mahesh Khurpe'
         expected_recruiter_email = 'mahes.khurpe@xoriant.com'
-        expected_sent_to = 'uRA sumA <tatwell@gmail.com>'
+        expected_sent_to = 'uRA sumA <%s>' % (forwarder)
         expected_sent_at = datetime(2016, 8, 31, 9, 41)
         expected_subject = 'CTF Engineering Lead - Menlo Park, CA'
-        expected_plain_body_length = 2945
-        expected_html_body_length = 10133
+        expected_plain_body_length = 2951
+        expected_html_body_length = 10139
 
         # Act
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
@@ -60,9 +61,10 @@ class RecruiterEmailModelTest(AppEngineModelTest):
 
     def test_expects_duplicate_incoming_messages_to_be_saved_only_once(self):
         # Arrange
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
+        forwarder = 'forwarder@gmail.com'
+        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd', forwarder)
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
-        expected_checksum = '706203edf87d7f035efc7e50c23282e2'
+        expected_checksum = 'dd9b62661055f7e848dbe9683fdc4dae'
 
         # Assume
         self.assertEqual(RecruiterEmail.query().count(), 1)

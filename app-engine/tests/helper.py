@@ -12,6 +12,8 @@ from urlparse import urlparse
 from google.appengine.ext import ndb, testbed
 from google.appengine.api.mail import InboundEmailMessage
 
+import config
+
 
 #
 # Constants
@@ -120,14 +122,19 @@ def extract_id_from_url(url):
 #
 class TestEmail(object):
     @staticmethod
-    def fixture(fixture_id):
+    def fixture(fixture_id, forwarder=None):
         fname = '%s.txt' % (fixture_id)
         path = join(project_root(), 'tests/fixtures/files', fname)
 
         with open(path, 'r') as f:
-            raw_email_text = f.read().strip()
+            raw_message_format = f.read().strip()
 
-        mime_message = email.message_from_string(raw_email_text)
+        if not forwarder:
+            forwarder = config.secrets.AUTHORIZED_FORWARDERS[0]
+
+        message_string = raw_message_format.replace('%FORWARDER%', forwarder)
+
+        mime_message = email.message_from_string(message_string)
         return InboundEmailMessage(mime_message)
 
 
