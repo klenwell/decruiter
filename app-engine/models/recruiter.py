@@ -78,3 +78,8 @@ class Recruiter(ndb.Model):
         self.email_count += 1
         self.put()
         return self
+
+    def decrement_email_count(self):
+        self.email_count -= 1
+        self.put()
+        return self

@@ -7,6 +7,7 @@ To run individually:
 """
 from controllers.recruiter_emails import app as recruiter_emails_controller
 from models.recruiter_email import RecruiterEmail
+from models.recruiter import Recruiter
 
 from tests.helper import (AppEngineControllerTest, TestEmail,
                           parse_html, redirect_path)
@@ -93,3 +94,31 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         self.assertEqual(redirect_path(response), expected_redirect)
         self.assertIsNotNone(recruitment.recruiter)
         self.assertEqual(recruitment.recruiter.email, expected_recruiter_email)
+
+    def test_expects_recruitment_to_be_deleted(self):
+        # Arrange
+        client = recruiter_emails_controller.test_client()
+        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
+        recruitment = RecruiterEmail.from_inbound_handler(mail_message)
+        recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
+        recruitment.associate_recruiter(recruiter)
+
+        # Assume
+        self.assertEqual(RecruiterEmail.query().count(), 1)
+        self.assertEqual(recruiter.email_count, 1)
+        endpoint = '/admin/recruitment/delete/'
+        form_data = dict(
+            csrf_token='mock',
+            recruitment_id=recruitment.public_id,
+        )
+        expected_redirect = '/admin/recruitments/'
+
+        # Act
+        response = client.post(endpoint, data=form_data, follow_redirects=False)
+        recruitment = RecruiterEmail.read(recruitment.public_id)
+
+        # Assert
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(redirect_path(response), expected_redirect)
+        self.assertEqual(RecruiterEmail.query().count(), 0)
+        self.assertEqual(recruiter.email_count, 0)

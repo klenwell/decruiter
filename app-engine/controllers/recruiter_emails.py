@@ -3,7 +3,8 @@
 """
 import logging
 
-from controllers import (app, render_template, render_404, request, redirect)
+from controllers import (app, render_template, render_404, request, redirect,
+                         flash)
 
 from models.recruiter_email import RecruiterEmail
 from models.recruiter import Recruiter
@@ -22,6 +23,18 @@ def recruitment_show(public_id):
         return render_404('Recruiter email not found.')
 
     return render_template('recruiter_emails/show.html', recruitment=recruitment)
+
+@app.route('/admin/recruitment/delete/', methods=['POST'])
+def recruitment_delete():
+    recruitment_id = request.form.get('recruitment_id')
+    recruitment = RecruiterEmail.read(recruitment_id)
+
+    if not recruitment:
+        return render_404('Recruiter email not found.')
+
+    recruiter = recruitment.delete()
+    flash('Recruitment by %s deleted.' % (recruiter.name), 'success')
+    return redirect('/admin/recruitments/')
 
 @app.route('/admin/recruitment/reparse/', methods=['POST'])
 def recruitment_reparse():

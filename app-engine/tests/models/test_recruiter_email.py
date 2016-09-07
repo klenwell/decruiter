@@ -8,6 +8,7 @@ To run individually:
 from datetime import datetime
 
 from models.recruiter_email import RecruiterEmail
+from models.recruiter import Recruiter
 
 from tests.helper import AppEngineModelTest, TestEmail
 
@@ -78,3 +79,21 @@ class RecruiterEmailModelTest(AppEngineModelTest):
         self.assertEqual(RecruiterEmail.query().count(), 1)
         self.assertEqual(recruitment.checksum, duplicate.checksum)
         self.assertTrue(duplicate.already_existed)
+
+    def test_expects_recruiter_email_to_be_deleted(self):
+        # Arrange
+        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
+        recruitment = RecruiterEmail.from_inbound_handler(mail_message)
+        recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
+        recruitment.associate_recruiter(recruiter)
+
+        # Assume
+        self.assertEqual(RecruiterEmail.query().count(), 1)
+        self.assertEqual(recruiter.email_count, 1)
+
+        # Act
+        recruiter = recruitment.delete()
+
+        # Assert
+        self.assertEqual(RecruiterEmail.query().count(), 0)
+        self.assertEqual(recruiter.email_count, 0)

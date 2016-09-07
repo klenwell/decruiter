@@ -191,6 +191,11 @@ class RecruiterEmail(ndb.Model):
     #
     # Public Methods
     #
+    def delete(self):
+        recruiter = self.recruiter.decrement_email_count()
+        self.key.delete()
+        return recruiter
+
     def extract_recruitment_properties(self):
         mime_message = email.message_from_string(self.original)
         inbound_message = InboundEmailMessage(mime_message)
