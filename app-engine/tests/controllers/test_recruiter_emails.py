@@ -30,7 +30,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         endpoint = '/admin/recruitments/'
         content_selector = 'div.recruiter-emails.index'
         table_selector = 'table.table'
-        expected_cell_value = 'The Recruitee <%s>' % (forwarder)
+        expected_cell_value = 'Mahesh Khurpe'
 
         # Act
         response = client.get(endpoint, follow_redirects=False)
@@ -67,7 +67,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         # Assert
         self.assertEqual(response.status_code, 200, html)
         self.assertEqual(len(table_rows), 1)
-        self.assertEqual(table_rows[0].td.text.strip(), 'No emails found.')
+        self.assertEqual(table_rows[0].td.text.strip(), 'No recruitments found.')
 
     def test_expects_recruitment_to_be_reparsed(self):
         # Arrange
