@@ -20,6 +20,8 @@ from flask import (Flask, render_template, request, g, flash, redirect, abort,
                    url_for, session, jsonify)
 from flask.json import JSONEncoder
 
+from config import DEPLOYMENT_STAGE
+
 # TODO: Add flask_wtf to requirements
 # from flask_wtf.csrf import CsrfProtect
 
@@ -70,7 +72,7 @@ app.json_encoder = CustomJSONEncoder
 def common_variables():
     return dict(
         current_year = date.today().year,
-        deployment_stage = 'TODO'
+        deployment_stage = DEPLOYMENT_STAGE
     )
 
 #
