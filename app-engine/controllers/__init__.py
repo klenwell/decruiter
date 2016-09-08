@@ -20,6 +20,8 @@ from flask import (Flask, render_template, request, g, flash, redirect, abort,
                    url_for, session, jsonify)
 from flask.json import JSONEncoder
 
+from google.appengine.api import users
+
 import config
 
 # TODO: Add flask_wtf to requirements
@@ -146,6 +148,11 @@ def render_403(message=None):
 #
 # Request Callbacks
 #
+@app.before_request
+def set_app_engine_user():
+    g.app_engine_user = users.get_current_user()
+    g.app_engine_admin = users.is_current_user_admin()
+
 # TODO: enable these once flask_wtf added.
 #@app.before_request
 def check_csrf():
