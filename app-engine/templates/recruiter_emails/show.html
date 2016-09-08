@@ -7,7 +7,7 @@
 
 
 {% block content %}
-<div class="recruiter show">
+<div class="recruiter-email show">
   <div class="row">
 
     <div class="col-sm-6 data">
@@ -29,7 +29,7 @@
         <dd>{{ recruitment.recruiter_email }}</dd>
 
         <dt>Subject</dt>
-        <dd>{{ recruitment.subject }}</dd>
+        <dd class="subject">{{ recruitment.subject }}</dd>
 
         <dt>Sent</dt>
         <dd>{{ at(recruitment.sent_at) }}</dd>
@@ -74,8 +74,43 @@
     </div>
 
     <div class="col-sm-6 original">
-      <h4>Original</h4>
-      <pre>{{ recruitment.original }}</pre>
+      <h4>Recruiter Email</h4>
+
+      <ul class="nav nav-pills">
+        <li role="presentation" class="active"></li>
+        <li role="presentation" class="active">
+          <a role="tab" data-toggle="tab"
+             href="#recruitment-body-plain"
+             aria-controls="recruitment-body-plain">
+            Plain Body
+          </a>
+        </li>
+        <li role="presentation">
+          <a role="tab" data-toggle="tab"
+             href="#recruitment-body-html"
+             aria-controls="recruitment-html-plain">
+            HTML Body
+          </a>
+        </li>
+        <li role="presentation">
+          <a role="tab" data-toggle="tab"
+             href="#recruitment-original"
+             aria-controls="recruitment-original">
+            Original
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="recruitment-body-plain">
+          <pre>{{ recruitment.plain_body }}</pre>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="recruitment-body-html">
+          {{ recruitment.html_body|safe }}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="recruitment-original">
+          <pre>{{ recruitment.original }}</pre>
+        </div>
+      </div>
     </div>
 
   </div>

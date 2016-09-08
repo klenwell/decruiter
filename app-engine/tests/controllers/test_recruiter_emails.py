@@ -69,6 +69,45 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         self.assertEqual(len(table_rows), 1)
         self.assertEqual(table_rows[0].td.text.strip(), 'No recruitments found.')
 
+    def test_expects_recruitment_to_display_plain_body_html_body_and_original_email(self):
+        # Arrange
+        client = recruiter_emails_controller.test_client()
+        forwarder = 'forwarder@gmail.com'
+        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd', forwarder)
+        recruitment = RecruiterEmail.from_inbound_handler(mail_message)
+        recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
+        recruitment.associate_recruiter(recruiter)
+
+        # Assume
+        endpoint = '/admin/recruitment/%s/' % (recruitment.public_id)
+        content_selector = 'div.recruiter-email.show'
+        subject_selector = 'dd.subject'
+        plain_body_selector = 'div#recruitment-body-plain pre'
+        html_body_selector = 'div#recruitment-body-html'
+        original_selector = 'div#recruitment-original pre'
+
+        # Act
+        response = client.get(endpoint, follow_redirects=False)
+        html = parse_html(response.data)
+        content = html.select_one(content_selector) if html else None
+        subject = content.select_one(subject_selector) if content else None
+        plain_body = content.select_one(plain_body_selector) if content else None
+        html_body = content.select_one(html_body_selector) if content else None
+        original = content.select_one(original_selector) if content else None
+
+        # Assert
+        self.assertEqual(response.status_code, 200, html)
+        self.assertIsNotNone(content)
+        self.assertIsNotNone(subject)
+        self.assertIsNotNone(plain_body)
+        self.assertIsNotNone(html_body)
+        self.assertIsNotNone(original)
+        self.assertEqual(subject.text.strip(), recruitment.subject)
+        self.assertEqual(plain_body.text.strip(), recruitment.plain_body)
+        self.assertEqual(html_body.decode_contents(formatter="html").strip()[:100],
+                         recruitment.html_body[:100])
+        self.assertEqual(original.text.strip(), recruitment.original)
+
     def test_expects_recruitment_to_be_reparsed(self):
         # Arrange
         client = recruiter_emails_controller.test_client()

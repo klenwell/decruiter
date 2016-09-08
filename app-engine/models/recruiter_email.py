@@ -74,10 +74,10 @@ class RecruiterEmail(ndb.Model):
             existing_recruitment.already_existed = True
             return existing_recruitment
 
-        recruitment = RecruiterEmail(forwarder=message.sender,
-                                     forwarding_address=message.to,
-                                     forwarded_subject=message.subject,
-                                     original=message.original.as_string())
+        recruitment = RecruiterEmail(forwarder=message.sender.strip(),
+                                     forwarding_address=message.to.strip(),
+                                     forwarded_subject=message.subject.strip(),
+                                     original=message.original.as_string().strip())
         recruitment.already_existed = False
         recruitment.extract_recruitment_properties()
         recruitment.put()
@@ -95,11 +95,11 @@ class RecruiterEmail(ndb.Model):
 
                 # Skip any text/plain (txt) attachments
                 if content_type == 'text/plain' and 'attachment' not in disposition:
-                    return part.get_payload(decode=True)
+                    return part.get_payload(decode=True).strip()
 
         # Not multipart - i.e. plain text, no attachments, keeping fingers crossed
         else:
-            return message.get_payload(decode=True)
+            return message.get_payload(decode=True).strip()
 
     @staticmethod
     def extract_recruitment_data(plain_body):

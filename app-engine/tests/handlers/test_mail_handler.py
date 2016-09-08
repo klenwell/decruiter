@@ -35,7 +35,7 @@ class RecruiterEmailsHandlerTest(AppEngineTestCase):
         self.assertEqual(Recruiter.query().count(), 0)
         endpoint = '/_ah/mail/test%40decruiter.appspotmail.com'
         body = mail_message.original.as_string()
-        expected_checksum = 'dd9b62661055f7e848dbe9683fdc4dae'
+        expected_checksum = 'd266496f821bfb50d2937f23679659de'
         expected_recruiter_name = 'Mahesh Khurpe'
         expected_recruiter_email = 'mahes.khurpe@xoriant.com'
 

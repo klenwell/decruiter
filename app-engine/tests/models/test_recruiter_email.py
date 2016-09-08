@@ -33,8 +33,8 @@ class RecruiterEmailModelTest(AppEngineModelTest):
         expected_forwarder = 'The Recruitee <%s>' % (forwarder)
         expected_address = 'recruitment@decruiter.appspotmail.com'
         expected_subject_fwd = 'Fwd: CTF Engineering Lead - Menlo Park, CA'
-        expected_checksum = 'dd9b62661055f7e848dbe9683fdc4dae'
-        expected_original_length = 17566
+        expected_checksum = 'd266496f821bfb50d2937f23679659de'
+        expected_original_length = 17565
         expected_recruiter_name = 'Mahesh Khurpe'
         expected_recruiter_email = 'mahes.khurpe@xoriant.com'
         expected_sent_to = 'uRA sumA <%s>' % (forwarder)
@@ -65,7 +65,7 @@ class RecruiterEmailModelTest(AppEngineModelTest):
         forwarder = 'forwarder@gmail.com'
         mail_message = TestEmail.fixture('20160831_mkhurpe_fwd', forwarder)
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
-        expected_checksum = 'dd9b62661055f7e848dbe9683fdc4dae'
+        expected_checksum = 'd266496f821bfb50d2937f23679659de'
 
         # Assume
         self.assertEqual(RecruiterEmail.query().count(), 1)
