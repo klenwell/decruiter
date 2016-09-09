@@ -23,6 +23,13 @@ body {
 }
 
 /*
+ * Home Page
+ */
+div.home h4.stats {
+  margin: 24px auto;
+}
+
+/*
  * Recruiter Email Show View
  */
 div.email ul.nav-pills {

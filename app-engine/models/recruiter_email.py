@@ -174,6 +174,13 @@ class RecruiterEmail(ndb.Model):
                              .fetch(limit)
 
     @staticmethod
+    def s_sent_since(cutoff):
+        limit = 1000
+        return RecruiterEmail.query(RecruiterEmail.sent_at > cutoff) \
+                             .order(-RecruiterEmail.sent_at) \
+                             .fetch(limit)
+
+    @staticmethod
     def get_by_incoming_message(message):
         original = message.original.as_string()
         body = RecruiterEmail.extract_plaintext_body(original)
