@@ -20,6 +20,10 @@ from flask import (Flask, render_template, request, g, flash, redirect, abort,
                    url_for, session, jsonify)
 from flask.json import JSONEncoder
 
+from google.appengine.api import users
+
+import config
+
 # TODO: Add flask_wtf to requirements
 # from flask_wtf.csrf import CsrfProtect
 
@@ -37,8 +41,7 @@ TEMPLATE_PATH = join(APP_PATH, 'templates')
 app = Flask(__name__, template_folder=TEMPLATE_PATH)
 app.config['ERROR_404_HELP'] = False
 app.config['WTF_CSRF_CHECK_DEFAULT'] = False
-# TODO: enable these once flask_wtf added.
-#app.secret_key = secrets.FLASK_SECRET_KEY
+app.secret_key = config.secrets.FLASK_SECRET_KEY
 
 # Enables CSRF protection. See check_csrf below.
 #csrf = CsrfProtect(app)
@@ -70,7 +73,7 @@ app.json_encoder = CustomJSONEncoder
 def common_variables():
     return dict(
         current_year = date.today().year,
-        deployment_stage = 'TODO'
+        deployment_stage = config.DEPLOYMENT_STAGE
     )
 
 #
@@ -145,6 +148,11 @@ def render_403(message=None):
 #
 # Request Callbacks
 #
+@app.before_request
+def set_app_engine_user():
+    g.app_engine_user = users.get_current_user()
+    g.app_engine_admin = users.is_current_user_admin()
+
 # TODO: enable these once flask_wtf added.
 #@app.before_request
 def check_csrf():

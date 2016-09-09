@@ -16,11 +16,12 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Forwarder</th>
-        <th>Forwarding Address</th>
-        <th>Forwarded Subject</th>
+        <th>Recruiter Name</th>
+        <th>Recruiter Email</th>
+        <th>Subject</th>
         <th>Length</th>
-        <th>Created</th>
+        <th>Sent To </th>
+        <th>Sent At</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -28,15 +29,24 @@
     <tbody>
       {% if not recruitments: %}
       <tr>
-        <td class="text-center" colspan="6">No emails found.</td>
+        <td class="text-center" colspan="7">No recruitments found.</td>
       </tr>
       {% else: %}
         {% for recruitment in recruitments: %}
         <tr id='{{ recruitment.public_id }}'>
-          <td>{{ recruitment.forwarder }}</td>
-          <td>{{ recruitment.forwarding_address }}</td>
-          <td>{{ recruitment.forwarded_subject }}</td>
+          <td>
+            {% if recruitment.recruiter: %}
+              <a href="/admin/recruiter/{{recruitment.recruiter.public_id}}/">
+                {{ recruitment.recruiter_name }}
+              </a>
+            {% else %}
+              {{ recruitment.recruiter_name }}
+            {% endif %}
+          </td>
+          <td>{{ recruitment.recruiter_email }}</td>
+          <td>{{ recruitment.subject }}</td>
           <td>{{ recruitment.original_length }}</td>
+          <td>{{ recruitment.forwarding_address }}</td>
           <td>{{ at(recruitment.created_at) }}</td>
           <td>
             <a class="btn btn-primary"
