@@ -1,0 +1,369 @@
+X-Received: by 10.157.24.36 with SMTP id b33mr18426072ote.2.1472934351337;
+ Sat, 03 Sep 2016 13:25:51 -0700 (PDT)
+Return-Path: <%FORWARDER%>
+Received: from mail-qk0-x229.google.com (mail-qk0-x229.google.com.
+ [2607:f8b0:400d:c09::229])
+ by gmr-mx.google.com with ESMTPS id l185si1199290ywb.5.2016.09.03.13.25.51
+ for <recruitment@decruiter.appspotmail.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Sat, 03 Sep 2016 13:25:51 -0700 (PDT)
+Received-SPF: pass (google.com: domain of %FORWARDER% designates
+ 2607:f8b0:400d:c09::229 as permitted sender)
+ client-ip=2607:f8b0:400d:c09::229;
+Authentication-Results: gmr-mx.google.com; dkim=pass header.i=@gmail.com;
+ spf=pass (google.com: domain of %FORWARDER% designates
+ 2607:f8b0:400d:c09::229 as permitted sender) smtp.mailfrom=%FORWARDER%;
+ dmarc=pass (p=NONE dis=NONE) header.from=gmail.com
+Received: by mail-qk0-x229.google.com with SMTP id l2so157939583qkf.3
+ for <recruitment@decruiter.appspotmail.com>;
+ Sat, 03 Sep 2016 13:25:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+ h=mime-version:in-reply-to:references:from:date:message-id:subject:to;
+ bh=jTsb//WhEYY9xauTuCpGJAE3lrD6+pt/P0Oqzi/LTsU=;
+ b=aaHvnTz2Z3TGn95BbLqibBhFpkacr22BM90hdTMI6CzWrcHqkHwRz1lxPpdDYW1JXE
+ KYnxTtk5GEMWdVbr/JzNgyRNmOartdAyxXTCB/X2LKouk/6j+/eYkaJngtrtILDQFY2F
+ JgO8B2F0bPkFvPU35dFjcanpsGKXAiFJKGHxqPrHC5JBTNyu0CsgG/S/hWn8fzCseLK/
+ ptYLNjl+7jMGHy+2me/WOwrLtq9aC6WpKT5l3Kdxi+QpPhdxOtFeAUXTYLt7Q+kYn2Ms
+ MSWbKfruoEurImsFNUcjzpsnQVj+q7wMkWNomy83BgRYVbGmGp/FceR55LeOvYY/1fgn
+ /+GQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20130820;
+ h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+ :message-id:subject:to;
+ bh=jTsb//WhEYY9xauTuCpGJAE3lrD6+pt/P0Oqzi/LTsU=;
+ b=gPMzE6tk3J3UZ00wsniUKuCvZd08f7ZiuS196BlLolD+iloPtgfQlfNHLOgWlNJTu8
+ DsY0bvAMqEwqONJHR3ygpDaMiFn+bU4NvzOAyxN16FbbAXI8BARnpsrvJThRemhY0/NC
+ QQpZnqaVYVwwlgffwLpaUAACeIz1fIe8xO6EyPFPrO6LJeSQJOzJlaVjaWvzofxi3uOW
+ Anze5nYMaGN7xUd5vq/9v3qNNsBfWaKqpNqibNgml3vggwQZHYilYpj1opPZYxKIl4fT
+ s5Bx91iFOkt2KluxH11qhtxPG4x9MxdBBVRV5tV7Ze+dALaLWsfIsQHES9NDwZoK54LL
+ 1Hbg==
+X-Gm-Message-State: AE9vXwN/SuG6NA1wf3bKYsH5zuyjQQprYzOTI67/ypV2etVbM3UkN8NkpxZHqs1QZLSPX1yOeTdiMiSqydGTIA==
+X-Received: by 10.55.23.38 with SMTP id i38mr11911178qkh.237.1472934350928;
+ Sat, 03 Sep 2016 13:25:50 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.55.159.15 with HTTP; Sat, 3 Sep 2016 13:25:30 -0700 (PDT)
+In-Reply-To: <359e157d926d45e99cd7699b929847b1@XORPUN-MBX01.India.XoriantCorp.com>
+References: <359e157d926d45e99cd7699b929847b1@XORPUN-MBX01.India.XoriantCorp.com>
+From: The Recruitee <%FORWARDER%>
+Date: Sat, 3 Sep 2016 13:25:30 -0700
+Message-ID: <CAPU-tmAaMrWU6CP9zhimsNuUHBGT1tGJXbYrjOt5sXH9YyJHzg@mail.gmail.com>
+Subject: Fwd: CTF Engineering Lead - Menlo Park, CA
+To: recruitment@decruiter.appspotmail.com
+Content-Type: multipart/alternative; boundary=001a11479e54c3c19e053ba0403a
+
+--001a11479e54c3c19e053ba0403a
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+---------- Forwarded message ----------
+From: Mahesh Khurpe <Mahes.Khurpe@xoriant.com>
+Date: Wed, Aug 31, 2016 at 9:41 AM
+Subject: CTF Engineering Lead - Menlo Park, CA
+To: uRA sumA <%FORWARDER%>
+
+
+Hi uRA,
+
+
+This is *Mahesh *from *Xoriant Corporation *writing you in regards to the
+position below. I would appreciate if you can have a look and let me know
+if interested:
+
+*I also wanted to apologize in advance if you aren't the right person I
+should be Contacting.*
+
+
+*Job Title:             CTF Engineering Lead*
+
+*Location:             Menlo Park, CA *
+
+*Duration:             12+ Months *
+
+
+
+*Responsibilities*
+
+   - Define and drive CTF product development roadmap
+   - Execute on product roadmap
+   - Maintain established SLA in engaging with and closing out filed Github
+   issues
+   - Manage CTF email alias, respond to any incoming requests or issues
+   - Establish and maintain relationships with strategic partners,
+   including tier one universities, organizations, and conferences as to
+   increase the exposure and use FBCTF.
+
+*Skills:    Requirements*
+
+   - Experience developing * responsive* *web* * applications*
+   - Minimum 3 years experience as *software engineer*, or other applicable
+   experience
+   - Solid understanding of the *full web technology stack* (*Javascript,
+   MySQL,* etc.)
+   - Experience with * PHP* preferred (*Hack* * experience* is ideal)
+   - *Data-informed product development*: analytics, A/B testing, etc.
+   - Must be a self-starter and enjoy full ownership over the external
+   product
+   - Experience playing in or hosting Capture The Flag competitions a plus
+   - Experience and understanding of* information security* a plus
+
+*Thanks & regards,*
+
+*Mahesh Khurpe | Xoriant Connect   *
+
+*http://www.xoriantconnect.com <http://www.xoriantconnect.com/> *
+
+W: 408-550-1251
+
+1248, Reamwood Ave, Sunnyvale, CA 94089
+
+Find us on: *[image: Description: Description: Description:
+cid:image001.png@01D1237F.273CF4A0]* <http://www.xoriantconnect.com/>  *[im=
+age:
+Description: Description: Description: cid:image002.jpg@01D1237F.273CF4A0]*
+<http://www.facebook.com/Xoriant.Connect>  *[image: Description:
+Description: Description: cid:image003.jpg@01D1237F.273CF4A0]*
+<https://twitter.com/xoriantconnect>
+
+Don=E2=80=99t Search, Get Notified! through XoriantJobs mobile app: *iOS*
+<https://itunes.apple.com/us/app/xoriant-jobs-dont-search-get/id679060038?m=
+t=3D8>*;
+**Android*
+<https://play.google.com/store/apps/details?id=3Dcom.xoriant.xorconnect&hl=
+=3Den>
+
+ **Disclaimer: This is not meant to be an unsolicited email. If you do not
+want to hear from us again, please reply with REMOVE
+<mahes.khurpe@xoriant.com?subject=3DREMOVE>  In the Subject Line and I will
+promptly remove your email address upon receipt **
+
+
+
+
+Click here to Remove %FORWARDER% from our mailing list.
+<https://apps.exelare.com/exelare/RemoveLink.Aspx?CID=3DExl_xoriant&UID=3DM=
+aheshK&PK=3DCSa0025758&EMail1=3D%FORWARDER%&EMail2=3D&MailType=3Dmail=
+>
+
+--001a11479e54c3c19e053ba0403a
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_quote">---------- Forwarded messag=
+e ----------<br>From: <b class=3D"gmail_sendername">Mahesh Khurpe</b> <span=
+ dir=3D"ltr">&lt;<a href=3D"mailto:Mahes.Khurpe@xoriant.com">Mahes.Khurpe@x=
+oriant.com</a>&gt;</span><br>Date: Wed, Aug 31, 2016 at 9:41 AM<br>Subject:=
+ CTF Engineering Lead - Menlo Park, CA<br>To: uRA sumA &lt;<a href=3D"mailt=
+o:%FORWARDER%">%FORWARDER%</a>&gt;<br><br><br>
+
+
+
+
+
+
+
+<div>
+<table width=3D"100%" border=3D"1" cellspacing=3D"0" cellpadding=3D"25">
+<tbody>
+<tr>
+<td>
+<div>Hi uRA,</div>
+<div><font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><span style=3D"font-family:&quot;Calibri&qu=
+ot;,&quot;sans-serif&quot;"><font size=3D"3"><br>
+</font></span></p>
+<p style=3D"margin:0in 0in 0pt"><span style=3D"font-family:&quot;Calibri&qu=
+ot;,&quot;sans-serif&quot;"><font size=3D"3">This is
+<b>Mahesh </b></font><font size=3D"3">from </font><b><font size=3D"3">Xoria=
+nt Corporation
+</font></b><font size=3D"3">writing you in regards to the position below. I=
+ would appreciate if you can have a look and let me know if interested:</fo=
+nt></span></p>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><b><span style=3D"font-family:&quot;Calibri=
+&quot;,&quot;sans-serif&quot;"><font size=3D"3">I also wanted to apologize =
+in advance if you aren&#39;t the right person I should be Contacting.</font=
+></span></b></p>
+<font face=3D"Times New Roman" size=3D"3"></font></div>
+<div><font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><b><font face=3D"Calibri"><font size=3D"3">=
+<br>
+</font></font></b></p>
+<p style=3D"margin:0in 0in 0pt"><b><font face=3D"Calibri"><font size=3D"3">=
+Job Title:<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0
+</span></font><font size=3D"3">CTF Engineering Lead</font></font></b></p>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><b><font face=3D"Calibri"><font size=3D"3">=
+Location:<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0
+</span></font><font size=3D"3">Menlo Park, CA </font></font></b></p>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><b><font face=3D"Calibri"><font size=3D"3">=
+Duration:<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0
+</span></font><font size=3D"3">12+ Months </font></font></b></p>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><font face=3D"Calibri"><b><font size=3D"3">=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</font></b><font size=3D"3">=C2=A0</font></font></p>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><b><font face=3D"Calibri" size=3D"3">Respon=
+sibilities</font></b></p>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<ul type=3D"disc" style=3D"margin-top:0in">
+<font face=3D"Times New Roman" size=3D"3"></font>
+<li style=3D"margin:0in 0in 0pt;color:rgb(0,0,0);font-style:normal;font-wei=
+ght:normal">
+<span>Define and drive CTF product development roadmap</span><font face=3D"=
+Times New Roman" size=3D"3">
+</font></li><li style=3D"margin:0in 0in 0pt;color:rgb(0,0,0);font-style:nor=
+mal;font-weight:normal">
+<span>Execute on product roadmap</span><font face=3D"Times New Roman" size=
+=3D"3">
+</font></li><li style=3D"margin:0in 0in 0pt;color:rgb(0,0,0);font-style:nor=
+mal;font-weight:normal">
+<span>Maintain established SLA in engaging with and closing out filed Githu=
+b issues</span><font face=3D"Times New Roman" size=3D"3">
+</font></li><li style=3D"margin:0in 0in 0pt;color:rgb(0,0,0);font-style:nor=
+mal;font-weight:normal">
+<span>Manage CTF email alias, respond to any incoming requests or issues</s=
+pan><font face=3D"Times New Roman" size=3D"3">
+</font></li><li style=3D"margin:0in 0in 0pt;color:rgb(0,0,0);font-style:nor=
+mal;font-weight:normal">
+<span>Establish and maintain relationships with strategic partners, includi=
+ng tier one universities, organizations, and conferences as to increase the=
+ exposure and use FBCTF.</span><font face=3D"Times New Roman" size=3D"3">
+</font></li></ul>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><b><font face=3D"Calibri" size=3D"3">Skills=
+:=C2=A0=C2=A0=C2=A0 Requirements</font></b></p>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<ul type=3D"disc" style=3D"margin-top:0in">
+<font face=3D"Times New Roman" size=3D"3"></font>
+<li style=3D"margin:0in 0in 0pt;color:rgb(0,0,0);font-style:normal;font-wei=
+ght:normal">
+<span>Experience developing <b>
+responsive</b> <b>web</b> <b>
+applications</b></span><font face=3D"Times New Roman" size=3D"3"> </font></=
+li><li style=3D"margin:0in 0in 0pt;color:rgb(0,0,0);font-style:normal;font-=
+weight:normal">
+<span>Minimum <span style=3D"color:rgb(31,73,125)">
+3</span> years experience as <b>software engineer</b>, or other applicable =
+experience</span><font face=3D"Times New Roman" size=3D"3">
+</font></li><li style=3D"margin:0in 0in 0pt;color:rgb(0,0,0);font-style:nor=
+mal;font-weight:normal">
+<span>Solid understanding of the
+<b>full web technology stack</b> (<b>Javascript, MySQL,</b> etc.)</span><fo=
+nt face=3D"Times New Roman" size=3D"3">
+</font></li><li style=3D"margin:0in 0in 0pt;color:rgb(0,0,0);font-style:nor=
+mal;font-weight:normal">
+<span>Experience with <b>
+PHP</b> preferred (<b>Hack</b> <b>
+experience</b> is ideal)</span><font face=3D"Times New Roman" size=3D"3"> <=
+/font></li><li style=3D"margin:0in 0in 0pt;color:rgb(0,0,0);font-style:norm=
+al;font-weight:normal">
+<b><span>Data-informed product development</span></b><span>: analytics, A/B=
+ testing, etc.</span><font face=3D"Times New Roman" size=3D"3">
+</font></li><li style=3D"margin:0in 0in 0pt;color:rgb(0,0,0);font-style:nor=
+mal;font-weight:normal">
+<span>Must be a self-starter and enjoy full ownership over the external pro=
+duct</span><font face=3D"Times New Roman" size=3D"3">
+</font></li><li style=3D"margin:0in 0in 0pt;color:rgb(0,0,0);font-style:nor=
+mal;font-weight:normal">
+<span>Experience playing in or hosting Capture The Flag competitions a plus=
+</span><font face=3D"Times New Roman" size=3D"3">
+</font></li><li style=3D"margin:0in 0in 0pt;color:rgb(0,0,0);font-style:nor=
+mal;font-weight:normal">
+<span>Experience and understanding of<b> information security</b> a plus</s=
+pan><font face=3D"Times New Roman" size=3D"3">
+</font></li></ul>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><b><span style=3D"color:black"><font face=
+=3D"Calibri" size=3D"3">Thanks
+ &amp; regards,</font></span></b></p>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><b><span style=3D"color:black"><font face=
+=3D"Calibri" size=3D"3">Mahesh
+ Khurpe | Xoriant Connect =C2=A0=C2=A0</font></span></b></p>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><i><span style=3D"color:rgb(31,73,125)"><a =
+href=3D"http://www.xoriantconnect.com/" target=3D"_blank"><span style=3D"co=
+lor:blue"><font face=3D"Calibri" size=3D"3">http://www.xoriantconnect.com</=
+font></span></a><font face=3D"Calibri" size=3D"3">
+</font></span></i></p>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><span style=3D"color:black"><font face=3D"C=
+alibri" size=3D"3">W:
+ <a href=3D"tel:408-550-1251" value=3D"+14085501251" target=3D"_blank">408-=
+550-1251</a></font></span></p>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><span style=3D"color:black"><font face=3D"C=
+alibri" size=3D"3">1248,
+ Reamwood Ave, Sunnyvale, CA 94089</font></span></p>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><font size=3D"3"><font face=3D"Calibri"><sp=
+an style=3D"color:red">Find
+ us on:</span><b><span style=3D"color:rgb(31,73,125)">
+</span></b></font></font><a href=3D"http://www.xoriantconnect.com/" target=
+=3D"_blank"><b><span style=3D"color:rgb(31,73,125);text-decoration:none"><s=
+pan><font face=3D"Calibri" size=3D"3"><img width=3D"78" height=3D"27" alt=
+=3D"Description: Description: Description: cid:image001.png@01D1237F.273CF4=
+A0" border=3D"0"></font></span></span></b></a><b><span style=3D"color:rgb(3=
+1,73,125)"><font face=3D"Calibri" size=3D"3">=C2=A0=C2=A0</font></span></b>=
+<a href=3D"http://www.facebook.com/Xoriant.Connect" target=3D"_blank"><b><s=
+pan style=3D"color:rgb(31,73,125);text-decoration:none"><span><font face=3D=
+"Calibri" size=3D"3"><img width=3D"22" height=3D"22" alt=3D"Description: De=
+scription: Description: cid:image002.jpg@01D1237F.273CF4A0" border=3D"0"></=
+font></span></span></b></a><span style=3D"color:rgb(31,73,125)"><font face=
+=3D"Calibri" size=3D"3">=C2=A0=C2=A0</font></span><a href=3D"https://twitte=
+r.com/xoriantconnect" target=3D"_blank"><b><span style=3D"color:rgb(31,73,1=
+25);text-decoration:none"><span><font face=3D"Calibri" size=3D"3"><img widt=
+h=3D"22" height=3D"21" alt=3D"Description: Description: Description: cid:im=
+age003.jpg@01D1237F.273CF4A0" border=3D"0"></font></span></span></b></a></p=
+>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><span style=3D"color:rgb(31,73,125)"><font =
+size=3D"3"><font face=3D"Calibri">Don=E2=80=99t
+ Search, Get Notified! through XoriantJobs mobile app:<i> </i></font></font=
+><a href=3D"https://itunes.apple.com/us/app/xoriant-jobs-dont-search-get/id=
+679060038?mt=3D8" target=3D"_blank"><i><span style=3D"color:blue"><font fac=
+e=3D"Calibri" size=3D"3">iOS</font></span></i></a><i><font face=3D"Calibri"=
+ size=3D"3">;
+</font></i><a href=3D"https://play.google.com/store/apps/details?id=3Dcom.x=
+oriant.xorconnect&amp;hl=3Den" target=3D"_blank"><i><span style=3D"color:bl=
+ue"><font face=3D"Calibri" size=3D"3">Android</font></span></i></a></span><=
+/p>
+<font face=3D"Times New Roman" size=3D"3"></font>
+<p style=3D"margin:0in 0in 0pt"><span style=3D"color:rgb(31,73,125)"><font =
+face=3D"Calibri" size=3D"3">=C2=A0</font></span><span style=3D"color:rgb(31=
+,73,125)"><font face=3D"Calibri"><font size=3D"3">*</font><i><font size=3D"=
+3">Disclaimer:
+ This is not meant to be an unsolicited email. If you do not want to hear f=
+rom us again, please reply with
+</font><a href=3D"mailto:mahes.khurpe@xoriant.com?subject=3DREMOVE" target=
+=3D"_blank"><span style=3D"color:blue"><font size=3D"3">REMOVE</font></span=
+></a><span><font size=3D"3">=C2=A0
+</font></span><font size=3D"3">In the Subject Line and I will promptly remo=
+ve your email address upon receipt *</font></i></font></span></p>
+<font face=3D"Times New Roman" size=3D"3">=C2=A0</font></div>
+<div>=C2=A0</div>
+<div>=C2=A0</div>
+<div></div>
+</td>
+</tr>
+</tbody>
+</table>
+<div>=C2=A0</div>
+<div><a href=3D"https://apps.exelare.com/exelare/RemoveLink.Aspx?CID=3DExl_=
+xoriant&amp;UID=3DMaheshK&amp;PK=3DCSa0025758&amp;EMail1=3Dtatwell@gmail.co=
+m&amp;EMail2=3D&amp;MailType=3Dmail" target=3D"_blank">Click here to Remove=
+ %FORWARDER% from our mailing list.</a>
+</div>
+</div>
+
+</div><br></div>
+
+--001a11479e54c3c19e053ba0403a--

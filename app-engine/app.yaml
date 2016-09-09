@@ -21,6 +21,24 @@ inbound_services:
 
 # Handlers define how to route requests to your application.
 handlers:
+    
+  #
+  # Static directories
+  #
+- url: /assets
+  static_dir: assets
+  
+- url: /favicon\.ico
+  static_files: assets/images/favicon.ico
+  upload: assets/images/favicon\.ico
+  
+- url: /robots\.txt
+  static_files: assets/webtools/robots.txt
+  upload: assets/media/robots.txt
+  
+- url: /sitemap\.txt
+  static_files: assets/webtools/sitemap.txt
+  upload: assets/media/sitemap.txt
 
   #
   # Mail Handlers
@@ -30,7 +48,7 @@ handlers:
   login: admin
   
   #
-  # Recruiter Emails Controller Endpoints
+  # Recruiter Email Controller Endpoints
   #
 - url: /admin/recruitments(/.*)?
   script: controllers.recruiter_emails.app
@@ -39,6 +57,17 @@ handlers:
 - url: /admin/recruitment(/.*)?
   script: controllers.recruiter_emails.app
   login: admin
+  
+  #
+  # Recruiter Controller Endpoints
+  #
+- url: /admin/recruiters(/.*)?
+  script: controllers.recruiters.app
+  login: admin
+  
+- url: /admin/recruiter(/.*)?
+  script: controllers.recruiters.app
+  login: admin
 
   #
   # Default Route
@@ -46,9 +75,3 @@ handlers:
 - url: .* 
   script: controllers.pages.app
 
-
-# TODO: List any other App Engine SDK libs you may need here.
-# See https://developers.google.com/appengine/docs/python/tools/libraries27
-#libraries:
-#- name: jinja2
-#  version: latest

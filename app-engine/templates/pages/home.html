@@ -2,13 +2,22 @@
 
 {% block content %}
 <div class="home">
-  <h1>Decruiter</h1>
-  <h4>Track and deconstruct recruiter emails.</h4>
+  <div class="header">
+    <h1>Decruiter</h1>
+    <h4>Track and deconstruct recruiter emails.</h4>
+  </div>
 
-  <p>This site is currently under development.</p>
-  <p>
-    For more information, please see the
-    <a href="https://github.com/klenwell/decruiter">project Github page</a>.
-  </p>
+  <h4 class="stats">
+    Recruited <strong>{{ recruitment_count }}</strong> times
+    by <strong>{{ recruiter_count }}</strong> recruiters
+    since <strong>{{ cutoff.strftime('%-d %b %Y') }}</strong>.
+  </h4>
+
+  <div class="info">
+    <p>
+      For more information, see
+      <a href="https://github.com/klenwell/decruiter">the Decruiter Github project</a>.
+    </p>
+  </div>
 </div>
 {% endblock %}
