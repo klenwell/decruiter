@@ -207,6 +207,12 @@ class RecruiterEmail(ndb.Model):
         self.key.delete()
         return recruiter
 
+    def sync_with_recruiter(self, recruiter):
+        self.recruiter_name = recruiter.name
+        self.recruiter_email = recruiter.email
+        self.put()
+        return self
+
     def extract_recruitment_properties(self):
         mime_message = email.message_from_string(self.original)
         inbound_message = InboundEmailMessage(mime_message)

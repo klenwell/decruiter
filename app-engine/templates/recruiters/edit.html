@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html' %}
+{% import 'macros/form_helper.html' as form_helper %}
+
+{% block title %}Recruiter Edit{% endblock %}
+
+{% block append_head %}
+{% endblock %}
+
+
+{% block content %}
+<div class="recruiter edit">
+  <h2>Edit Recruiter</h2>
+
+  <form method="post" action="/admin/recruiter/update/" id="recruiter-edit">
+
+    {{ form.csrf_token }}
+    {{ form.recruiter_id() }}
+    {{ form_helper.bootstrap_field(form.recruiter_name) }}
+    {{ form_helper.bootstrap_field(form.recruiter_email) }}
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <hr />
+
+  <a href="/admin/recruiters/">return to index</a>
+</div>
+{% endblock %}

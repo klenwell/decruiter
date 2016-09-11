@@ -12,6 +12,14 @@
     <h2 class="name">{{ recruiter.name }}</h2>
     <h4 class="email">{{ recruiter.email }}</h4>
     <h6 class="created-at">Added {{ at(recruiter.created_at) }}</h6>
+
+    <div class="actions">
+      <a class="btn btn-warning"
+         href="/admin/recruiter/{{ recruiter.public_id }}/edit/">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        Edit
+      </a>
+    </div>
   </div>
 
   <div class="recruitments">
