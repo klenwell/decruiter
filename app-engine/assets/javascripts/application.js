@@ -52,9 +52,12 @@ var applicationHandler = (function() {
         $form.append($input);
       });
 
-      // Prevent double-submits and submit.
+      // Prevent double-submits.
       $(this).off('click');
-      $form.submit();
+
+      // Firefox requires form in DOM to submit:
+      // http://stackoverflow.com/a/7117103/1093087
+      $form.appendTo("body").submit();
     });
   };
 
