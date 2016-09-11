@@ -199,7 +199,11 @@ class RecruiterEmail(ndb.Model):
     # Public Methods
     #
     def delete(self):
-        recruiter = self.recruiter.decrement_email_count()
+        recruiter = self.recruiter
+
+        if recruiter:
+            recruiter = recruiter.decrement_email_count()
+
         self.key.delete()
         return recruiter
 
