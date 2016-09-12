@@ -103,14 +103,28 @@ class RecruiterEmail(ndb.Model):
 
     @staticmethod
     def from_line_to_name_and_email(from_line):
-        # http://stackoverflow.com/a/550036/1093087
+        # Based on http://stackoverflow.com/a/550036/1093087.
+        # TODO(low): Convert "Last, First" to "First Last"
+        from_line = from_line.strip()
+
         if not from_line:
             return None, None
+
+        # Names with commas are supposed to enclosed in quotes, but sometimes they are not!
+        # For example: Last, First <flast@example.com>
+        if ',' in from_line and '<' in from_line and from_line[-1] == '>':
+            name, email = from_line.rsplit('<')
+            email = "<%s" % (email)
+            name = name.strip()
+            if name[0] not in ["'", '"']:
+                names = name.split(',')
+                name = '"%s"' % (name)
+            from_line = '%s %s' % (name, email)
 
         name, email = parseaddr(from_line)
 
         if email:
-            email = email.lower()
+            email = email.strip().lower()
 
         if email and not name:
             name = email.split('@')[0]
