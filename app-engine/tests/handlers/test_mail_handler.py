@@ -99,3 +99,33 @@ class RecruiterEmailsHandlerTest(AppEngineTestCase):
         self.assertEqual(response.status_code, 500, response)
         self.assertEqual(RecruiterEmail.query().count(), 0)
         self.assertEqual(Recruiter.query().count(), 0)
+
+    @patch("mail_handler.AUTHORIZED_FORWARDERS", [authorized_forwarder])
+    def test_expects_handler_to_set_recruiter_name_to_email_address_when_name_absent(self):
+        # Previously was leaving field blank.
+        # See Issue #5: https://github.com/klenwell/decruiter/issues/5
+        # Arrange
+        client = TestApp(app)
+        mail_message = TestEmail.fixture('20160901_no_recruiter_name_fwd', authorized_forwarder)
+
+        # Assume
+        self.assertEqual(RecruiterEmail.query().count(), 0)
+        self.assertEqual(Recruiter.query().count(), 0)
+        endpoint = '/_ah/mail/test%40decruiter.appspotmail.com'
+        body = mail_message.original.as_string()
+        expected_recruiter_name = 'Charan Kumar'
+        expected_recruiter_email = 'charan.kumar@elitebizconsulting.com'
+
+        # Act
+        response = client.post(endpoint, body, expect_errors=True)
+        recruitments = RecruiterEmail.query().fetch()
+        recruitment = recruitments[0] if recruitments else None
+
+        # Assert
+        self.assertEqual(response.status_code, 200, response)
+        self.assertEqual(RecruiterEmail.query().count(), 1)
+        self.assertEqual(Recruiter.query().count(), 1)
+        self.assertIsNotNone(recruitment)
+        self.assertIsNotNone(recruitment.recruiter)
+        self.assertEqual(recruitment.recruiter.email, expected_recruiter_email)
+        self.assertEqual(recruitment.recruiter.name, expected_recruiter_name)
