@@ -23,17 +23,13 @@ from os.path import join
 from datetime import datetime
 from pprint import pformat
 
-# Constants
-# TODO: Make SDK path a config setting.
-APP_ENGINE_SDK_PATH = '/home/klenwell/google-cloud-sdk/platform/google_appengine/'
-LOCAL_API_SERVER_PORT = 9002
-REMOTE_API_PATH = '/_ah/remote_api'
+import config
 
 # Add the Python SDK to the package path.
 # See http://stackoverflow.com/a/32926576/1093087
-sys.path.append(APP_ENGINE_SDK_PATH)
-sys.path.append(join(APP_ENGINE_SDK_PATH, 'lib/yaml/lib'))
-sys.path.append(join(APP_ENGINE_SDK_PATH, 'lib/fancy_urllib'))
+sys.path.append(config.APP_ENGINE_SDK_PATH)
+sys.path.append(join(config.APP_ENGINE_SDK_PATH, 'lib/yaml/lib'))
+sys.path.append(join(config.APP_ENGINE_SDK_PATH, 'lib/fancy_urllib'))
 
 # Load vendor libs. Taken from appengine_config.py.
 from google.appengine.ext import vendor
@@ -46,14 +42,16 @@ from tests.helper import TestEmail
 from models.recruiter_email import RecruiterEmail
 
 
+
 def main(args):
     load_local_api()
     seed_recruitments()
+    return 0
 
 # TODO: make API port command line option.
 def load_local_api():
-    host = 'localhost:%s' % (LOCAL_API_SERVER_PORT)
-    remote_api_stub.ConfigureRemoteApiForOAuth(host, REMOTE_API_PATH, secure=False)
+    host = 'localhost:%s' % (config.DEV_API_SERVER_PORT)
+    remote_api_stub.ConfigureRemoteApiForOAuth(host, config.REMOTE_API_PATH, secure=False)
 
 
 def seed_recruitments():
@@ -66,7 +64,6 @@ def seed_recruitments():
         recruitments.append(recruitment)
 
     print 'Seeded %d recruitment(s).' % (len(recruitments))
-
 
 
 if __name__ == '__main__':
