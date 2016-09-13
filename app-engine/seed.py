@@ -14,12 +14,15 @@ This script requires the `google-api-python-client` library to be installed loca
 
 To seed datastore:
 
+    python seed.py -h
     python seed.py
+    python seed.py --port=3001
 
 """
 # Python Imports
 import sys, os
 from os.path import join
+import argparse
 from datetime import datetime
 from pprint import pformat
 
@@ -44,13 +47,13 @@ from models.recruiter_email import RecruiterEmail
 
 
 def main(args):
-    load_local_api()
+    args = parse_args(args)
+    load_local_api(args.port)
     seed_recruitments()
     return 0
 
-# TODO: make API port command line option.
-def load_local_api():
-    host = 'localhost:%s' % (config.DEV_API_SERVER_PORT)
+def load_local_api(port):
+    host = 'localhost:%s' % (port)
     remote_api_stub.ConfigureRemoteApiForOAuth(host, config.REMOTE_API_PATH, secure=False)
 
 
@@ -65,6 +68,14 @@ def seed_recruitments():
 
     print 'Seeded %d recruitment(s).' % (len(recruitments))
 
+def parse_args(args):
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+                                     description="Seed decruiter datastore.")
+    parser.add_argument("-p", "--port",
+                        type=int,
+                        default=config.DEV_API_SERVER_PORT,
+                        help="set port number for dev API server")
+    return parser.parse_args()
 
 if __name__ == '__main__':
     sys.exit(main(sys.argv[1:]))
