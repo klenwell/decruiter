@@ -34,6 +34,7 @@ class RecruiterEmailHandler(InboundMailHandler):
         # Parse and store recruitment.
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
 
+        # Log result.
         if recruitment.already_existed:
             f = 'Recruitment "%s" from %s already existed.'
             logging.info(f % (recruitment.subject, recruitment.recruiter.email))

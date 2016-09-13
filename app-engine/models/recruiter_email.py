@@ -102,19 +102,47 @@ class RecruiterEmail(ndb.Model):
             return message.get_payload(decode=True).strip()
 
     @staticmethod
+    def from_line_to_name_and_email(from_line):
+        # Based on http://stackoverflow.com/a/550036/1093087.
+        # TODO(low): Convert "Last, First" to "First Last"
+        from_line = from_line.strip()
+
+        if not from_line:
+            return None, None
+
+        # Names with commas are supposed to enclosed in quotes, but sometimes they are not!
+        # For example: Last, First <flast@example.com>
+        if ',' in from_line and '<' in from_line and from_line[-1] == '>':
+            name, email = from_line.rsplit('<')
+            email = "<%s" % (email)
+            name = name.strip()
+            if name[0] not in ["'", '"']:
+                names = name.split(',')
+                name = '"%s"' % (name)
+            from_line = '%s %s' % (name, email)
+
+        name, email = parseaddr(from_line)
+
+        if email:
+            email = email.strip().lower()
+
+        if email and not name:
+            name = email.split('@')[0]
+
+        return name, email
+
+    @staticmethod
+    def normalize_name(name):
+        if '.' in name:
+            name = name.replace('.', ' ')
+
+        names = name.split('.')
+        return ' '.join([n.title() for n in names if n.strip()])
+
+    @staticmethod
     def extract_recruitment_data(plain_body):
         extract = {}
         recruiter_headers = ['from', 'date', 'subject', 'to']
-
-        def normalize_recruiter(from_line):
-            # http://stackoverflow.com/a/550036/1093087
-            if not from_line:
-                return None, None
-            else:
-                name, email = parseaddr(from_line)
-                if email:
-                    email = email.lower()
-                return name, email
 
         def normalize_date(timestamp):
             gmail_format = '%a, %b %d, %Y at %I:%M %p'
@@ -140,11 +168,11 @@ class RecruiterEmail(ndb.Model):
             if header == 'to':
                 break
 
-        recruiter_name, recruiter_email = normalize_recruiter(extract.get('from'))
+        name, email = RecruiterEmail.from_line_to_name_and_email(extract.get('from'))
 
         return {
-            'recruiter_name': recruiter_name,
-            'recruiter_email': recruiter_email,
+            'recruiter_name': RecruiterEmail.normalize_name(name),
+            'recruiter_email': email,
             'sent_to': extract.get('to'),
             'sent_at': normalize_date(extract.get('date')),
             'subject': extract.get('subject'),
@@ -199,9 +227,19 @@ class RecruiterEmail(ndb.Model):
     # Public Methods
     #
     def delete(self):
-        recruiter = self.recruiter.decrement_email_count()
+        recruiter = self.recruiter
+
+        if recruiter:
+            recruiter = recruiter.decrement_email_count()
+
         self.key.delete()
         return recruiter
+
+    def sync_with_recruiter(self, recruiter):
+        self.recruiter_name = recruiter.name
+        self.recruiter_email = recruiter.email
+        self.put()
+        return self
 
     def extract_recruitment_properties(self):
         mime_message = email.message_from_string(self.original)

@@ -24,8 +24,7 @@ from google.appengine.api import users
 
 import config
 
-# TODO: Add flask_wtf to requirements
-# from flask_wtf.csrf import CsrfProtect
+from flask_wtf.csrf import CsrfProtect
 
 
 #
@@ -44,7 +43,7 @@ app.config['WTF_CSRF_CHECK_DEFAULT'] = False
 app.secret_key = config.secrets.FLASK_SECRET_KEY
 
 # Enables CSRF protection. See check_csrf below.
-#csrf = CsrfProtect(app)
+csrf = CsrfProtect(app)
 
 
 #
@@ -100,8 +99,7 @@ def template_helpers():
 
 
 ## Exception Handlers
-# TODO: enable these once flask_wtf added.
-#@csrf.error_handler
+@csrf.error_handler
 def csrf_error(reason):
     if request.is_xhr:
         return jsonify(error=reason), 400
@@ -153,8 +151,7 @@ def set_app_engine_user():
     g.app_engine_user = users.get_current_user()
     g.app_engine_admin = users.is_current_user_admin()
 
-# TODO: enable these once flask_wtf added.
-#@app.before_request
+@app.before_request
 def check_csrf():
     # ACCEPT_MOCK_CSRF_TOKEN config can be set in test config. If set, any
     # submitted CSRF token will satisfy CSRF check.

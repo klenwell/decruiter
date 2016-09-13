@@ -14,6 +14,10 @@ else:
 
 PROJECT_NAME = 'Decruiter'
 
+# Local Dev Server Settings (used by seed.py)
+APP_ENGINE_SDK_PATH = '/home/klenwell/google-cloud-sdk/platform/google_appengine/'
+DEV_API_SERVER_PORT = 9002
+REMOTE_API_PATH = '/_ah/remote_api'
+
 # This value can be used for Reddit-like time-sensitive scoring algorithms.
 PROJECT_BIRTHDATE = datetime(2016, 1, 1, 0, 0, 0)
-

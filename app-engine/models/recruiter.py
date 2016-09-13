@@ -34,8 +34,8 @@ class Recruiter(ndb.Model):
             return self.key.id()
 
     @property
-    def recruitments(self):
-        return RecruiterEmail.s_by_recruiter(self, limit=10)
+    def recruitments(self, limit=10):
+        return RecruiterEmail.s_by_recruiter(self, limit=limit)
 
     #
     # Query Methods
@@ -74,6 +74,16 @@ class Recruiter(ndb.Model):
     #
     # Public Methods
     #
+    def update(self, **fields):
+        self.name = fields.get('name', self.name)
+        self.email = fields.get('email', self.email)
+        self.put()
+
+        for recruitment in self.recruitments:
+            recruitment.sync_with_recruiter(self)
+
+        return self
+
     def increment_email_count(self):
         self.email_count += 1
         self.put()

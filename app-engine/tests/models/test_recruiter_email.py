@@ -97,3 +97,17 @@ class RecruiterEmailModelTest(AppEngineModelTest):
         # Assert
         self.assertEqual(RecruiterEmail.query().count(), 0)
         self.assertEqual(recruiter.email_count, 0)
+
+    def test_expects_to_extract_recruiter_name_and_email_from_from_line(self):
+        # See Issue #7: https://github.com/klenwell/decruiter/issues/7
+        # Assume
+        from_line = 'Last, First <flast@example.com>'
+        expected_name = 'Last, First'
+        expected_email = 'flast@example.com'
+
+        # Act
+        name, email = RecruiterEmail.from_line_to_name_and_email(from_line)
+
+        # Assert
+        self.assertEqual(name, expected_name)
+        self.assertEqual(email, expected_email)

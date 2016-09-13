@@ -1,0 +1,393 @@
+X-Received: by 10.237.46.3 with SMTP id j3mr22367457qtd.2.1472934404109;
+ Sat, 03 Sep 2016 13:26:44 -0700 (PDT)
+Return-Path: <%FORWARDER%>
+Received: from mail-qk0-x22f.google.com (mail-qk0-x22f.google.com.
+ [2607:f8b0:400d:c09::22f])
+ by gmr-mx.google.com with ESMTPS id u193si954744ywf.6.2016.09.03.13.26.44
+ for <recruitment@decruiter.appspotmail.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Sat, 03 Sep 2016 13:26:44 -0700 (PDT)
+Received-SPF: pass (google.com: domain of %FORWARDER% designates
+ 2607:f8b0:400d:c09::22f as permitted sender)
+ client-ip=2607:f8b0:400d:c09::22f;
+Authentication-Results: gmr-mx.google.com; dkim=pass header.i=@gmail.com;
+ spf=pass (google.com: domain of %FORWARDER% designates
+ 2607:f8b0:400d:c09::22f as permitted sender) smtp.mailfrom=%FORWARDER%;
+ dmarc=pass (p=NONE dis=NONE) header.from=gmail.com
+Received: by mail-qk0-x22f.google.com with SMTP id v123so157559359qkh.2
+ for <recruitment@decruiter.appspotmail.com>;
+ Sat, 03 Sep 2016 13:26:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+ h=mime-version:in-reply-to:references:from:date:message-id:subject:to;
+ bh=B7cnP9HRcyC0VwTvrylsO3yh5i7ePExSB6DVLmcJ7OY=;
+ b=wS+znCZK0AQTQpCZeMzkGiABl+t/Kf/JJi20kGXaHv6cX5LmyJ87RH+WA4hFEmw3sz
+ IP53gDxiXVJNoIApqr+BxcNy3+AOHOpjLmRM0DJWE7Jxi3WfKTsAMXv0WeGTbXmz1dI5
+ GSgycZ6sx+ucWRmC/KMuT6rg7Dflu/HMIJzuznVkBbetsj3PbA3+Do+FtJ8M/cPSwdVt
+ zW4owDu0vfjk2F1NzUKq3j/Q/O7209xnDPKFYB5qJvD2HWwbNc90S1qrLyYK68cUQ7be
+ 17rf8klvOBeZbR1vjrdkRFK6c6ZeT3Sa1osTJav7k3Jmvh8Ohnjt39gWACCfNDIzYv1l
+ wNXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20130820;
+ h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+ :message-id:subject:to;
+ bh=B7cnP9HRcyC0VwTvrylsO3yh5i7ePExSB6DVLmcJ7OY=;
+ b=HHBas+CGBBQZCN++fCrOC6tNsGqPZrwv/NOuzOEFf8HGWhMKPD7hKgNI5GIvFIETsp
+ IAqvDIpQiN02TuMZ1ouCwOy00MaR8HemDf0lB3PeMkmFS68kN45ujgOKbHbE3LofzEY9
+ uHA9OZp7nJVqke/eYUYSlDrfdIo7s1zLAnQfBJcSZQ3snVCvKP0IAWc30+lGDWighcri
+ VjqjR6GeqQ8VPsTSEqwEGTg28CY32KTgdi2wkiyCQlHgr+DWdpuScI6YvwtpnsQzH7HO
+ n+tvHnvuthRGlTXZvXCzs92wP7ryZVxxMFLieFpkHWSPFyPCCsPRUIXl9N/qMPladGmv
+ 5ImQ==
+X-Gm-Message-State: AE9vXwMGiTwPvI/3pZoViELBpGXeSptMu9rkOzeJGB3ZBxCS6L5Q1twYo+I6hu5kR+qRTOEOGos5EsABKWkdAg==
+X-Received: by 10.55.16.65 with SMTP id a62mr17996636qkh.226.1472934403645;
+ Sat, 03 Sep 2016 13:26:43 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.55.159.15 with HTTP; Sat, 3 Sep 2016 13:26:23 -0700 (PDT)
+In-Reply-To: <2015097104.3623905.1472746394287@mail.yahoo.com>
+References: <828069410.2987193.1472672132783.ref@mail.yahoo.com>
+ <828069410.2987193.1472672132783@mail.yahoo.com>
+ <430612040.3070076.1472674614357@mail.yahoo.com>
+ <941970364.3075093.1472676935161@mail.yahoo.com>
+ <371110718.3030165.1472677305807@mail.yahoo.com>
+ <596578657.3353896.1472721609655@mail.yahoo.com>
+ <1136758972.3369058.1472721626349@mail.yahoo.com>
+ <674356995.3316450.1472721647487@mail.yahoo.com>
+ <1545974844.3372872.1472721688279@mail.yahoo.com>
+ <1561392918.3356399.1472721902486@mail.yahoo.com>
+ <2115466053.3327016.1472721929971@mail.yahoo.com>
+ <1799217811.3306827.1472722015049@mail.yahoo.com>
+ <500504062.3277457.1472722053825@mail.yahoo.com>
+ <358970356.3316598.1472722107578@mail.yahoo.com>
+ <475444771.3375070.1472722136079@mail.yahoo.com>
+ <399246698.3395084.1472722163430@mail.yahoo.com>
+ <104606224.3316950.1472722192590@mail.yahoo.com>
+ <1340447662.3413997.1472739866668@mail.yahoo.com>
+ <1490499541.3385466.1472739890742@mail.yahoo.com>
+ <621806729.3532571.1472739921830@mail.yahoo.com>
+ <548406251.3505698.1472739952839@mail.yahoo.com>
+ <1768850620.3648177.1472740042876@mail.yahoo.com>
+ <1938665227.3417825.1472740069487@mail.yahoo.com>
+ <1951152761.3516306.1472740152372@mail.yahoo.com>
+ <1350680514.3440996.1472740216783@mail.yahoo.com>
+ <817703837.1701316.1472740254017@mail.yahoo.com>
+ <629080797.3444825.1472740321885@mail.yahoo.com>
+ <347052096.2261278.1472740403969@mail.yahoo.com>
+ <212793540.3470372.1472744749561@mail.yahoo.com>
+ <924591644.3460022.1472744783117@mail.yahoo.com>
+ <1131233855.3463955.1472744825978@mail.yahoo.com>
+ <580589406.3567293.1472744852452@mail.yahoo.com>
+ <1064965059.3466752.1472744875913@mail.yahoo.com>
+ <2015097104.3623905.1472746394287@mail.yahoo.com>
+From: Tom Atwell <%FORWARDER%>
+Date: Sat, 3 Sep 2016 13:26:23 -0700
+Message-ID: <CAPU-tmAykEAfkQZHU4F5jXDoLMCiFfcP62rC-Q1Q5Gy_tFBUkA@mail.gmail.com>
+Subject: Fwd: Looking for a Technical Lead - Drupal Developer
+To: recruitment@decruiter.appspotmail.com
+Content-Type: multipart/alternative; boundary=001a1146f448e82fa0053ba04301
+
+--001a1146f448e82fa0053ba04301
+Content-Type: text/plain; charset=UTF-8
+
+---------- Forwarded message ----------
+From: <charan.kumar@elitebizconsulting.com>
+Date: Thu, Sep 1, 2016 at 9:13 AM
+Subject: Looking for a Technical Lead - Drupal Developer
+To: "nagarjuna@avcoconsulting.com" <nagarjuna@avcoconsulting.com>
+Cc: Venkata Nanduri <venkata.nanduri@elitebizconsulting.com>
+
+
+Hello,
+
+
+Greetings from Elite!!!!!
+We are in immediate need of the following resource. If you are interested
+please respond with an updated resume to charan.kumar@elitebizconsulting.com
+.
+
+Role: Technical Lead - Drupal
+Locations: Wilton , CT
+Experience: 8 + Years
+Contract Duration  : 6 Months (could be extended based on performance)
+# of Openings        : 1
+
+Key Responsibilities:
+
+Design/code Drupal based applications following specifications using the
+appropriate tools
+Explore new software development technologies and techniques
+Perform unit and regression testing of own development work
+Perform maintenance programming for existing implementations
+Document code and report on project deliverables
+Ability to tune a Drupal stack: MySQL performance tuning, code profiling,
+web server tuning, diagnosing performance bottlenecks
+
+Requirements & Preferred Skills:
+
+3-6 years of relevant experience
+Ability to coordinate 3-5 other development team members
+Ability to assist in gathering project requirements
+Experience working with the Form, Entity and Views APIs, Features module,
+the theming layer, Ajax interfaces, & other advance topics in Drupal
+Excellent communication skills, both internally and client-facing
+PHP experience required
+Solid knowledge of HTML, CSS, Javascript/AJAX/jQuery
+Experience with performance optimization of Drupal/MySQL systems
+Experience with source control, Git preferred
+Drupal site-building skills (i.e. Views, Panels/Display Suite, etc.)
+preferred
+Custom module development experience, PHP skills, good knowledge of the
+Drupal API
+Experience using Drush
+Acquia certification is a plus
+Experience speaking at events a plus
+Drupal 8 development experience a plus
+Experience with multilingual Drupal sites a plus
+Experience with Drupal Commerce a plus
+
+Thanks & Regards
+Charan Kumar
+Elite Business Consulting
+www.elitebizconsulting.com
+charan.kumar@elitebizconsulting.com
+
+--001a1146f448e82fa0053ba04301
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_quote">---------- Forwarded messag=
+e ----------<br>From: <b class=3D"gmail_sendername"></b> <span dir=3D"ltr">=
+&lt;<a href=3D"mailto:charan.kumar@elitebizconsulting.com">charan.kumar@eli=
+tebizconsulting.com</a>&gt;</span><br>Date: Thu, Sep 1, 2016 at 9:13 AM<br>=
+Subject: Looking for a Technical Lead - Drupal Developer<br>To: &quot;<a hr=
+ef=3D"mailto:nagarjuna@avcoconsulting.com">nagarjuna@avcoconsulting.com</a>=
+&quot; &lt;<a href=3D"mailto:nagarjuna@avcoconsulting.com">nagarjuna@avcoco=
+nsulting.com</a>&gt;<br>Cc: Venkata Nanduri &lt;<a href=3D"mailto:venkata.n=
+anduri@elitebizconsulting.com">venkata.nanduri@elitebizconsulting.com</a>&g=
+t;<br><br><br><div><div style=3D"color:#000;background-color:#fff;font-fami=
+ly:times new roman,new york,times,serif;font-size:16px"><div>Hello,<br></di=
+v><div><br><br></div><div style=3D"display:block"><div style=3D"font-family=
+:times new roman,new york,times,serif;font-size:16px"><div style=3D"font-fa=
+mily:HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;=
+font-size:16px"><div><div><div><div><div style=3D"color:#000;background-col=
+or:#fff;font-family:times new roman,new york,times,serif;font-size:16px"><d=
+iv>Greetings from Elite!!!!!<br></div><div style=3D"display:block"><div sty=
+le=3D"font-family:times new roman,new york,times,serif;font-size:16px"><div=
+ style=3D"font-family:HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida G=
+rande,sans-serif;font-size:16px"><div><div><div><div><div style=3D"color:#0=
+00;background-color:#fff;font-family:times new roman,new york,times,serif;f=
+ont-size:16px"><div style=3D"display:block"><div style=3D"font-family:times=
+ new roman,new york,times,serif;font-size:16px"><div style=3D"font-family:H=
+elveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-s=
+ize:16px"><div><div><div><div><div style=3D"color:#000;background-color:#ff=
+f;font-family:times new roman,new york,times,serif;font-size:16px"><div sty=
+le=3D"display:block"><div style=3D"font-family:times new roman,new york,tim=
+es,serif;font-size:16px"><div style=3D"font-family:HelveticaNeue,Helvetica =
+Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:16px"><div><div><di=
+v><div><div style=3D"color:#000;background-color:#fff;font-family:times new=
+ roman,new york,times,serif;font-size:16px"><div style=3D"display:block"><d=
+iv style=3D"font-family:times new roman,new york,times,serif;font-size:16px=
+"><div style=3D"font-family:HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lu=
+cida Grande,sans-serif;font-size:16px"><div><div><div><div><div style=3D"co=
+lor:#000;background-color:#fff;font-family:times new roman,new york,times,s=
+erif;font-size:16px"><div style=3D"display:block"><div style=3D"font-family=
+:times new roman,new york,times,serif;font-size:16px"><div style=3D"font-fa=
+mily:HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;=
+font-size:16px"><div><div><div><div><div style=3D"color:#000;background-col=
+or:#fff;font-family:times new roman,new york,times,serif;font-size:16px"><d=
+iv><div style=3D"font-family:times new roman,new york,times,serif;font-size=
+:16px"><div style=3D"font-family:HelveticaNeue,Helvetica Neue,Helvetica,Ari=
+al,Lucida Grande,sans-serif;font-size:16px"><div><div><div><div><div style=
+=3D"color:#000;background-color:#fff;font-family:times new roman,new york,t=
+imes,serif;font-size:16px"><div style=3D"display:block"><div style=3D"font-=
+family:times new roman,new york,times,serif;font-size:16px"><div style=3D"f=
+ont-family:HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-=
+serif;font-size:16px"><div><div><div><div><div style=3D"color:#000;backgrou=
+nd-color:#fff;font-family:times new roman,new york,times,serif;font-size:16=
+px"><div style=3D"display:block"><div style=3D"font-family:times new roman,=
+new york,times,serif;font-size:16px"><div style=3D"font-family:HelveticaNeu=
+e,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:16px"><=
+div><div><div><div><div style=3D"color:#000;background-color:#fff;font-fami=
+ly:times new roman,new york,times,serif;font-size:16px"><div style=3D"displ=
+ay:block"><div style=3D"font-family:times new roman,new york,times,serif;fo=
+nt-size:16px"><div style=3D"font-family:HelveticaNeue,Helvetica Neue,Helvet=
+ica,Arial,Lucida Grande,sans-serif;font-size:16px"><div><div><div><div><div=
+ style=3D"color:#000;background-color:#fff;font-family:times new roman,new =
+york,times,serif;font-size:16px"><div style=3D"display:block"><div style=3D=
+"font-family:times new roman,new york,times,serif;font-size:16px"><div styl=
+e=3D"font-family:HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande=
+,sans-serif;font-size:16px"><div><div><div><div><div style=3D"color:#000;ba=
+ckground-color:#fff;font-family:times new roman,new york,times,serif;font-s=
+ize:16px"><div style=3D"display:block"><div style=3D"font-family:times new =
+roman,new york,times,serif;font-size:16px"><div style=3D"font-family:Helvet=
+icaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:1=
+6px"><div><div><div><div><div style=3D"color:#000;background-color:#fff;fon=
+t-family:times new roman,new york,times,serif;font-size:16px"><div style=3D=
+"display:block"><div style=3D"font-family:times new roman,new york,times,se=
+rif;font-size:16px"><div style=3D"font-family:HelveticaNeue,Helvetica Neue,=
+Helvetica,Arial,Lucida Grande,sans-serif;font-size:16px"><div><div><div><di=
+v><div style=3D"color:#000;background-color:#fff;font-family:times new roma=
+n,new york,times,serif;font-size:16px"><div style=3D"display:block"><div st=
+yle=3D"font-family:times new roman,new york,times,serif;font-size:16px"><di=
+v style=3D"font-family:HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida =
+Grande,sans-serif;font-size:16px"><div><div><div><div><div style=3D"color:#=
+000;background-color:#fff;font-family:times new roman,new york,times,serif;=
+font-size:16px"><div style=3D"display:block"><div style=3D"font-family:time=
+s new roman,new york,times,serif;font-size:16px"><div style=3D"font-family:=
+HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-=
+size:16px"><div><div><div><div><div style=3D"color:#000;background-color:#f=
+ff;font-family:times new roman,new york,times,serif;font-size:16px"><div st=
+yle=3D"display:block"><div style=3D"font-family:times new roman,new york,ti=
+mes,serif;font-size:16px"><div style=3D"font-family:HelveticaNeue,Helvetica=
+ Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:16px"><div><div><d=
+iv><div><div style=3D"color:#000;background-color:#fff;font-family:times ne=
+w roman,new york,times,serif;font-size:16px"><div style=3D"display:block"><=
+div style=3D"font-family:times new roman,new york,times,serif;font-size:16p=
+x"><div style=3D"font-family:HelveticaNeue,Helvetica Neue,Helvetica,Arial,L=
+ucida Grande,sans-serif;font-size:16px"><div><div><div><div><div style=3D"c=
+olor:#000;background-color:#fff;font-family:times new roman,new york,times,=
+serif;font-size:16px"><div style=3D"display:block"><div style=3D"font-famil=
+y:times new roman,new york,times,serif;font-size:16px"><div style=3D"font-f=
+amily:HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif=
+;font-size:16px"><div><div><div><div><div style=3D"color:#000;background-co=
+lor:#fff;font-family:times new roman,new york,times,serif;font-size:16px"><=
+div style=3D"display:block"><div style=3D"font-family:times new roman,new y=
+ork,times,serif;font-size:16px"><div style=3D"font-family:HelveticaNeue,Hel=
+vetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:16px"><div><=
+div><div><div><div style=3D"color:#000;background-color:#fff;font-family:ti=
+mes new roman,new york,times,serif;font-size:16px"><div style=3D"display:bl=
+ock"><div style=3D"font-family:times new roman,new york,times,serif;font-si=
+ze:16px"><div style=3D"font-family:HelveticaNeue,Helvetica Neue,Helvetica,A=
+rial,Lucida Grande,sans-serif;font-size:16px"><div><div><div><div><div styl=
+e=3D"color:#000;background-color:#fff;font-family:times new roman,new york,=
+times,serif;font-size:16px"><div style=3D"display:block"><div style=3D"font=
+-family:times new roman,new york,times,serif;font-size:16px"><div style=3D"=
+font-family:HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans=
+-serif;font-size:16px"><div><div><div><div><div style=3D"color:#000;backgro=
+und-color:#fff;font-family:times new roman,new york,times,serif;font-size:1=
+6px"><div style=3D"display:block"><div style=3D"font-family:times new roman=
+,new york,times,serif;font-size:16px"><div style=3D"font-family:HelveticaNe=
+ue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:16px">=
+<div><div><div><div><div style=3D"color:#000;background-color:#fff;font-fam=
+ily:times new roman,new york,times,serif;font-size:16px"><div style=3D"disp=
+lay:block"><div style=3D"font-family:times new roman,new york,times,serif;f=
+ont-size:16px"><div style=3D"font-family:HelveticaNeue,Helvetica Neue,Helve=
+tica,Arial,Lucida Grande,sans-serif;font-size:16px"><div><div><div><div><di=
+v style=3D"color:#000;background-color:#fff;font-family:times new roman,new=
+ york,times,serif;font-size:16px"><div style=3D"display:block"><div style=
+=3D"font-family:times new roman,new york,times,serif;font-size:16px"><div s=
+tyle=3D"font-family:HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Gra=
+nde,sans-serif;font-size:16px"><div><div><div><div><div style=3D"color:#000=
+;background-color:#fff;font-family:times new roman,new york,times,serif;fon=
+t-size:16px"><div style=3D"display:block"><div style=3D"font-family:times n=
+ew roman,new york,times,serif;font-size:16px"><div style=3D"font-family:Hel=
+veticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-siz=
+e:16px"><div><div><div><div><div style=3D"color:#000;background-color:#fff;=
+font-family:times new roman,new york,times,serif;font-size:16px"><div style=
+=3D"display:block"><div style=3D"font-family:times new roman,new york,times=
+,serif;font-size:16px"><div style=3D"font-family:HelveticaNeue,Helvetica Ne=
+ue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:16px"><div><div><div>=
+<div><div style=3D"color:#000;background-color:#fff;font-family:times new r=
+oman,new york,times,serif;font-size:16px"><div style=3D"display:block"><div=
+ style=3D"font-family:times new roman,new york,times,serif;font-size:16px">=
+<div style=3D"font-family:HelveticaNeue,Helvetica Neue,Helvetica,Arial,Luci=
+da Grande,sans-serif;font-size:16px"><div><div><div><div><div style=3D"colo=
+r:#000;background-color:#fff;font-family:times new roman,new york,times,ser=
+if;font-size:16px"><div style=3D"display:block"><div style=3D"font-family:t=
+imes new roman,new york,times,serif;font-size:16px"><div style=3D"font-fami=
+ly:HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;fo=
+nt-size:16px"><div><div><div><div><div style=3D"color:#000;background-color=
+:#fff;font-family:times new roman,new york,times,serif;font-size:16px"><div=
+ style=3D"display:block"><div style=3D"font-family:times new roman,new york=
+,times,serif;font-size:16px"><div style=3D"font-family:HelveticaNeue,Helvet=
+ica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:16px"><div><div=
+><div><div><div style=3D"color:#000;background-color:#fff;font-family:times=
+ new roman,new york,times,serif;font-size:16px"><div style=3D"display:block=
+"><div style=3D"font-family:times new roman,new york,times,serif;font-size:=
+16px"><div style=3D"font-family:HelveticaNeue,Helvetica Neue,Helvetica,Aria=
+l,Lucida Grande,sans-serif;font-size:16px"><div><div><div><div style=3D"col=
+or:#000;background-color:#fff;font-family:times new roman,new york,times,se=
+rif;font-size:16px"><div><div style=3D"display:block"><div style=3D"font-fa=
+mily:times new roman,new york,times,serif;font-size:16px"><div style=3D"fon=
+t-family:HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-se=
+rif;font-size:16px"><div><div><div><div><div style=3D"color:#000;background=
+-color:#fff;font-family:times new roman,new york,times,serif;font-size:16px=
+"><div><div style=3D"font-family:times new roman,new york,times,serif;font-=
+size:16px"><div style=3D"font-family:HelveticaNeue,Helvetica Neue,Helvetica=
+,Arial,Lucida Grande,sans-serif;font-size:16px"><div><div><div style=3D"col=
+or:#000;background-color:#fff;font-family:times new roman,new york,times,se=
+rif;font-size:16px"><div>We are in immediate need of the following resource=
+. If you are interested please respond with an updated resume to <a href=3D=
+"mailto:charan.kumar@elitebizconsulting.com" target=3D"_blank">charan.kumar=
+@<wbr>elitebizconsulting.com</a>.</div><div><br clear=3D"none"></div><div>R=
+ole: Technical Lead - Drupal</div><div>Locations: Wilton , CT</div><div>Exp=
+erience: 8 + Years</div><div>Contract Duration =C2=A0: 6 Months (could be e=
+xtended based on performance)</div><div># of Openings =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0: 1</div><div><br clear=3D"none"></div><div>Key Responsibilities:</di=
+v><div><br clear=3D"none"></div><div>Design/code Drupal based applications =
+following specifications using the appropriate tools</div><div>Explore new =
+software development technologies and techniques</div><div>Perform unit and=
+ regression testing of own development work</div><div>Perform maintenance p=
+rogramming for existing implementations</div><div>Document code and report =
+on project deliverables</div><div>Ability to tune a Drupal stack: MySQL per=
+formance tuning, code profiling, web server tuning, diagnosing performance =
+bottlenecks</div><div><br clear=3D"none"></div><div>Requirements &amp; Pref=
+erred Skills:</div><div><br clear=3D"none"></div><div>3-6 years of relevant=
+ experience</div><div>Ability to coordinate 3-5 other development team memb=
+ers</div><div>Ability to assist in gathering project requirements</div><div=
+>Experience working with the Form, Entity and Views APIs, Features module, =
+the theming layer, Ajax interfaces, &amp; other advance topics in Drupal</d=
+iv><div>Excellent communication skills, both internally and client-facing</=
+div><div>PHP experience required</div><div>Solid knowledge of HTML, CSS, Ja=
+vascript/AJAX/jQuery</div><div>Experience with performance optimization of =
+Drupal/MySQL systems</div><div>Experience with source control, Git preferre=
+d</div><div>Drupal site-building skills (i.e. Views, Panels/Display Suite, =
+etc.) preferred</div><div>Custom module development experience, PHP skills,=
+ good knowledge of the Drupal API</div><div>Experience using Drush</div><di=
+v>Acquia certification is a plus</div><div>Experience speaking at events a =
+plus</div><div>Drupal 8 development experience a plus</div><div>Experience =
+with multilingual Drupal sites a plus</div><div>Experience with Drupal Comm=
+erce a plus</div><div><br clear=3D"none"></div><div>Thanks &amp; Regards</d=
+iv><div>Charan Kumar</div><div>Elite Business Consulting</div><div><a href=
+=3D"http://www.elitebizconsulting.com" target=3D"_blank">www.elitebizconsul=
+ting.com</a></div><div dir=3D"ltr"><a href=3D"mailto:charan.kumar@elitebizc=
+onsulting.com" target=3D"_blank">charan.kumar@<wbr>elitebizconsulting.com</=
+a></div></div></div><br clear=3D"none"><br clear=3D"none"></div> </div> </d=
+iv>  </div></div></div></div></div><br clear=3D"none"><br clear=3D"none"></=
+div> </div> </div>  </div></div></div></div></div><br clear=3D"none"><br cl=
+ear=3D"none"></div> </div> </div>  </div></div></div></div></div><br clear=
+=3D"none"><br clear=3D"none"></div> </div> </div>  </div></div></div></div>=
+</div><br clear=3D"none"><br clear=3D"none"></div> </div> </div>  </div></d=
+iv></div></div></div><br clear=3D"none"><br clear=3D"none"></div> </div> </=
+div>  </div></div></div></div></div><br clear=3D"none"><br clear=3D"none"><=
+/div> </div> </div>  </div></div></div></div></div><br clear=3D"none"><br c=
+lear=3D"none"></div> </div> </div>  </div></div></div></div></div><br clear=
+=3D"none"><br clear=3D"none"></div> </div> </div>  </div></div></div></div>=
+</div><br clear=3D"none"><br clear=3D"none"></div> </div> </div>  </div></d=
+iv></div></div></div><br clear=3D"none"><br clear=3D"none"></div> </div> </=
+div>  </div></div></div></div></div><br clear=3D"none"><br clear=3D"none"><=
+/div> </div> </div>  </div></div></div></div></div><br clear=3D"none"><br c=
+lear=3D"none"></div> </div> </div>  </div></div></div></div></div><br clear=
+=3D"none"><br clear=3D"none"></div> </div> </div>  </div></div></div></div>=
+</div><br clear=3D"none"><br clear=3D"none"></div> </div> </div>  </div></d=
+iv></div></div></div><br clear=3D"none"><br clear=3D"none"></div> </div> </=
+div>  </div></div></div></div></div><br clear=3D"none"><br clear=3D"none"><=
+/div> </div> </div>  </div></div></div></div></div><br clear=3D"none"><br c=
+lear=3D"none"></div> </div> </div>  </div></div></div></div></div><br clear=
+=3D"none"><br clear=3D"none"></div> </div> </div>  </div></div></div></div>=
+</div><br clear=3D"none"><br clear=3D"none"></div> </div> </div>  </div></d=
+iv></div></div></div><br clear=3D"none"><br clear=3D"none"></div> </div> </=
+div>  </div></div></div></div></div><br clear=3D"none"><br clear=3D"none"><=
+/div> </div> </div>  </div></div></div></div></div><br clear=3D"none"><br c=
+lear=3D"none"></div> </div> </div>  </div></div></div></div></div><br clear=
+=3D"none"><br clear=3D"none"></div> </div> </div>  </div></div></div></div>=
+</div><br clear=3D"none"><br clear=3D"none"></div> </div> </div>  </div></d=
+iv></div></div></div><br clear=3D"none"><br clear=3D"none"></div> </div> </=
+div>  </div></div></div></div></div><br clear=3D"none"><br clear=3D"none"><=
+/div> </div> </div>  </div></div></div></div></div><br clear=3D"none"><br c=
+lear=3D"none"></div> </div> </div>  </div></div></div></div></div><br clear=
+=3D"none"><br clear=3D"none"></div> </div> </div>  </div></div></div></div>=
+</div><br clear=3D"none"><br clear=3D"none"></div> </div> </div>  </div></d=
+iv></div></div></div><br clear=3D"none"><br clear=3D"none"></div> </div> </=
+div>  </div></div></div></div></div><br><br></div> </div> </div>  </div></d=
+iv></div></div><br></div>
+
+--001a1146f448e82fa0053ba04301--
