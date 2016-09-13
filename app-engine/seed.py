@@ -70,7 +70,7 @@ def seed_recruitments():
 
 def parse_args(args):
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-                                     description="Seed decruiter datastore.")
+                                     description="Seed decruiter dev datastore.")
     parser.add_argument("-p", "--port",
                         type=int,
                         default=config.DEV_API_SERVER_PORT,
