@@ -52,9 +52,23 @@ var applicationHandler = (function() {
         $form.append($input);
       });
 
-      // Prevent double-submits and submit.
+      // Must include CSRF token.
+      var csrf_token = $(this).data('csrf-token');
+      if ( csrf_token ) {
+        var attrs = { type: 'hidden', id: 'csrf_token', name: 'csrf_token', value: csrf_token };
+        var $input = $('<input />', attrs);
+        $form.append($input);
+      }
+      else {
+        console.warn('CSRF token not found in data attribute.');
+      }
+
+      // Prevent double-submits.
       $(this).off('click');
-      $form.submit();
+
+      // Firefox requires form in DOM to submit:
+      // http://stackoverflow.com/a/7117103/1093087
+      $form.appendTo('body').submit();
     });
   };
 

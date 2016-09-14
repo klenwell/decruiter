@@ -12,6 +12,7 @@ from urlparse import urlparse
 from google.appengine.ext import ndb, testbed
 from google.appengine.api.mail import InboundEmailMessage
 
+from controllers import app
 import config
 
 
@@ -30,8 +31,16 @@ class AppEngineTestCase(TestCase):
     It can be used as a baseline for comparing other base classes below.
     """
     def setUp(self, **options):
+        app.config['TESTING'] = True
         self.longMessage = True
         self.testbed = make_bed(**options)
+
+        # Optional mock csrf token: Default = True
+        # WTF_CSRF_ENABLED: circumvents WTForm CSRF protection
+        # ACCEPT_MOCK_CSRF_TOKEN: circumvents check_csrf filter
+        if options.get('mock_csrf_token', True):
+            app.config['WTF_CSRF_ENABLED'] = False
+            app.config['ACCEPT_MOCK_CSRF_TOKEN'] = True
 
     def tearDown(self):
         self.testbed.deactivate()
@@ -52,6 +61,7 @@ class AppEngineModelTest(AppEngineTestCase):
     def setUp(self, **options):
         self.longMessage = True
         self.testbed = make_bed(**options)
+        super(AppEngineModelTest, self).setUp(**options)
 
     def tearDown(self):
         self.testbed.deactivate()

@@ -1,6 +1,9 @@
 /*
  * Application Stylesheet
  */
+/*
+ * Layout
+ */
 html {
   position: relative;
   min-height: 100%;
@@ -20,6 +23,22 @@ body {
   bottom: 0;
   width: 100%;
   height: 60px;             /* Set the fixed height of the footer here */
+}
+
+/*
+ * Global
+ */
+.clickable {
+  cursor: pointer;
+}
+
+div.form-group input {
+  max-width: 25em;
+}
+
+div.flashes div.alert {
+  margin: 0 auto 20px;
+  max-width: 80%;
 }
 
 /*
@@ -47,4 +66,3 @@ div.actions {
 div.actions button {
   margin-left: 4px;
 }
-

@@ -32,8 +32,11 @@ def recruitment_delete():
     if not recruitment:
         return render_404('Recruiter email not found.')
 
-    recruiter = recruitment.delete()
-    flash('Recruitment by %s deleted.' % (recruiter.name), 'success')
+    # Recruitment not necessarily associated with a recruiter.
+    recruiter_name = recruitment.recruiter_name or recruitment.recruiter_email
+    recruitment.delete()
+
+    flash('Recruitment by %s deleted.' % (recruiter_name), 'success')
     return redirect('/admin/recruitments/')
 
 @app.route('/admin/recruitment/reparse/', methods=['POST'])
