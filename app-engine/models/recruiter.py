@@ -6,8 +6,13 @@
 - has_many RecruiterEmail
 """
 from google.appengine.ext import ndb
-
 from models.recruiter_email import RecruiterEmail
+
+
+#
+# Recruiters can belong to one of the following mailing lists.
+#
+MAILING_LISTS = ['online', 'local']
 
 
 #
@@ -20,6 +25,7 @@ class Recruiter(ndb.Model):
     email                   = ndb.StringProperty(required=True)
     name                    = ndb.StringProperty()
     email_count             = ndb.IntegerProperty(default=0)
+    mailing_list            = ndb.StringProperty(choices=MAILING_LISTS)
 
     # Timestamps
     created_at              = ndb.DateTimeProperty(auto_now_add=True)
