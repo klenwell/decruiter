@@ -40,8 +40,13 @@ class Recruiter(ndb.Model):
             return self.key.id()
 
     @property
-    def recruitments(self, limit=10):
+    def recruitments(self):
+        limit=1000
         return RecruiterEmail.s_by_recruiter(self, limit=limit)
+
+    @property
+    def mailing_lists(self):
+        return MAILING_LISTS
 
     #
     # Query Methods

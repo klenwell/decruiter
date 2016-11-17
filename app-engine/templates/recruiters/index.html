@@ -20,6 +20,7 @@
         <th>Email Address</th>
         <th>Recruitments</th>
         <th>Created</th>
+        <th>Mailing List</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -36,6 +37,17 @@
           <td>{{ recruiter.email }}</td>
           <td>{{ recruiter.email_count }}</td>
           <td>{{ at(recruiter.created_at) }}</td>
+          <td>
+            <div class="btn-group" data-toggle="buttons">
+            {% for mailing_list in recruiter.mailing_lists %}
+              {% set btn_state = 'active' if recruiter.mailing_list == mailing_list else 'inactive' %}
+            <label class="btn btn-default {{ btn_state }} btn-xs">
+              <input type="radio" name="options" id="{{mailing_list}}" autocomplete="off">
+              {{mailing_list}}
+            </label>
+            {% endfor %}
+            </div>
+          </td>
           <td>
             <a class="btn btn-info"
                href="/admin/recruiter/{{ recruiter.public_id }}/">

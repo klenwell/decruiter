@@ -43,6 +43,7 @@ from google.appengine.ext.remote_api import remote_api_stub
 
 from tests.helper import TestEmail
 from models.recruiter_email import RecruiterEmail
+from models.recruiter import Recruiter
 
 
 
@@ -65,6 +66,8 @@ def seed_recruitments():
         inbound_message = TestEmail.fixture(fixture_id)
         recruitment = RecruiterEmail.from_inbound_handler(inbound_message)
         recruitments.append(recruitment)
+        recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
+        recruitment.associate_recruiter(recruiter)
 
     print 'Seeded %d recruitment(s).' % (len(recruitments))
 
