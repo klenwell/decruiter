@@ -3,7 +3,8 @@
 """
 import logging
 
-from controllers import (app, request, render_template, render_404, redirect, flash)
+from controllers import (app, request, render_template, render_404, redirect, flash,
+                         jsonify)
 from models.recruiter import Recruiter
 from forms.recruiter import RecruiterForm
 
@@ -55,3 +56,24 @@ def recruiter_update():
                          email=form.recruiter_email.data)
         flash('Recruiter successfully update.', 'success')
         return redirect('/admin/recruiter/%s/' % (recruiter.public_id))
+
+@app.route('/admin/recruiter/mailing-list/', methods=['POST'])
+def recruiter_mailing_list():
+    recruiter_id = request.form.get('recruiter_id')
+    mailing_list = request.form.get('mailing_list')
+    recruiter = Recruiter.read(recruiter_id)
+
+    if not recruiter:
+        return render_404('Recruiter not found.')
+
+    if mailing_list not in recruiter.mailing_lists:
+        return jsonify({'error': 'invalid mailing list: %s' % (mailing_list)})
+    else:
+        recruiter.mailing_list = mailing_list
+        recruiter.put()
+
+    response = {
+        'recruiter': recruiter.public_id,
+        'mailing_list': recruiter.mailing_list
+    }
+    return jsonify(response)

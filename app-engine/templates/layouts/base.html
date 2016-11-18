@@ -30,7 +30,7 @@
     {% block append_head %}{% endblock %}
   </head>
 
-  <body>
+  <body data-csrf-token="{{ csrf_token() }}">
     {% include "layouts/_navbar.html" %}
 
     {% include "layouts/_flash.html" %}
