@@ -41,8 +41,8 @@
             <div class="btn-group" data-toggle="buttons">
             {% for mailing_list in recruiter.mailing_lists %}
               {% set btn_state = 'active' if recruiter.mailing_list == mailing_list else 'inactive' %}
-            <label class="btn btn-default {{ btn_state }} btn-xs">
-              <input type="radio" name="options" id="{{mailing_list}}" autocomplete="off">
+            <label class="mailing-list btn btn-default {{ btn_state }} btn-xs">
+              <input type="radio" data-choice="{{mailing_list}}" autocomplete="off">
               {{mailing_list}}
             </label>
             {% endfor %}
@@ -66,4 +66,8 @@
   {# End Table #}
 
 </div>
+{% endblock %}
+
+{% block javascripts %}
+  <script src="/assets/javascripts/mailing_list.js"></script>
 {% endblock %}
