@@ -81,7 +81,6 @@ def common_variables():
 #
 def at(a_datetime):
     f = '%Y-%m-%d %H:%M:%S'
-
     if not a_datetime:
         return 'N/A'
     else:
