@@ -11,8 +11,10 @@ from forms.recruiter import RecruiterForm
 
 @app.route('/admin/recruiters/', methods=['GET'])
 def recruiters_index():
-    recruiters = Recruiter.s_recently_created(limit=25)
-    return render_template('recruiters/index.html', recruiters=recruiters)
+    page_number = request.args.get('page', 1)
+    pager = Recruiter.s_paginated(page_number=page_number)
+    recruiters, _, _ = pager.paginate(page_size=25)
+    return render_template('recruiters/index.html', recruiters=recruiters, pager=pager)
 
 @app.route('/admin/recruiter/<recruiter_id>/', methods=['GET'])
 def recruiter_show(recruiter_id):

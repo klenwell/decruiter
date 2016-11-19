@@ -15,6 +15,7 @@ from os.path import dirname, join
 from datetime import date, datetime
 from functools import wraps
 import logging
+import urllib
 
 from flask import (Flask, render_template, request, g, flash, redirect, abort,
                    url_for, session, jsonify)
@@ -86,10 +87,16 @@ def at(a_datetime):
     else:
         return a_datetime.strftime(f).lower()
 
+def pager_href(page_number, request):
+    args = request.args.copy()
+    args['page'] = page_number
+    return '?' + urllib.urlencode(args)
+
 @app.context_processor
 def template_helpers():
     helpers = dict(
-        at = at
+        at = at,
+        pager_href = pager_href
     )
 
     # Make helpers available to jinja

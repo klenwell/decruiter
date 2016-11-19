@@ -5,6 +5,7 @@
 
 - has_many RecruiterEmail
 """
+import ndbpager
 from google.appengine.ext import ndb
 from models.recruiter_email import RecruiterEmail
 
@@ -81,6 +82,14 @@ class Recruiter(ndb.Model):
     def s_recently_created(**options):
         limit = options.get('limit', 25)
         return Recruiter.query().order(-Recruiter.created_at).fetch(limit)
+
+    @staticmethod
+    def s_paginated(**options):
+        page_number = options.get('page_number')
+        order_by = options.get('order_by', -Recruiter.created_at)
+        limit = options.get('limit', 25)
+        query = Recruiter.query().order(order_by)
+        return ndbpager.Pager(query=query, page=page_number)
 
     #
     # Public Methods
