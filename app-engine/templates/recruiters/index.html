@@ -22,13 +22,13 @@
         </a>
       </li>
       {% endif %}
-      <li class="prev {% if not pager.has_prev %}disabled{% endif%}">
+      <li class="prev {% if not pager.has_prev %}disabled{% endif %}">
         <a href="{{pager_href(pager.prev_page, request)}}" aria-label="Previous">
           <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
         </a>
       </li>
       <li class="disabled"><a href="#">Page {{pager.page}}</a></li>
-      <li class="next {% if not pager.has_next %}disabled{% endif%}">
+      <li class="next {% if not pager.has_next %}disabled{% endif %}">
         <a href="{{pager_href(pager.next_page, request)}}" aria-label="Next">
           <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
         </a>

@@ -18,6 +18,23 @@
     {{ form_helper.bootstrap_field(form.recruiter_name) }}
     {{ form_helper.bootstrap_field(form.recruiter_email) }}
 
+    <div class="form-group">
+      <label for="mailing-list">Mailing List</label>
+      <br/>
+      {% set recruiter_mailing_list = recruiter.mailing_list if recruiter.mailing_list else 'none' %}
+      {% for mailing_list in recruiter.mailing_lists + ['none'] %}
+        {% set btn_state = 'active' if recruiter_mailing_list == mailing_list else 'inactive' %}
+      <label class="mailing-list radio-inline {{ btn_state }}">
+        <input type="radio"
+               name="mailing_list"
+               id="{{mailing_list}}"
+               value="{{mailing_list}}"
+               {% if btn_state == 'active' %}checked{% endif %}/>
+        {{mailing_list}}
+      </label>
+      {% endfor %}
+    </div>
+
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 

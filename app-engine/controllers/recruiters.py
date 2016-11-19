@@ -55,7 +55,8 @@ def recruiter_update():
                                form=form)
     else:
         recruiter.update(name=form.recruiter_name.data,
-                         email=form.recruiter_email.data)
+                         email=form.recruiter_email.data,
+                         mailing_list=request.form.get('mailing_list'))
         flash('Recruiter successfully update.', 'success')
         return redirect('/admin/recruiter/%s/' % (recruiter.public_id))
 

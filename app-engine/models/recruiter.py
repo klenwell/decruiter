@@ -95,8 +95,16 @@ class Recruiter(ndb.Model):
     # Public Methods
     #
     def update(self, **fields):
+        # Normalize mailing list
+        mailing_list = fields.get('mailing_list')
+        if mailing_list == 'none':
+            mailing_list = None
+
         self.name = fields.get('name', self.name)
         self.email = fields.get('email', self.email)
+        self.mailing_list = mailing_list
+
+        # Save
         self.put()
 
         for recruitment in self.recruitments:
