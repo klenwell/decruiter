@@ -9,6 +9,7 @@ import email
 from email.utils import parseaddr
 import hashlib
 from datetime import datetime
+import string
 
 from google.appengine.ext import ndb
 from google.appengine.api.mail import InboundEmailMessage
@@ -104,7 +105,6 @@ class RecruiterEmail(ndb.Model):
     @staticmethod
     def from_line_to_name_and_email(from_line):
         # Based on http://stackoverflow.com/a/550036/1093087.
-        # TODO(low): Convert "Last, First" to "First Last"
         from_line = from_line.strip()
 
         if not from_line:
@@ -129,6 +129,8 @@ class RecruiterEmail(ndb.Model):
         if email and not name:
             name = email.split('@')[0]
 
+        name = RecruiterEmail.normalize_name(name)
+
         return name, email
 
     @staticmethod
@@ -136,8 +138,20 @@ class RecruiterEmail(ndb.Model):
         if '.' in name:
             name = name.replace('.', ' ')
 
-        names = name.split('.')
-        return ' '.join([n.title() for n in names if n.strip()])
+        # Last, First -> First Last
+        while ',' in name:
+            names = name.rsplit(',')
+            name = '%s %s' % (names[-1], names[0])
+
+        # Try to filter out any crap.
+        names = name.split(' ')
+        good_names = []
+        for name in names:
+            name = name.strip()
+            if name != '' and name[0] not in string.punctuation:
+                good_names.append(name.title())
+
+        return ' '.join(good_names)
 
     @staticmethod
     def extract_recruitment_data(plain_body):

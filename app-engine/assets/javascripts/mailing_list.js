@@ -12,7 +12,7 @@ var mailingListHandler = (function() {
 
       request
         .fail(function(jqXHR, textStatus, errorThrown) {
-          console.error('There was an error.');
+          console.error('There was an error:', errorThrown);
           $label.removeClass('active');
         });
     });
