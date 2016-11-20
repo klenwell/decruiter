@@ -102,7 +102,7 @@ class RecruiterEmailModelTest(AppEngineModelTest):
         # See Issue #7: https://github.com/klenwell/decruiter/issues/7
         # Assume
         from_line = 'Last, First <flast@example.com>'
-        expected_name = 'Last, First'
+        expected_name = 'First Last'
         expected_email = 'flast@example.com'
 
         # Act
@@ -111,3 +111,18 @@ class RecruiterEmailModelTest(AppEngineModelTest):
         # Assert
         self.assertEqual(name, expected_name)
         self.assertEqual(email, expected_email)
+
+    def test_expects_to_extract_name_from_from_line_with_first_name_first(self):
+        # Arrange
+        cases = [
+            # (from_line, expected_name)
+            ('FIRST last <flast@example.com>', 'First Last'),
+            ('Last, First (00100) <flast@example.com>', 'First Last'),
+            ('Last, First <flast@example.com>', 'First Last'),
+            ('Last, Middle, First <flast@example.com>', 'First Last')
+        ]
+
+        # Act
+        for (from_line, expected_name) in cases:
+            name, _ = RecruiterEmail.from_line_to_name_and_email(from_line)
+            self.assertEqual(name, expected_name)

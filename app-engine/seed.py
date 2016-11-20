@@ -1,7 +1,7 @@
 """
 # Seed File
 
-At present, seed allows you to load recruiter emails from fixtures in using test helper.
+Loads a recruitment and several recruiters. Need to know API port.
 
 
 ## Configuration
@@ -43,6 +43,7 @@ from google.appengine.ext.remote_api import remote_api_stub
 
 from tests.helper import TestEmail
 from models.recruiter_email import RecruiterEmail
+from models.recruiter import Recruiter
 
 
 
@@ -50,6 +51,7 @@ def main(args):
     args = parse_args(args)
     load_local_api(args.port)
     seed_recruitments()
+    seed_recruiters(65)
     return 0
 
 def load_local_api(port):
@@ -65,8 +67,22 @@ def seed_recruitments():
         inbound_message = TestEmail.fixture(fixture_id)
         recruitment = RecruiterEmail.from_inbound_handler(inbound_message)
         recruitments.append(recruitment)
+        recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
+        recruitment.associate_recruiter(recruiter)
 
     print 'Seeded %d recruitment(s).' % (len(recruitments))
+
+def seed_recruiters(number):
+    for n in range(number):
+        import string
+        ALPHABET = list(string.ascii_uppercase)
+        initial = ALPHABET[n % len(ALPHABET)]
+        name = 'Recruiter %s' % (initial)
+        email = '%s@hotmail.com' % (name.replace(" ", "_").lower())
+        recruiter = Recruiter(email=email, name=name)
+        recruiter.put()
+
+    print 'Seeded %d recruiter(s)'  % (number)
 
 def parse_args(args):
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
