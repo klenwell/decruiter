@@ -62,7 +62,7 @@
           <td>{{ recruiter.email }}</td>
           <td>{{ recruiter.email_count }}</td>
           <td>{{ at(recruiter.created_at) }}</td>
-          <td>
+          <td class="mailing-list">
             <div class="btn-group" data-toggle="buttons">
             {% for mailing_list in recruiter.mailing_lists %}
               {% set btn_state = 'active' if recruiter.mailing_list == mailing_list else 'inactive' %}
