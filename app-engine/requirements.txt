@@ -19,3 +19,6 @@ Flask==0.10
 
 # Flask forms
 Flask-WTF
+
+# Pagination for ndb: https://github.com/vmihailenco/ndbpager
+git+https://github.com/vmihailenco/ndbpager#egg=ndbpager
