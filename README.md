@@ -47,6 +47,10 @@ First, install testing libraries:
     cd app-engine
     pip install -r requirements-test.txt
 
+Then update the settings in `nose.cfg`, especially `gae-lib-root`:
+
+    gae-lib-root=/home/klenwell/opt/google_appengine
+
 To run tests:
 
     cd app-engine
