@@ -17,16 +17,16 @@ To install:
 
 2. Clone this repository:
 
-    git clone https://github.com/klenwell/decruiter.git
+         git clone https://github.com/klenwell/decruiter.git
 
 3. Install the required libraries using Pip:
 
-    cd decruiter/app-engine
-    pip install -r requirements.txt -t lib
+         cd decruiter/app-engine
+         pip install -r requirements.txt -t lib
 
 4. Create secrets file by copying `-dist` version into place:
 
-    cp -v decruiter/app-engine/config/secrets.py{-dist,}
+         cp -v app-engine/config/secrets.py{-dist,}
 
 Update secret values in news `secrets.py`.
 
