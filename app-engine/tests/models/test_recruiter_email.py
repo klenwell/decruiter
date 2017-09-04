@@ -34,14 +34,14 @@ class RecruiterEmailModelTest(AppEngineModelTest):
         expected_address = 'recruitment@decruiter.appspotmail.com'
         expected_subject_fwd = 'Fwd: CTF Engineering Lead - Menlo Park, CA'
         expected_checksum = 'd266496f821bfb50d2937f23679659de'
-        expected_original_length = 17565
+        expected_original_length = 17567
         expected_recruiter_name = 'Mahesh Khurpe'
         expected_recruiter_email = 'mahes.khurpe@xoriant.com'
         expected_sent_to = 'uRA sumA <%s>' % (forwarder)
         expected_sent_at = datetime(2016, 8, 31, 9, 41)
         expected_subject = 'CTF Engineering Lead - Menlo Park, CA'
         expected_plain_body_length = 2951
-        expected_html_body_length = 10139
+        expected_html_body_length = 10141
 
         # Act
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)

@@ -197,7 +197,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         form_data = dict(recruitment_id=recruitment.public_id,)
         self.assertIsNone(form_data.get('csrf_token'))
         expected_header = '400: Bad Request'
-        expected_error_message = 'CSRF token missing or incorrect.'
+        expected_error_message = 'The CSRF token is missing.'
 
         # Act
         response = client.post(endpoint, data=form_data, follow_redirects=False)
