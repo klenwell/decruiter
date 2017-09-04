@@ -15,7 +15,7 @@ else:
 PROJECT_NAME = 'Decruiter'
 
 # Local Dev Server Settings (used by seed.py)
-APP_ENGINE_SDK_PATH = '/home/klenwell/google-cloud-sdk/platform/google_appengine/'
+APP_ENGINE_SDK_PATH = '/home/klenwell/opt/google_appengine/'
 DEV_API_SERVER_PORT = 9002
 REMOTE_API_PATH = '/_ah/remote_api'
 
