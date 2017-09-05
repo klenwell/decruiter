@@ -21,7 +21,8 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         # Arrange
         client = recruiter_emails_controller.test_client()
         forwarder = 'forwarder@gmail.com'
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd', forwarder)
+        recruiter_name = 'Jill Cruiter'
+        mail_message = TestEmail.fixture(sender=forwarder, recruiter_name=recruiter_name)
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
 
         # Assume
@@ -30,7 +31,6 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         endpoint = '/admin/recruitments/'
         content_selector = 'div.recruiter-emails.index'
         table_selector = 'table.table'
-        expected_cell_value = 'Mahesh Khurpe'
 
         # Act
         response = client.get(endpoint, follow_redirects=False)
@@ -45,7 +45,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         self.assertIsNotNone(table)
         self.assertEqual(content.h2.text.strip(), 'Recruiter Emails')
         self.assertEqual(len(table_rows), 1)
-        self.assertEqual(table_rows[0].td.text.strip(), expected_cell_value)
+        self.assertEqual(table_rows[0].td.text.strip(), recruiter_name)
 
     def test_expects_index_to_display_no_recruitments(self):
         # Arrange
@@ -73,7 +73,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         # Arrange
         client = recruiter_emails_controller.test_client()
         forwarder = 'forwarder@gmail.com'
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd', forwarder)
+        mail_message = TestEmail.fixture(sender=forwarder)
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
         recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
         recruitment.associate_recruiter(recruiter)
@@ -111,7 +111,8 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
     def test_expects_recruitment_to_be_reparsed(self):
         # Arrange
         client = recruiter_emails_controller.test_client()
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
+        recruiter_email = 'harold.kumar@whitecruiter.com'
+        mail_message = TestEmail.fixture(recruiter_email=recruiter_email)
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
 
         # Assume
@@ -122,7 +123,6 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
             recruitment_id=recruitment.public_id,
         )
         expected_redirect = '/admin/recruitment/%s/' % (recruitment.public_id)
-        expected_recruiter_email = 'mahes.khurpe@xoriant.com'
 
         # Act
         response = client.post(endpoint, data=form_data, follow_redirects=False)
@@ -132,12 +132,12 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(redirect_path(response), expected_redirect)
         self.assertIsNotNone(recruitment.recruiter)
-        self.assertEqual(recruitment.recruiter.email, expected_recruiter_email)
+        self.assertEqual(recruitment.recruiter.email, recruiter_email)
 
     def test_expects_recruitment_to_be_deleted(self):
         # Arrange
         client = recruiter_emails_controller.test_client()
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
+        mail_message = TestEmail.fixture()
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
         recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
         recruitment.associate_recruiter(recruiter)
@@ -165,7 +165,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         # This was Issue #4: https://github.com/klenwell/decruiter/issues/4
         # Arrange
         client = recruiter_emails_controller.test_client()
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
+        mail_message = TestEmail.fixture()
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
 
         # Assume
@@ -188,7 +188,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
     def test_expects_400_status_when_csrf_token_is_missing(self):
         # Arrange
         client = recruiter_emails_controller.test_client()
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
+        mail_message = TestEmail.fixture()
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
 
         # Assume

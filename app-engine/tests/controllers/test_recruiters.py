@@ -18,7 +18,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
     # Harness
     #
     def insertRecruiter(self):
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
+        mail_message = TestEmail.fixture()
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
         recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
         recruitment.associate_recruiter(recruiter)
@@ -38,7 +38,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         endpoint = '/admin/recruiters/'
         content_selector = 'div.recruiters.index'
         table_selector = 'table.table'
-        expected_recruiter_name = 'Mahesh Khurpe'
+        expected_recruiter_name = 'Harold Kumar'
         paginator_selector = 'ul.pagination'
 
         # Act
@@ -97,7 +97,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         content_selector = 'div.recruiter.show'
         name_selector = 'div.recruiter-data h2.name'
         recruiters_selector = 'div.recruitments table.table'
-        expected_recruiter_name = 'Mahesh Khurpe'
+        expected_recruiter_name = 'Harold Kumar'
         expected_column_value = '2016-08-31 09:41:00'
 
         # Act
@@ -150,7 +150,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         recruitment = recruiter.recruitments[0]
 
         # Assume
-        self.assertEqual(recruiter.name, 'Mahesh Khurpe')
+        self.assertEqual(recruiter.name, 'Harold Kumar')
         self.assertEqual(recruiter.mailing_list, None)
         self.assertEqual(recruitment.recruiter_name, recruiter.name)
         endpoint = '/admin/recruiter/update/'

@@ -1,21 +1,21 @@
 X-Received: by 10.157.24.36 with SMTP id b33mr18426072ote.2.1472934351337;
  Sat, 03 Sep 2016 13:25:51 -0700 (PDT)
-Return-Path: <%FORWARDER%>
+Return-Path: <%SENDER%>
 Received: from mail-qk0-x229.google.com (mail-qk0-x229.google.com.
  [2607:f8b0:400d:c09::229])
  by gmr-mx.google.com with ESMTPS id l185si1199290ywb.5.2016.09.03.13.25.51
- for <recruitment@decruiter.appspotmail.com>
+ for <%RECIPIENT%>
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
  Sat, 03 Sep 2016 13:25:51 -0700 (PDT)
-Received-SPF: pass (google.com: domain of %FORWARDER% designates
+Received-SPF: pass (google.com: domain of %SENDER% designates
  2607:f8b0:400d:c09::229 as permitted sender)
  client-ip=2607:f8b0:400d:c09::229;
 Authentication-Results: gmr-mx.google.com; dkim=pass header.i=@gmail.com;
- spf=pass (google.com: domain of %FORWARDER% designates
- 2607:f8b0:400d:c09::229 as permitted sender) smtp.mailfrom=%FORWARDER%;
+ spf=pass (google.com: domain of %SENDER% designates
+ 2607:f8b0:400d:c09::229 as permitted sender) smtp.mailfrom=%SENDER%;
  dmarc=pass (p=NONE dis=NONE) header.from=gmail.com
 Received: by mail-qk0-x229.google.com with SMTP id l2so157939583qkf.3
- for <recruitment@decruiter.appspotmail.com>;
+ for <%RECIPIENT%>;
  Sat, 03 Sep 2016 13:25:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
  h=mime-version:in-reply-to:references:from:date:message-id:subject:to;
@@ -42,13 +42,13 @@ X-Received: by 10.55.23.38 with SMTP id i38mr11911178qkh.237.1472934350928;
  Sat, 03 Sep 2016 13:25:50 -0700 (PDT)
 MIME-Version: 1.0
 Received: by 10.55.159.15 with HTTP; Sat, 3 Sep 2016 13:25:30 -0700 (PDT)
-In-Reply-To: <359e157d926d45e99cd7699b929847b1@XORPUN-MBX01.India.XoriantCorp.com>
-References: <359e157d926d45e99cd7699b929847b1@XORPUN-MBX01.India.XoriantCorp.com>
-From: The Recruitee <%FORWARDER%>
+In-Reply-To: <359e157d926d45e99cd7699b929847b1@XORPUN-MBX01.India.McCruitersCorp.com>
+References: <359e157d926d45e99cd7699b929847b1@XORPUN-MBX01.India.McCruitersCorp.com>
+From: The Recruitee <%SENDER%>
 Date: Sat, 3 Sep 2016 13:25:30 -0700
 Message-ID: <CAPU-tmAaMrWU6CP9zhimsNuUHBGT1tGJXbYrjOt5sXH9YyJHzg@mail.gmail.com>
 Subject: Fwd: CTF Engineering Lead - Menlo Park, CA
-To: recruitment@decruiter.appspotmail.com
+To: %RECIPIENT%
 Content-Type: multipart/alternative; boundary=001a11479e54c3c19e053ba0403a
 
 --001a11479e54c3c19e053ba0403a
@@ -56,24 +56,16 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 ---------- Forwarded message ----------
-From: Mahesh Khurpe <Mahes.Khurpe@xoriant.com>
+From: %RECRUITER_NAME% <%RECRUITER_EMAIL%>
 Date: Wed, Aug 31, 2016 at 9:41 AM
 Subject: CTF Engineering Lead - Menlo Park, CA
-To: uRA sumA <%FORWARDER%>
+To: %SENDER% <%SENDER%>
 
 
-Hi uRA,
+Hi Friend,
 
 
-This is *Mahesh *from *Xoriant Corporation *writing you in regards to the
-position below. I would appreciate if you can have a look and let me know
-if interested:
-
-*I also wanted to apologize in advance if you aren't the right person I
-should be Contacting.*
-
-
-*Job Title:             CTF Engineering Lead*
+*Job Title:            CTF Engineering Lead*
 
 *Location:             Menlo Park, CA *
 
@@ -108,52 +100,52 @@ should be Contacting.*
 
 *Thanks & regards,*
 
-*Mahesh Khurpe | Xoriant Connect   *
+*%RECRUITER_NAME% | McCruiters Connect   *
 
-*http://www.xoriantconnect.com <http://www.xoriantconnect.com/> *
+*http://www.McCruitersconnect.com <http://www.McCruitersconnect.com/> *
 
 W: 408-550-1251
 
 1248, Reamwood Ave, Sunnyvale, CA 94089
 
 Find us on: *[image: Description: Description: Description:
-cid:image001.png@01D1237F.273CF4A0]* <http://www.xoriantconnect.com/>  *[im=
+cid:image001.png@01D1237F.273CF4A0]* <http://www.McCruitersconnect.com/>  *[im=
 age:
 Description: Description: Description: cid:image002.jpg@01D1237F.273CF4A0]*
-<http://www.facebook.com/Xoriant.Connect>  *[image: Description:
+<http://www.facebook.com/McCruiters.Connect>  *[image: Description:
 Description: Description: cid:image003.jpg@01D1237F.273CF4A0]*
-<https://twitter.com/xoriantconnect>
+<https://twitter.com/McCruitersconnect>
 
-Don=E2=80=99t Search, Get Notified! through XoriantJobs mobile app: *iOS*
-<https://itunes.apple.com/us/app/xoriant-jobs-dont-search-get/id679060038?m=
+Don=E2=80=99t Search, Get Notified! through McCruitersJobs mobile app: *iOS*
+<https://itunes.apple.com/us/app/McCruiters-jobs-dont-search-get/id679060038?m=
 t=3D8>*;
 **Android*
-<https://play.google.com/store/apps/details?id=3Dcom.xoriant.xorconnect&hl=
+<https://play.google.com/store/apps/details?id=3Dcom.McCruiters.xorconnect&hl=
 =3Den>
 
  **Disclaimer: This is not meant to be an unsolicited email. If you do not
 want to hear from us again, please reply with REMOVE
-<mahes.khurpe@xoriant.com?subject=3DREMOVE>  In the Subject Line and I will
+<%RECRUITER_EMAIL%?subject=3DREMOVE>  In the Subject Line and I will
 promptly remove your email address upon receipt **
 
 
 
 
-Click here to Remove %FORWARDER% from our mailing list.
-<https://apps.exelare.com/exelare/RemoveLink.Aspx?CID=3DExl_xoriant&UID=3DM=
-aheshK&PK=3DCSa0025758&EMail1=3D%FORWARDER%&EMail2=3D&MailType=3Dmail=
+Click here to Remove %SENDER% from our mailing list.
+<https://apps.exelare.com/exelare/RemoveLink.Aspx?CID=3DExl_McCruiters&UID=3DM=
+aheshK&PK=3DCSa0025758&EMail1=3D%SENDER%&EMail2=3D&MailType=3Dmail=
 >
 
 --001a11479e54c3c19e053ba0403a
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div class=3D"gmail_quote">---------- Forwarded messag=
-e ----------<br>From: <b class=3D"gmail_sendername">Mahesh Khurpe</b> <span=
- dir=3D"ltr">&lt;<a href=3D"mailto:Mahes.Khurpe@xoriant.com">Mahes.Khurpe@x=
+<div dir=3D"ltr"><br/><div class=3D"gmail_quote">---------- Forwarded messag=
+e ----------<br/>From: <b class=3D"gmail_sendername">%RECRUITER_NAME%</b> <span=
+ dir=3D"ltr">&lt;<a href=3D"mailto:%RECRUITER_EMAIL%">recruiter@x=
 oriant.com</a>&gt;</span><br>Date: Wed, Aug 31, 2016 at 9:41 AM<br>Subject:=
  CTF Engineering Lead - Menlo Park, CA<br>To: uRA sumA &lt;<a href=3D"mailt=
-o:%FORWARDER%">%FORWARDER%</a>&gt;<br><br><br>
+o:%SENDER%">%SENDER%</a>&gt;<br><br><br>
 
 
 
@@ -287,11 +279,11 @@ pan><font face=3D"Times New Roman" size=3D"3">
 <font face=3D"Times New Roman" size=3D"3"></font>
 <p style=3D"margin:0in 0in 0pt"><b><span style=3D"color:black"><font face=
 =3D"Calibri" size=3D"3">Mahesh
- Khurpe | Xoriant Connect =C2=A0=C2=A0</font></span></b></p>
+ Khurpe | McCruiters Connect =C2=A0=C2=A0</font></span></b></p>
 <font face=3D"Times New Roman" size=3D"3"></font>
 <p style=3D"margin:0in 0in 0pt"><i><span style=3D"color:rgb(31,73,125)"><a =
-href=3D"http://www.xoriantconnect.com/" target=3D"_blank"><span style=3D"co=
-lor:blue"><font face=3D"Calibri" size=3D"3">http://www.xoriantconnect.com</=
+href=3D"http://www.McCruitersconnect.com/" target=3D"_blank"><span style=3D"co=
+lor:blue"><font face=3D"Calibri" size=3D"3">http://www.McCruitersconnect.com</=
 font></span></a><font face=3D"Calibri" size=3D"3">
 </font></span></i></p>
 <font face=3D"Times New Roman" size=3D"3"></font>
@@ -307,19 +299,19 @@ alibri" size=3D"3">1248,
 <p style=3D"margin:0in 0in 0pt"><font size=3D"3"><font face=3D"Calibri"><sp=
 an style=3D"color:red">Find
  us on:</span><b><span style=3D"color:rgb(31,73,125)">
-</span></b></font></font><a href=3D"http://www.xoriantconnect.com/" target=
+</span></b></font></font><a href=3D"http://www.McCruitersconnect.com/" target=
 =3D"_blank"><b><span style=3D"color:rgb(31,73,125);text-decoration:none"><s=
 pan><font face=3D"Calibri" size=3D"3"><img width=3D"78" height=3D"27" alt=
 =3D"Description: Description: Description: cid:image001.png@01D1237F.273CF4=
 A0" border=3D"0"></font></span></span></b></a><b><span style=3D"color:rgb(3=
 1,73,125)"><font face=3D"Calibri" size=3D"3">=C2=A0=C2=A0</font></span></b>=
-<a href=3D"http://www.facebook.com/Xoriant.Connect" target=3D"_blank"><b><s=
+<a href=3D"http://www.facebook.com/McCruiters.Connect" target=3D"_blank"><b><s=
 pan style=3D"color:rgb(31,73,125);text-decoration:none"><span><font face=3D=
 "Calibri" size=3D"3"><img width=3D"22" height=3D"22" alt=3D"Description: De=
 scription: Description: cid:image002.jpg@01D1237F.273CF4A0" border=3D"0"></=
 font></span></span></b></a><span style=3D"color:rgb(31,73,125)"><font face=
 =3D"Calibri" size=3D"3">=C2=A0=C2=A0</font></span><a href=3D"https://twitte=
-r.com/xoriantconnect" target=3D"_blank"><b><span style=3D"color:rgb(31,73,1=
+r.com/McCruitersconnect" target=3D"_blank"><b><span style=3D"color:rgb(31,73,1=
 25);text-decoration:none"><span><font face=3D"Calibri" size=3D"3"><img widt=
 h=3D"22" height=3D"21" alt=3D"Description: Description: Description: cid:im=
 age003.jpg@01D1237F.273CF4A0" border=3D"0"></font></span></span></b></a></p=
@@ -327,8 +319,8 @@ age003.jpg@01D1237F.273CF4A0" border=3D"0"></font></span></span></b></a></p=
 <font face=3D"Times New Roman" size=3D"3"></font>
 <p style=3D"margin:0in 0in 0pt"><span style=3D"color:rgb(31,73,125)"><font =
 size=3D"3"><font face=3D"Calibri">Don=E2=80=99t
- Search, Get Notified! through XoriantJobs mobile app:<i> </i></font></font=
-><a href=3D"https://itunes.apple.com/us/app/xoriant-jobs-dont-search-get/id=
+ Search, Get Notified! through McCruitersJobs mobile app:<i> </i></font></font=
+><a href=3D"https://itunes.apple.com/us/app/McCruiters-jobs-dont-search-get/id=
 679060038?mt=3D8" target=3D"_blank"><i><span style=3D"color:blue"><font fac=
 e=3D"Calibri" size=3D"3">iOS</font></span></i></a><i><font face=3D"Calibri"=
  size=3D"3">;
@@ -343,7 +335,7 @@ face=3D"Calibri" size=3D"3">=C2=A0</font></span><span style=3D"color:rgb(31=
 3">Disclaimer:
  This is not meant to be an unsolicited email. If you do not want to hear f=
 rom us again, please reply with
-</font><a href=3D"mailto:mahes.khurpe@xoriant.com?subject=3DREMOVE" target=
+</font><a href=3D"mailto:%RECRUITER_EMAIL%?subject=3DREMOVE" target=
 =3D"_blank"><span style=3D"color:blue"><font size=3D"3">REMOVE</font></span=
 ></a><span><font size=3D"3">=C2=A0
 </font></span><font size=3D"3">In the Subject Line and I will promptly remo=
@@ -358,9 +350,9 @@ ve your email address upon receipt *</font></i></font></span></p>
 </table>
 <div>=C2=A0</div>
 <div><a href=3D"https://apps.exelare.com/exelare/RemoveLink.Aspx?CID=3DExl_=
-xoriant&amp;UID=3DMaheshK&amp;PK=3DCSa0025758&amp;EMail1=3Dtatwell@gmail.co=
+McCruiters&amp;UID=3DMaheshK&amp;PK=3DCSa0025758&amp;EMail1=3Dtatwell@gmail.co=
 m&amp;EMail2=3D&amp;MailType=3Dmail" target=3D"_blank">Click here to Remove=
- %FORWARDER% from our mailing list.</a>
+ %SENDER% from our mailing list.</a>
 </div>
 </div>
 

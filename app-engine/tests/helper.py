@@ -132,17 +132,25 @@ def extract_id_from_url(url):
 #
 class TestEmail(object):
     @staticmethod
-    def fixture(fixture_id, forwarder=None):
-        fname = '%s.txt' % (fixture_id)
+    def fixture(**options):
+        # Default Options
+        fixture_name = options.get('fixture', 'recruiter_email')
+        sender = options.get('sender', 'sender@email.com')
+        recipient = options.get('recipient', 'recipient@foo.appspotmail.com')
+        recruiter_name = options.get('recruiter_name', 'Harold Kumar')
+        recruiter_email = options.get('recruiter_email', 'harold.kumar@whitecastle.com')
+
+        fname = '%s.eml' % (fixture_name)
         path = join(project_root(), 'tests/fixtures/files', fname)
 
         with open(path, 'r') as f:
             raw_message_format = f.read().strip()
 
-        if not forwarder:
-            forwarder = config.secrets.AUTHORIZED_FORWARDERS[0]
-
-        message_string = raw_message_format.replace('%FORWARDER%', forwarder)
+        # Template Substitutions
+        message_string = raw_message_format.replace('%SENDER%', sender)
+        message_string = message_string.replace('%RECIPIENT%', recipient)
+        message_string = message_string.replace('%RECRUITER_NAME%', recruiter_name)
+        message_string = message_string.replace('%RECRUITER_EMAIL%', recruiter_email)
 
         mime_message = email.message_from_string(message_string)
         return InboundEmailMessage(mime_message)

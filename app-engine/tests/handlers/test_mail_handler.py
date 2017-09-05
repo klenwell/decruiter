@@ -30,16 +30,18 @@ class RecruiterEmailsHandlerTest(AppEngineTestCase):
     def test_expects_handler_to_save_forwarded_recruiter_email(self):
         # Arrange
         client = TestApp(app)
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd', authorized_forwarder)
+        recruiter_name = 'Manesh Kumar'
+        recruiter_email = 'manesh@codekeepers.com'
+        mail_message = TestEmail.fixture(sender=authorized_forwarder,
+                                         recruiter_name=recruiter_name,
+                                         recruiter_email=recruiter_email)
 
         # Assume
         self.assertEqual(RecruiterEmail.query().count(), 0)
         self.assertEqual(Recruiter.query().count(), 0)
-        endpoint = '/_ah/mail/test%40decruiter.appspotmail.com'
+        endpoint = '/_ah/mail/test'
         body = mail_message.original.as_string()
-        expected_checksum = 'd266496f821bfb50d2937f23679659de'
-        expected_recruiter_name = 'Mahesh Khurpe'
-        expected_recruiter_email = 'mahes.khurpe@xoriant.com'
+        expected_checksum = 'e2d77a5ebae7cee7d1562baad7f5d054'
 
         # Act
         response = client.post(endpoint, body, expect_errors=True)
@@ -53,14 +55,14 @@ class RecruiterEmailsHandlerTest(AppEngineTestCase):
         self.assertIsNotNone(recruitment)
         self.assertIsNotNone(recruitment.recruiter)
         self.assertEqual(recruitment.checksum, expected_checksum)
-        self.assertEqual(recruitment.recruiter.email, expected_recruiter_email)
-        self.assertEqual(recruitment.recruiter.name, expected_recruiter_name)
+        self.assertEqual(recruitment.recruiter.email, recruiter_email)
+        self.assertEqual(recruitment.recruiter.name, recruiter_name)
 
     @patch("mail_handler.AUTHORIZED_FORWARDERS", [authorized_forwarder])
     def test_expects_handler_not_to_save_previously_forwarded_recruiter_email(self):
         # Arrange
         client = TestApp(app)
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd', authorized_forwarder)
+        mail_message = TestEmail.fixture(sender=authorized_forwarder)
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
         recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
         recruitment.associate_recruiter(recruiter)
@@ -80,18 +82,18 @@ class RecruiterEmailsHandlerTest(AppEngineTestCase):
         self.assertEqual(len(recruitments), 1)
         self.assertEqual(recruitments[0].key, recruitment.key)
 
-    @patch("mail_handler.AUTHORIZED_FORWARDERS", [unauthorized_forwarder])
+    @patch("mail_handler.AUTHORIZED_FORWARDERS", [authorized_forwarder])
     def test_expects_authorization_error(self):
         # Notice: patched forwarder in AUTHORIZED_FORWARDERS and forwarder injected into
         # mail message do not match.
         # Arrange
         client = TestApp(app)
-        mail_message = TestEmail.fixture('20160831_unauthorized_fwd', authorized_forwarder)
+        mail_message = TestEmail.fixture(sender=unauthorized_forwarder)
 
         # Assume
         self.assertEqual(RecruiterEmail.query().count(), 0)
         self.assertEqual(Recruiter.query().count(), 0)
-        endpoint = '/_ah/mail/test%40decruiter.appspotmail.com'
+        endpoint = '/_ah/mail/unauthorized'
         body = mail_message.original.as_string()
 
         # Act / Assert
@@ -103,20 +105,23 @@ class RecruiterEmailsHandlerTest(AppEngineTestCase):
         self.assertEqual(Recruiter.query().count(), 0)
 
     @patch("mail_handler.AUTHORIZED_FORWARDERS", [authorized_forwarder])
-    def test_expects_handler_to_set_recruiter_name_to_email_address_when_name_absent(self):
+    def test_expects_handler_to_set_recruiter_name_to_email_address_when_name_absent_from_from_field(self):
         # Previously was leaving field blank.
         # See Issue #5: https://github.com/klenwell/decruiter/issues/5
         # Arrange
         client = TestApp(app)
-        mail_message = TestEmail.fixture('20160901_no_recruiter_name_fwd', authorized_forwarder)
+        recruiter_name = 'Chad Cruiter'
+        recruiter_email = 'chad.cruiter@mccruiters.com'
+        mail_message = TestEmail.fixture(fixture='no_from_field_name',
+                                         sender=authorized_forwarder,
+                                         recruiter_name=recruiter_name,
+                                         recruiter_email=recruiter_email)
 
         # Assume
         self.assertEqual(RecruiterEmail.query().count(), 0)
         self.assertEqual(Recruiter.query().count(), 0)
-        endpoint = '/_ah/mail/test%40decruiter.appspotmail.com'
+        endpoint = '/_ah/mail/test'
         body = mail_message.original.as_string()
-        expected_recruiter_name = 'Charan Kumar'
-        expected_recruiter_email = 'charan.kumar@elitebizconsulting.com'
 
         # Act
         response = client.post(endpoint, body, expect_errors=True)
@@ -129,8 +134,8 @@ class RecruiterEmailsHandlerTest(AppEngineTestCase):
         self.assertEqual(Recruiter.query().count(), 1)
         self.assertIsNotNone(recruitment)
         self.assertIsNotNone(recruitment.recruiter)
-        self.assertEqual(recruitment.recruiter.email, expected_recruiter_email)
-        self.assertEqual(recruitment.recruiter.name, expected_recruiter_name)
+        self.assertEqual(recruitment.recruiter.email, recruiter_email)
+        self.assertEqual(recruitment.recruiter.name, recruiter_name)
 
     @patch("mail_handler.AUTHORIZED_FORWARDERS", [authorized_forwarder])
     @patch("mail_handler.AUTOMATED_REPLY_TRIGGER_EMAIL", reply_trigger_email)
@@ -140,15 +145,13 @@ class RecruiterEmailsHandlerTest(AppEngineTestCase):
         # Arrange
         client = TestApp(app)
         mail_stub = self.initMailStub()
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd', authorized_forwarder)
+        mail_message = TestEmail.fixture(sender=authorized_forwarder, recipient=reply_trigger_email)
         endpoint = '/_ah/mail/%s' % (quote_plus(reply_trigger_email))
 
         # Assume
         self.assertEqual(RecruiterEmail.query().count(), 0)
         self.assertEqual(Recruiter.query().count(), 0)
         body = mail_message.original.as_string()
-        expected_recruiter_name = 'Mahesh Khurpe'
-        expected_recruiter_email = 'mahes.khurpe@xoriant.com'
 
         # Act
         with patch('mail_handler.logging.info') as mock_logger:

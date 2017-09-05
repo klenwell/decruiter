@@ -18,7 +18,7 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
     # Harness
     #
     def insertRecruiter(self):
-        mail_message = TestEmail.fixture('20160831_mkhurpe_fwd')
+        mail_message = TestEmail.fixture()
         recruitment = RecruiterEmail.from_inbound_handler(mail_message)
         recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
         recruitment.associate_recruiter(recruiter)
