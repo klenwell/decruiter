@@ -47,7 +47,7 @@ class RecruiterEmailHandler(InboundMailHandler):
         logging.info(msg_f % (recruitment.subject, recruitment.recruiter.email))
 
         # Email recruiter.
-        if mail_message.to == AUTOMATED_REPLY_EMAIL:
+        if mail_message.to == AUTOMATED_REPLY_TRIGGER_EMAIL:
             msg_f = 'Automated reply sent to recruiter %s.'
             # Generate and send email.
         else:
