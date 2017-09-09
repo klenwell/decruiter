@@ -64,6 +64,10 @@ class RecruiterEmail(ndb.Model):
         else:
             return self.recruiter_key.get()
 
+    @property
+    def sent_on(self):
+        return self.sent_at.date()
+
     #
     # Class Methods
     #

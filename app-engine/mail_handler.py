@@ -12,6 +12,7 @@ from google.appengine.ext.webapp.mail_handlers import InboundMailHandler
 
 from models.recruiter_email import RecruiterEmail
 from models.recruiter import Recruiter
+from mailers.recruiter_reply_mailer import RecruitmentReplyMailer
 
 from config.secrets import AUTHORIZED_FORWARDERS, AUTOMATED_REPLY_TRIGGER_EMAIL
 
@@ -39,20 +40,21 @@ class RecruiterEmailHandler(InboundMailHandler):
 
         # Associate recruiter and log result.
         if recruitment.already_existed:
-            msg_f = 'Recruitment "%s" from %s already existed.'
+            log_f = 'Recruitment "%s" from %s already existed.'
         else:
-            msg_f = 'Recruitment "%s" from %s saved.'
+            log_f = 'Recruitment "%s" from %s saved.'
             recruiter = Recruiter.get_or_insert_by_recruitment(recruitment)
             recruitment.associate_recruiter(recruiter)
-        logging.info(msg_f % (recruitment.subject, recruitment.recruiter.email))
+        logging.info(log_f % (recruitment.subject, recruitment.recruiter.email))
 
         # Email recruiter.
         if mail_message.to == AUTOMATED_REPLY_TRIGGER_EMAIL:
-            msg_f = 'Automated reply sent to recruiter %s.'
-            # Generate and send email.
+            mailer = RecruitmentReplyMailer(recruitment)
+            mailer.deliver()
+            log_f = 'Automated reply to recruiter %s queued.'
         else:
-            msg_f = 'Automated reply not sent to recruiter %s.'
-        logging.info(msg_f % (recruitment.recruiter.email))
+            log_f = 'Automated reply not sent to recruiter %s.'
+        logging.info(log_f % (recruitment.recruiter.email))
 
 
 app = webapp2.WSGIApplication([RecruiterEmailHandler.mapping()], debug=True)

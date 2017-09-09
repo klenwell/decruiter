@@ -5,7 +5,7 @@ To run individually:
 
     nosetests -c nose.cfg tests/models/test_recruiter_email.py
 """
-from datetime import datetime
+from datetime import datetime, date
 
 from models.recruiter_email import RecruiterEmail
 from models.recruiter import Recruiter
@@ -39,6 +39,7 @@ class RecruiterEmailModelTest(AppEngineModelTest):
         expected_recruiter_email = 'harold.kumar@whitecastle.com'
         expected_sent_to = '%s <%s>' % (forwarder, forwarder)
         expected_sent_at = datetime(2016, 8, 31, 9, 41)
+        expected_sent_on = date(2016, 8, 31)
         expected_subject = 'CTF Engineering Lead - Menlo Park, CA'
         expected_plain_body_length = 2739
         expected_html_body_length = 10172
@@ -56,6 +57,7 @@ class RecruiterEmailModelTest(AppEngineModelTest):
         self.assertEqual(recruitment.recruiter_email, expected_recruiter_email)
         self.assertEqual(recruitment.sent_to, expected_sent_to)
         self.assertEqual(recruitment.sent_at, expected_sent_at)
+        self.assertEqual(recruitment.sent_on, expected_sent_on)
         self.assertEqual(recruitment.subject, expected_subject)
         self.assertEqual(len(recruitment.plain_body), expected_plain_body_length)
         self.assertEqual(len(recruitment.html_body), expected_html_body_length)

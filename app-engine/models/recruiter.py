@@ -41,6 +41,10 @@ class Recruiter(ndb.Model):
             return self.key.id()
 
     @property
+    def first_name(self):
+        return self.name.split(' ')[0]
+
+    @property
     def recruitments(self):
         limit=1000
         return RecruiterEmail.s_by_recruiter(self, limit=limit)
