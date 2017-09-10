@@ -3,6 +3,7 @@ from datetime import datetime
 from google.appengine.api import mail
 from models.recruiter_email import RecruiterEmail
 from flask import render_template
+from controllers import app
 from config import secrets
 
 
@@ -41,10 +42,13 @@ class RecruitmentReplyMailer(object):
         # TODO: Fix after live testing complete.
         recipient = secrets.AUTHORIZED_FORWARDERS[1]
 
-        mail.send_mail(sender=sender,
-                       to=recipient,
-                       subject=self.generate_subject(recruitment),
-                       body=self.generate_body(recruitment))
+        # Required to avoid AttributeError.
+        # See: https://stackoverflow.com/a/31156117/1093087
+        with app.app_context():
+            mail.send_mail(sender=sender,
+                           to=recipient,
+                           subject=self.generate_subject(recruitment),
+                           body=self.generate_body(recruitment))
 
         recruitment.replied_at = datetime.now()
         recruitment.put()

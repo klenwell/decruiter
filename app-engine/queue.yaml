@@ -1,0 +1,25 @@
+#
+# App Engine Queue Configuration
+# https://cloud.google.com/appengine/docs/python/config/queue
+#
+# From docs:
+# - All apps have a push queue named default.
+# - This queue has a preset rate of 5 tasks per second...
+# - bucket_size maximum value is 100.
+# - bucket_size default value is 5.
+# - max_concurrent_requests (push queues only) sets the maximum number of tasks
+#   that can be executed simultaneously from the specified queue.
+# - max_concurrent_requests default limit is 1000 tasks per queue.
+# - Do not specify a method for push tasks... defaults to POST.
+#
+# On bucket_size, see http://stackoverflow.com/a/3740846/1093087:
+# "Limits the burstiness of the queue's processing, i.e. a higher bucket size allows
+# bigger spikes in the queue's execution rate"
+#
+# Sample Push Queue:
+#   - name: optimize-queue
+#     rate: 20/s
+#     bucket_size: 40
+#     max_concurrent_requests: 10
+#
+queue:
