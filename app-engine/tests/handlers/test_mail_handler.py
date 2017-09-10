@@ -160,6 +160,8 @@ class RecruiterEmailsHandlerTest(AppEngineTestCase):
                 response = client.post(endpoint, body)
                 email_messages = mail_stub.get_sent_messages()
                 email_body = str(email_messages[0].body)
+                recruitments = RecruiterEmail.query().fetch()
+                recruitment = recruitments[0] if recruitments else None
 
                 # On unpacking call_args_list: https://stackoverflow.com/a/39669722/1093087
                 last_log_args, _ = mock_logger.call_args_list[-1]
@@ -170,6 +172,7 @@ class RecruiterEmailsHandlerTest(AppEngineTestCase):
         self.assertEqual(expected_log_message, last_log_message)
         self.assertEqual(len(email_messages), 1)
         self.assertIn('https://klenwell.com/is/Recruiters', email_body)
+        self.assertTrue(recruitment.replied_to_recruiter)
 
     @patch("mail_handler.AUTHORIZED_FORWARDERS", [authorized_forwarder])
     @patch("mail_handler.AUTOMATED_REPLY_TRIGGER_EMAIL", reply_trigger_email)
@@ -195,8 +198,11 @@ class RecruiterEmailsHandlerTest(AppEngineTestCase):
                 email_messages = mail_stub.get_sent_messages()
                 last_log_args, _ = mock_logger.call_args_list[-1]
                 last_log_message = last_log_args[0]
+                recruitments = RecruiterEmail.query().fetch()
+                recruitment = recruitments[0] if recruitments else None
 
         # Assert
         self.assertEqual(response.status_code, 200, response)
         self.assertEqual(expected_log_message, last_log_message)
         self.assertEqual(len(email_messages), 0)
+        self.assertFalse(recruitment.replied_to_recruiter)

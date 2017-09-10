@@ -51,10 +51,8 @@ class RecruiterEmailHandler(InboundMailHandler):
         if mail_message.to == AUTOMATED_REPLY_TRIGGER_EMAIL:
             mailer = RecruitmentReplyMailer(recruitment)
             mailer.deliver()
-            log_f = 'Automated reply to recruiter %s sent.'
         else:
-            log_f = 'Automated reply not sent to recruiter %s.'
-        logging.info(log_f % (recruitment.recruiter.email))
+            logging.info('Automated reply not sent to recruiter %s.' % (recruitment.recruiter.email))
 
 
 app = webapp2.WSGIApplication([RecruiterEmailHandler.mapping()], debug=True)
