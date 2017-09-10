@@ -12,7 +12,7 @@ from google.appengine.ext.webapp.mail_handlers import InboundMailHandler
 
 from models.recruiter_email import RecruiterEmail
 from models.recruiter import Recruiter
-from mailers.recruiter_reply_mailer import RecruitmentReplyMailer
+from mailers.recruitment_reply_mailer import RecruitmentReplyMailer
 
 from config.secrets import AUTHORIZED_FORWARDERS, AUTOMATED_REPLY_TRIGGER_EMAIL
 
@@ -51,7 +51,7 @@ class RecruiterEmailHandler(InboundMailHandler):
         if mail_message.to == AUTOMATED_REPLY_TRIGGER_EMAIL:
             mailer = RecruitmentReplyMailer(recruitment)
             mailer.deliver()
-            log_f = 'Automated reply to recruiter %s queued.'
+            log_f = 'Automated reply to recruiter %s sent.'
         else:
             log_f = 'Automated reply not sent to recruiter %s.'
         logging.info(log_f % (recruitment.recruiter.email))

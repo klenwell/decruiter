@@ -1,6 +1,6 @@
 from google.appengine.api import mail
 from flask import render_template
-from config.secrets import AUTHORIZED_APP_ENGINE_SENDER
+from config import secrets
 
 
 class RecruitmentReplyMailer(object):
@@ -13,7 +13,7 @@ class RecruitmentReplyMailer(object):
         # TODO: Queue
 
     def __init__(self, recruitment):
-        self.sender = "Recruited Developer <%s>" % (AUTHORIZED_APP_ENGINE_SENDER)
+        self.sender = secrets.AUTHORIZED_APP_ENGINE_SENDER
         self.recipient = recruitment.recruiter.email
         self.subject = self.generate_subject(recruitment)
         self.body = self.generate_body(recruitment)
@@ -23,7 +23,9 @@ class RecruitmentReplyMailer(object):
         return subject_f % (recruitment.sent_on)
 
     def generate_body(self, recruitment):
-        return render_template('emails/recruitment_reply.txt', recruitment=recruitment)
+        return render_template('emails/recruitment_reply.txt',
+                               recruitment=recruitment,
+                               secrets=secrets)
 
     def deliver(self):
         mail.send_mail(sender=self.sender,

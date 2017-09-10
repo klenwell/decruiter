@@ -139,33 +139,64 @@ class RecruiterEmailsHandlerTest(AppEngineTestCase):
 
     @patch("mail_handler.AUTHORIZED_FORWARDERS", [authorized_forwarder])
     @patch("mail_handler.AUTOMATED_REPLY_TRIGGER_EMAIL", reply_trigger_email)
+    @patch("config.secrets.AUTOMATED_REPLY_URL", 'https://klenwell.com/is/Recruiters')
     def test_expects_to_send_automated_reply(self):
         # NOTE: mail_handler.AUTOMATED_REPLY_TRIGGER_EMAIL must be patched to match
         # recipient in email fixture file.
         # Arrange
         client = TestApp(app)
+        app_context = self.initAppContext()
         mail_stub = self.initMailStub()
         mail_message = TestEmail.fixture(sender=authorized_forwarder, recipient=reply_trigger_email)
         endpoint = '/_ah/mail/%s' % (quote_plus(reply_trigger_email))
 
         # Assume
-        self.assertEqual(RecruiterEmail.query().count(), 0)
-        self.assertEqual(Recruiter.query().count(), 0)
         body = mail_message.original.as_string()
+        expected_log_message = 'Automated reply to recruiter harold.kumar@whitecastle.com sent.'
 
-        # Act
-        with patch('mail_handler.logging.info') as mock_logger:
-            response = client.post(endpoint, body)
-            messages = mail_stub.get_sent_messages()
-            last_log_message = mock_logger.call_args_list[-1]
+        # Act: template for email requires Flask context
+        with app_context():
+            with patch('mail_handler.logging.info') as mock_logger:
+                response = client.post(endpoint, body)
+                email_messages = mail_stub.get_sent_messages()
+                email_body = str(email_messages[0].body)
+
+                # On unpacking call_args_list: https://stackoverflow.com/a/39669722/1093087
+                last_log_args, _ = mock_logger.call_args_list[-1]
+                last_log_message = last_log_args[0]
 
         # Assert
         self.assertEqual(response.status_code, 200, response)
-        self.assertEqual(RecruiterEmail.query().count(), 1)
-        self.assertEqual(Recruiter.query().count(), 1)
-        self.assertEqual(mock_logger.call_count, 3)
-        self.assertIn('Automated reply sent', str(last_log_message))
-        self.assertEqual(len(messages), 1)
+        self.assertEqual(expected_log_message, last_log_message)
+        self.assertEqual(len(email_messages), 1)
+        self.assertIn('https://klenwell.com/is/Recruiters', email_body)
 
-    def test_expects_not_to_send_automated_reply(self):
-        pass
+    @patch("mail_handler.AUTHORIZED_FORWARDERS", [authorized_forwarder])
+    @patch("mail_handler.AUTOMATED_REPLY_TRIGGER_EMAIL", reply_trigger_email)
+    def test_expects_to_not_send_automated_reply(self):
+        # NOTE: mail_handler.AUTOMATED_REPLY_TRIGGER_EMAIL must be patched to match
+        # recipient in email fixture file.
+        # Arrange
+        no_reply_trigger_email = 'no-reply@foo.appspotmail.com'
+        client = TestApp(app)
+        app_context = self.initAppContext()
+        mail_stub = self.initMailStub()
+        mail_message = TestEmail.fixture(sender=authorized_forwarder, recipient=no_reply_trigger_email)
+        endpoint = '/_ah/mail/%s' % (quote_plus(reply_trigger_email))
+
+        # Assume
+        body = mail_message.original.as_string()
+        expected_log_message = 'Automated reply not sent to recruiter harold.kumar@whitecastle.com.'
+
+        # Act: template for email requires Flask context
+        with app_context():
+            with patch('mail_handler.logging.info') as mock_logger:
+                response = client.post(endpoint, body)
+                email_messages = mail_stub.get_sent_messages()
+                last_log_args, _ = mock_logger.call_args_list[-1]
+                last_log_message = last_log_args[0]
+
+        # Assert
+        self.assertEqual(response.status_code, 200, response)
+        self.assertEqual(expected_log_message, last_log_message)
+        self.assertEqual(len(email_messages), 0)
