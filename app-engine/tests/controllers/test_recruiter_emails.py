@@ -5,6 +5,8 @@ To run individually:
 
     nosetests -c nose.cfg tests/controllers/test_recruiter_emails.py
 """
+from datetime import datetime
+
 from controllers.recruiter_emails import app as recruiter_emails_controller
 from models.recruiter_email import RecruiterEmail
 from models.recruiter import Recruiter
