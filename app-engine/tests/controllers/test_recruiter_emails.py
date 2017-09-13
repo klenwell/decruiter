@@ -47,6 +47,38 @@ class RecruiterEmailsControllerTest(AppEngineControllerTest):
         self.assertEqual(len(table_rows), 1)
         self.assertEqual(table_rows[0].td.text.strip(), recruiter_name)
 
+    def test_expects_index_to_display_recruitment_replied_at_field(self):
+        # Arrange
+        client = recruiter_emails_controller.test_client()
+        forwarder = 'forwarder@gmail.com'
+        recruiter_name = 'Jill Cruiter'
+        mail_message = TestEmail.fixture(sender=forwarder, recruiter_name=recruiter_name)
+        recruitment = RecruiterEmail.from_inbound_handler(mail_message)
+        recruitment.replied_at = datetime(2017, 9, 12, 0, 0, 0)
+        recruitment.put()
+
+        # Assume
+        self.assertTrue(recruitment.replied_to_recruiter)
+        endpoint = '/admin/recruitments/'
+        content_selector = 'div.recruiter-emails.index'
+        table_selector = 'table.table'
+        expected_replied_at_value = recruitment.replied_at.strftime('%Y-%m-%d %H:%M:%S')
+
+        # Act
+        response = client.get(endpoint, follow_redirects=False)
+        html = parse_html(response.data)
+        content = html.select_one(content_selector) if html else None
+        table = content.select_one(table_selector) if content else None
+        replied_at_cells = table.select('tbody > tr > td.replied-at') if table else []
+
+        # Assert
+        self.assertEqual(response.status_code, 200, html)
+        self.assertIsNotNone(content)
+        self.assertIsNotNone(table)
+        self.assertEqual(content.h2.text.strip(), 'Recruiter Emails')
+        self.assertEqual(len(replied_at_cells), 1)
+        self.assertEqual(replied_at_cells[0].text.strip(), expected_replied_at_value)
+
     def test_expects_index_to_display_no_recruitments(self):
         # Arrange
         client = recruiter_emails_controller.test_client()
