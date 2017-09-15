@@ -14,6 +14,9 @@ else:
 
 PROJECT_NAME = 'Decruiter'
 
+# Source: https://github.com/gae-init/gae-init/blob/master/main/config.py
+APP_VERSION_ID = os.environ.get('CURRENT_VERSION_ID')
+
 # Local Dev Server Settings (used by seed.py)
 APP_ENGINE_SDK_PATH = '/home/klenwell/opt/google_appengine/'
 DEV_API_SERVER_PORT = 9002
