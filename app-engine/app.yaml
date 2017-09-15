@@ -4,7 +4,7 @@
 # for details.
 
 # default: production
-version: production
+version: gjbi4uzj
 
 application: decruiter
 runtime: python27
@@ -21,21 +21,21 @@ inbound_services:
 
 # Handlers define how to route requests to your application.
 handlers:
-    
+
   #
   # Static directories
   #
 - url: /assets
   static_dir: assets
-  
+
 - url: /favicon\.ico
   static_files: assets/images/favicon.ico
   upload: assets/images/favicon\.ico
-  
+
 - url: /robots\.txt
   static_files: assets/webtools/robots.txt
   upload: assets/media/robots.txt
-  
+
 - url: /sitemap\.txt
   static_files: assets/webtools/sitemap.txt
   upload: assets/media/sitemap.txt
@@ -46,25 +46,25 @@ handlers:
 - url: /_ah/mail/.+
   script: mail_handler.app
   login: admin
-  
+
   #
   # Recruiter Email Controller Endpoints
   #
 - url: /admin/recruitments(/.*)?
   script: controllers.recruiter_emails.app
   login: admin
-  
+
 - url: /admin/recruitment(/.*)?
   script: controllers.recruiter_emails.app
   login: admin
-  
+
   #
   # Recruiter Controller Endpoints
   #
 - url: /admin/recruiters(/.*)?
   script: controllers.recruiters.app
   login: admin
-  
+
 - url: /admin/recruiter(/.*)?
   script: controllers.recruiters.app
   login: admin
@@ -72,6 +72,5 @@ handlers:
   #
   # Default Route
   #
-- url: .* 
+- url: .*
   script: controllers.pages.app
-

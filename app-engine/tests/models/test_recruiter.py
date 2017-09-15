@@ -33,3 +33,11 @@ class RecruiterModelTest(AppEngineModelTest):
 
         # Assert
         self.assertEqual(recruiter.mailing_list, MAILING_LISTS[0])
+
+    def test_expects_recruiter_first_name(self):
+        # Act
+        recruiter = Recruiter(email='recruiter@hotmail.com',
+                              name='Robert E. Cruiter')
+
+        # Assert
+        self.assertEqual(recruiter.first_name, 'Robert')

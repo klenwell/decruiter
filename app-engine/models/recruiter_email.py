@@ -37,6 +37,7 @@ class RecruiterEmail(ndb.Model):
     plain_body              = ndb.TextProperty()
     html_body               = ndb.TextProperty()
     sent_at                 = ndb.DateTimeProperty()
+    replied_at              = ndb.DateTimeProperty()
 
     # Related Models
     recruiter_key           = ndb.KeyProperty(required=False)        # kind=Recruiter
@@ -63,6 +64,17 @@ class RecruiterEmail(ndb.Model):
             return None
         else:
             return self.recruiter_key.get()
+
+    @property
+    def sent_on(self):
+        return self.sent_at.date()
+
+    @property
+    def replied_to_recruiter(self):
+        if not self.replied_at:
+            return False
+        else:
+            return True
 
     #
     # Class Methods

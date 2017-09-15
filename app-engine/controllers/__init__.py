@@ -73,7 +73,8 @@ app.json_encoder = CustomJSONEncoder
 def common_variables():
     return dict(
         current_year = date.today().year,
-        deployment_stage = config.DEPLOYMENT_STAGE
+        deployment_stage = config.DEPLOYMENT_STAGE,
+        app_version_id = config.APP_VERSION_ID
     )
 
 #

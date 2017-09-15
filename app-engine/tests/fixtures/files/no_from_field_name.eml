@@ -1,21 +1,21 @@
 X-Received: by 10.237.46.3 with SMTP id j3mr22367457qtd.2.1472934404109;
  Sat, 03 Sep 2016 13:26:44 -0700 (PDT)
-Return-Path: <%FORWARDER%>
+Return-Path: <%SENDER%>
 Received: from mail-qk0-x22f.google.com (mail-qk0-x22f.google.com.
  [2607:f8b0:400d:c09::22f])
  by gmr-mx.google.com with ESMTPS id u193si954744ywf.6.2016.09.03.13.26.44
- for <recruitment@decruiter.appspotmail.com>
+ for <%RECIPIENT%>
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
  Sat, 03 Sep 2016 13:26:44 -0700 (PDT)
-Received-SPF: pass (google.com: domain of %FORWARDER% designates
+Received-SPF: pass (google.com: domain of %SENDER% designates
  2607:f8b0:400d:c09::22f as permitted sender)
  client-ip=2607:f8b0:400d:c09::22f;
 Authentication-Results: gmr-mx.google.com; dkim=pass header.i=@gmail.com;
- spf=pass (google.com: domain of %FORWARDER% designates
- 2607:f8b0:400d:c09::22f as permitted sender) smtp.mailfrom=%FORWARDER%;
+ spf=pass (google.com: domain of %SENDER% designates
+ 2607:f8b0:400d:c09::22f as permitted sender) smtp.mailfrom=%SENDER%;
  dmarc=pass (p=NONE dis=NONE) header.from=gmail.com
 Received: by mail-qk0-x22f.google.com with SMTP id v123so157559359qkh.2
- for <recruitment@decruiter.appspotmail.com>;
+ for <%RECIPIENT%>;
  Sat, 03 Sep 2016 13:26:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
  h=mime-version:in-reply-to:references:from:date:message-id:subject:to;
@@ -77,18 +77,18 @@ References: <828069410.2987193.1472672132783.ref@mail.yahoo.com>
  <580589406.3567293.1472744852452@mail.yahoo.com>
  <1064965059.3466752.1472744875913@mail.yahoo.com>
  <2015097104.3623905.1472746394287@mail.yahoo.com>
-From: Tom Atwell <%FORWARDER%>
+From: Tom Atwell <%SENDER%>
 Date: Sat, 3 Sep 2016 13:26:23 -0700
 Message-ID: <CAPU-tmAykEAfkQZHU4F5jXDoLMCiFfcP62rC-Q1Q5Gy_tFBUkA@mail.gmail.com>
 Subject: Fwd: Looking for a Technical Lead - Drupal Developer
-To: recruitment@decruiter.appspotmail.com
+To: %RECIPIENT%
 Content-Type: multipart/alternative; boundary=001a1146f448e82fa0053ba04301
 
 --001a1146f448e82fa0053ba04301
 Content-Type: text/plain; charset=UTF-8
 
 ---------- Forwarded message ----------
-From: <charan.kumar@elitebizconsulting.com>
+From: <%RECRUITER_EMAIL%>
 Date: Thu, Sep 1, 2016 at 9:13 AM
 Subject: Looking for a Technical Lead - Drupal Developer
 To: "nagarjuna@avcoconsulting.com" <nagarjuna@avcoconsulting.com>
@@ -100,7 +100,7 @@ Hello,
 
 Greetings from Elite!!!!!
 We are in immediate need of the following resource. If you are interested
-please respond with an updated resume to charan.kumar@elitebizconsulting.com
+please respond with an updated resume to %RECRUITER_EMAIL%
 .
 
 Role: Technical Lead - Drupal
@@ -144,10 +144,10 @@ Experience with multilingual Drupal sites a plus
 Experience with Drupal Commerce a plus
 
 Thanks & Regards
-Charan Kumar
-Elite Business Consulting
-www.elitebizconsulting.com
-charan.kumar@elitebizconsulting.com
+%RECRUITER_NAME%
+White Castle Recruiters
+www.whitecruiters.com
+%RECRUITER_EMAIL%
 
 --001a1146f448e82fa0053ba04301
 Content-Type: text/html; charset=UTF-8
@@ -155,7 +155,7 @@ Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><br><div class=3D"gmail_quote">---------- Forwarded messag=
 e ----------<br>From: <b class=3D"gmail_sendername"></b> <span dir=3D"ltr">=
-&lt;<a href=3D"mailto:charan.kumar@elitebizconsulting.com">charan.kumar@eli=
+&lt;<a href=3D"mailto:%RECRUITER_EMAIL%">Harold.kumar@eli=
 tebizconsulting.com</a>&gt;</span><br>Date: Thu, Sep 1, 2016 at 9:13 AM<br>=
 Subject: Looking for a Technical Lead - Drupal Developer<br>To: &quot;<a hr=
 ef=3D"mailto:nagarjuna@avcoconsulting.com">nagarjuna@avcoconsulting.com</a>=
@@ -316,7 +316,7 @@ size:16px"><div style=3D"font-family:HelveticaNeue,Helvetica Neue,Helvetica=
 or:#000;background-color:#fff;font-family:times new roman,new york,times,se=
 rif;font-size:16px"><div>We are in immediate need of the following resource=
 . If you are interested please respond with an updated resume to <a href=3D=
-"mailto:charan.kumar@elitebizconsulting.com" target=3D"_blank">charan.kumar=
+"mailto:%RECRUITER_EMAIL%" target=3D"_blank">Harold.kumar=
 @<wbr>elitebizconsulting.com</a>.</div><div><br clear=3D"none"></div><div>R=
 ole: Technical Lead - Drupal</div><div>Locations: Wilton , CT</div><div>Exp=
 erience: 8 + Years</div><div>Contract Duration =C2=A0: 6 Months (could be e=
@@ -346,10 +346,10 @@ v>Acquia certification is a plus</div><div>Experience speaking at events a =
 plus</div><div>Drupal 8 development experience a plus</div><div>Experience =
 with multilingual Drupal sites a plus</div><div>Experience with Drupal Comm=
 erce a plus</div><div><br clear=3D"none"></div><div>Thanks &amp; Regards</d=
-iv><div>Charan Kumar</div><div>Elite Business Consulting</div><div><a href=
-=3D"http://www.elitebizconsulting.com" target=3D"_blank">www.elitebizconsul=
-ting.com</a></div><div dir=3D"ltr"><a href=3D"mailto:charan.kumar@elitebizc=
-onsulting.com" target=3D"_blank">charan.kumar@<wbr>elitebizconsulting.com</=
+iv><div>%RECRUITER_NAME%</div><div>White Castle Recruiters</div><div><a href=
+=3D"http://www.whitecruiters.com" target=3D"_blank">www.elitebizconsul=
+ting.com</a></div><div dir=3D"ltr"><a href=3D"mailto:Harold.kumar@elitebizc=
+onsulting.com" target=3D"_blank">Harold.kumar@<wbr>elitebizconsulting.com</=
 a></div></div></div><br clear=3D"none"><br clear=3D"none"></div> </div> </d=
 iv>  </div></div></div></div></div><br clear=3D"none"><br clear=3D"none"></=
 div> </div> </div>  </div></div></div></div></div><br clear=3D"none"><br cl=

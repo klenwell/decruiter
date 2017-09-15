@@ -1,0 +1,16 @@
+Hi {{ recruitment.recruiter.first_name }},
+
+Thanks for emailing me regarding your opening. The subject line was:
+
+> {{ recruitment.subject }}
+
+You can find answer to most questions you'd have as a recruiter for me here:
+
+{{ secrets.AUTOMATED_REPLY_URL }}
+
+I am actively looking for a new opportunity. Please review that page. If you have a position that fits me, please email me the info I request there and I'll personally reply.
+
+Regards,
+{{ secrets.AUTOMATED_REPLY_SIGNATURE }}
+
+P.S. I only send these emails in reply to emails you have sent me. If you would prefer not to receive emails like this from me, you can simply remove me from your mailing list.
