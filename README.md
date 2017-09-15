@@ -28,11 +28,11 @@ To install:
 
          cp -v app-engine/config/secrets.py{-dist,}
 
-  Update secret values in news `secrets.py`.
+    Update secret values in news `secrets.py`.
 
 5. Update automated reply template.
 
-  If you configure your app to send automated replies, you'll probably want to update the email template found at `templates/emails/recruitment_reply.txt`
+    If you configure your app to send automated replies, you'll probably want to update the email template found at `templates/emails/recruitment_reply.txt`
 
 
 ## Development Server

@@ -39,8 +39,8 @@ class RecruitmentReplyMailer(object):
             logging.info(log_f % (recruitment.recruiter.email, recruitment.replied_at))
             return False
 
-        # TODO: Fix after live testing complete.
-        recipient = secrets.AUTHORIZED_FORWARDERS[1]
+        # Uncomment for live testing.
+        #recipient = secrets.AUTHORIZED_FORWARDERS[1]
 
         # Required to avoid AttributeError.
         # See: https://stackoverflow.com/a/31156117/1093087
