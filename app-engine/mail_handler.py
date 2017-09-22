@@ -26,13 +26,16 @@ class RecruiterEmailHandler(InboundMailHandler):
                                                                  mail_message.sender,
                                                                  mail_message.subject))
 
+        # Extract forwarder and recipient email addresses
+        _, forwarder_email = parseaddr(mail_message.sender)
+        _, recipient_email = parseaddr(mail_message.to)
+
         # Authenticate email forwarder.
-        _, forwarder = parseaddr(mail_message.sender)
-        if forwarder in AUTHORIZED_FORWARDERS:
-            msg = '%s is authorized to forward recruitments.' % (forwarder)
+        if forwarder_email in AUTHORIZED_FORWARDERS:
+            msg = '%s is authorized to forward recruitments.' % (forwarder_email)
             logging.debug(msg)
         else:
-            msg = '%s is not authorized to forward recruitments.' % (forwarder)
+            msg = '%s is not authorized to forward recruitments.' % (forwarder_email)
             raise HandlerAuthorizationError(msg)
 
         # Parse and store recruitment.
@@ -48,7 +51,7 @@ class RecruiterEmailHandler(InboundMailHandler):
         logging.info(log_f % (recruitment.subject, recruitment.recruiter.email))
 
         # Email recruiter.
-        if mail_message.to == AUTOMATED_REPLY_TRIGGER_EMAIL:
+        if recipient_email == AUTOMATED_REPLY_TRIGGER_EMAIL:
             mailer = RecruitmentReplyMailer(recruitment)
             mailer.deliver()
         else:
