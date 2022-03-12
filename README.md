@@ -2,8 +2,10 @@
 
 An Python Flask App Engine application for quickly deconstructing and categorizing recruiter emails.
 
-- App Engine Site: https://decruiter.appspot.com/
+- ~~App Engine Site: https://decruiter.appspot.com/ ~~
 - Trello Board: https://trello.com/b/6exW1pbZ/decruiter
+
+**This project has been archived and is no longer active.**
 
 
 ## Flask App Engine Application
@@ -39,7 +41,7 @@ To install:
 
 To launch the local development server, run the following command from the project root:
 
-    dev_appserver.py --port=3000 --admin_port=3001 --api_port=3002 ./app-engine
+    PYENV_VERSION=2.7.13 dev_appserver.py --port=3000 --admin_port=3001 --api_port=3002 ./app-engine
 
 Application will run on [http://localhost:3000](http://localhost:3000).
 
